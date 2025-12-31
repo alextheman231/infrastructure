@@ -42,3 +42,12 @@ resource "github_branch_protection" "main" {
   }
 
 }
+
+resource "github_branch_protection" "default" {
+  count         = var.enable_branch_protection ? 1 : 0
+  repository_id = github_repository.default.name
+  pattern       = "*"
+
+  allows_deletions    = true
+  allows_force_pushes = true
+}
