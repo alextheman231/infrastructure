@@ -1,2 +1,15 @@
+#!/bin/bash
+set -e
+
+if git diff --cached --quiet; then
+  echo "No staged changes found."
+  exit 0
+fi
+
 terraform fmt -recursive
 terraform fmt -check
+
+terraform init
+terraform validate
+
+git update-index --again

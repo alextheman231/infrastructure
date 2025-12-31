@@ -6,8 +6,9 @@ locals {
     }
 
     "infrastructure" = {
-      description = "Infrastructure for my GitHub repositories."
-      visibility  = "public"
+      description        = "Infrastructure for my GitHub repositories."
+      visibility         = "public"
+      required_ci_checks = ["Terraform CI / terraform-ci", "Terraform Cloud/alextheman/repo-id-pmMPm4vxcUqSJvzV"]
     }
   }
 }
@@ -25,4 +26,7 @@ module "repository" {
   has_wiki     = try(each.value.has_wiki, false)
 
   archived = try(each.value.archived, false)
+
+  enable_branch_protection = try(each.value.required_ci_checks, null) != null
+  required_ci_checks       = try(each.value.required_ci_checks, null)
 }
