@@ -36,4 +36,9 @@ resource "github_branch_protection" "main" {
     strict   = true
     contexts = var.required_ci_checks
   }
+
+  required_pull_request_reviews {
+    required_approving_review_count = 0
+  }
+
 }
