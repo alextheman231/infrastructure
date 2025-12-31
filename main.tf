@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "alextheman"
+
+    workspaces {
+      name = "infrastructure"
+    }
+  }
+
   required_version = ">= 1.0.0"
 
   required_providers {
