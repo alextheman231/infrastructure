@@ -27,13 +27,13 @@ resource "github_repository" "default" {
   archived = var.archived
 }
 
-resource "github_branch_protection_v3" "main" {
-  count      = var.enable_branch_protection ? 1 : 0
-  repository = github_repository.default.name
-  branch     = "main"
+resource "github_branch_protection" "main" {
+  count         = var.enable_branch_protection ? 1 : 0
+  repository_id = github_repository.default.name
+  pattern       = "main"
 
   required_status_checks {
-    strict = true
-    checks = var.required_ci_checks
+    strict   = true
+    contexts = var.required_ci_checks
   }
 }
