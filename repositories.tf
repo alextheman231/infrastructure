@@ -34,6 +34,12 @@ locals {
       visibility         = "public"
       required_ci_checks = ["ci / pnpm-ci"]
     }
+
+    "github-actions" = {
+      description        = "Common GitHub Actions used across my repositories."
+      visibility         = "public"
+      required_ci_checks = ["actions-ci"]
+    }
   }
 }
 
