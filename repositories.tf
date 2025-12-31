@@ -28,6 +28,12 @@ locals {
       visibility         = "public"
       required_ci_checks = ["ci / pnpm-ci"]
     }
+
+    "alex-c-line" = {
+      description        = "Command-line tool with commands to streamline the developer workflow."
+      visibility         = "public"
+      required_ci_checks = ["ci / pnpm-ci"]
+    }
   }
 }
 
