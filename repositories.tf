@@ -10,6 +10,12 @@ locals {
       visibility         = "public"
       required_ci_checks = ["terraform-ci", "Terraform Cloud/alextheman/repo-id-pmMPm4vxcUqSJvzV"]
     }
+
+    "utility" = {
+      description        = "Helpful utility functions."
+      visibility         = "public"
+      required_ci_checks = ["ci/pnpm-ci"]
+    }
   }
 }
 
