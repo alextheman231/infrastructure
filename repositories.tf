@@ -8,7 +8,7 @@ locals {
     "infrastructure" = {
       description        = "Infrastructure for my GitHub repositories."
       visibility         = "public"
-      required_ci_checks = ["Terraform CI / terraform-ci", "Terraform Cloud/alextheman/repo-id-pmMPm4vxcUqSJvzV"]
+      required_ci_checks = ["terraform-ci", "Terraform Cloud/alextheman/repo-id-pmMPm4vxcUqSJvzV"]
     }
   }
 }
