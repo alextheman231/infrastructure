@@ -22,6 +22,12 @@ locals {
       visibility         = "public"
       required_ci_checks = ["ci / pnpm-ci"]
     }
+
+    "components" = {
+      description        = "A package containing common React components used across my projects."
+      visibility         = "public"
+      required_ci_checks = ["ci / pnpm-ci"]
+    }
   }
 }
 
