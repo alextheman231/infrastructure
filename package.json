@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "init": "dotenv -e ./.env -- terraform init",
     "plan": "dotenv -e ./.env -- terraform plan",
-    "apply": "dotenv -e ./.env -- terraform apply"
+    "apply": "dotenv -e ./.env -- terraform apply",
+    "import": "dotenv -e ./.env -- bash -c 'terraform import $@' --"
   },
   "keywords": [],
   "author": "",

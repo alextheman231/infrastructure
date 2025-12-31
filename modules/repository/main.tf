@@ -1,0 +1,28 @@
+terraform {
+  required_version = ">= 1.0.0"
+
+  required_providers {
+    github = {
+      source  = "integrations/github"
+      version = "~> 6.0"
+    }
+  }
+}
+
+resource "github_repository" "default" {
+  name        = var.name
+  description = var.description
+  visibility  = var.visibility
+
+  has_issues   = var.has_issues
+  has_projects = var.has_projects
+  has_wiki     = var.has_wiki
+
+  allow_auto_merge       = true
+  allow_merge_commit     = true
+  allow_rebase_merge     = false
+  allow_squash_merge     = false
+  delete_branch_on_merge = true
+
+  archived = var.archived
+}
