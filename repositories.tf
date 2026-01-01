@@ -40,6 +40,12 @@ locals {
       visibility         = "public"
       required_ci_checks = ["actions-ci"]
     }
+
+    "neurosongs-2" = {
+      description        = "New version of my music-sharing app, Neurosongs."
+      visibility         = "public"
+      required_ci_checks = ["neurosongs-ci"]
+    }
   }
 }
 
