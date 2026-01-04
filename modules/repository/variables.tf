@@ -47,3 +47,9 @@ variable "enable_branch_protection" {
   description = "Enable branch protection on main."
   default     = false
 }
+
+variable "alex_up_bot_github_token" {
+  description = "Token to provide for Actions bot, AlexUpBot"
+  type        = string
+  sensitive   = true
+}

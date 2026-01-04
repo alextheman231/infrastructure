@@ -51,3 +51,9 @@ resource "github_branch_protection" "default" {
   allows_deletions    = true
   allows_force_pushes = true
 }
+
+resource "github_actions_secret" "alex_up_bot_github_token" {
+  repository      = github_repository.default.name
+  secret_name     = "ALEX_UP_BOT_GITHUB_TOKEN"
+  plaintext_value = var.alex_up_bot_github_token
+}

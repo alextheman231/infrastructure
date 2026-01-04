@@ -71,4 +71,6 @@ module "repository" {
 
   enable_branch_protection = try(each.value.required_ci_checks, null) != null
   required_ci_checks       = try(each.value.required_ci_checks, null)
+
+  alex_up_bot_github_token = var.alex_up_bot_github_token
 }
