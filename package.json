@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky",
-    "update-dependencies": "terraform init -upgrade -backend=false && pnpm update --latest && pnpm update"
+    "update-dependencies": "pnpm update --latest && pnpm update"
   },
   "keywords": [],
   "author": "",
