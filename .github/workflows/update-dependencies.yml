@@ -1,0 +1,16 @@
+name: Update Dependencies
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 0 21 * * 5
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-dependencies:
+    if: ${{ github.repository == 'AlexMan123456/infrastructure' }}
+    uses: AlexMan123456/github-actions/.github/workflows/update-dependencies.yml@351e9300f94bd9c648fe7367f518abe0e449a0e3 # v4.0.5
+    secrets:
+      PAT_GITHUB: ${{ secrets.ALEX_UP_BOT_GITHUB_TOKEN }}
