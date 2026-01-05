@@ -14,7 +14,7 @@ locals {
     "utility" = {
       description        = "Helpful utility functions."
       visibility         = "public"
-      required_ci_checks = ["ci / pnpm-ci"]
+      required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
     }
 
     "eslint-plugin" = {
