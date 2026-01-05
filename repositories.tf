@@ -38,7 +38,7 @@ locals {
     "github-actions" = {
       description        = "Common GitHub Actions used across my repositories."
       visibility         = "public"
-      required_ci_checks = ["actions-ci"]
+      required_ci_checks = ["self-ci"]
     }
 
     "neurosongs-2" = {
