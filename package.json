@@ -5,12 +5,14 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "format": "pnpm run format-package-json && pnpm run format-terraform-fmt && pnpm run format-tflint",
+    "format": "pnpm run format-package-json && pnpm run format-prettier-yml && pnpm run format-terraform-fmt && pnpm run format-tflint",
     "format-package-json": "eslint --fix --suppress-all package.json && rm -f eslint-suppressions.json",
+    "format-prettier-yml": "prettier --write \"./**/*.{yml,yaml}\"",
     "format-terraform-fmt": "terraform fmt -recursive",
     "format-tflint": "tflint --fix --recursive",
-    "lint": "pnpm run lint-package-json && pnpm run lint-tflint && pnpm run lint-terraform-fmt && pnpm run lint-terraform-validate",
+    "lint": "pnpm run lint-tflint && pnpm run lint-terraform-fmt && pnpm run lint-terraform-validate && pnpm run lint-package-json && pnpm run lint-prettier-yml",
     "lint-package-json": "eslint package.json",
+    "lint-prettier-yml": "prettier --check \"./**/*.{yml,yaml}\"",
     "lint-terraform-fmt": "terraform fmt -check -recursive",
     "lint-terraform-validate": "terraform validate",
     "lint-tflint": "tflint --recursive",
@@ -25,9 +27,13 @@
     "@alextheman/eslint-plugin": "^5.4.2",
     "dotenv-cli": "^11.0.0",
     "eslint": "^9.39.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "prettier": "^3.7.4"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "unrs-resolver"]
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "unrs-resolver"
+    ]
   }
 }
