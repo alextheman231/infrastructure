@@ -27,29 +27,33 @@ resource "github_repository" "default" {
   archived = var.archived
 }
 
-resource "github_branch_protection" "main" {
-  count         = var.enable_branch_protection ? 1 : 0
-  repository_id = github_repository.default.name
-  pattern       = "main"
+resource "github_repository_ruleset" "default" {
+  count       = length(var.required_ci_checks) > 0 ? 1 : 0
+  name        = "Main branch protection"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
 
-  required_status_checks {
-    strict   = true
-    contexts = var.required_ci_checks
+  rules {
+    branch_name_pattern {
+      pattern  = "^main$"
+      operator = "regex"
+    }
+
+    pull_request {
+      required_approving_review_count = 0
+    }
+    required_status_checks {
+      strict_required_status_checks_policy = true
+
+      dynamic "required_check" {
+        for_each = distinct(var.required_ci_checks)
+        content {
+          context = required_check.value
+        }
+      }
+    }
   }
-
-  required_pull_request_reviews {
-    required_approving_review_count = 0
-  }
-
-}
-
-resource "github_branch_protection" "default" {
-  count         = var.enable_branch_protection ? 1 : 0
-  repository_id = github_repository.default.name
-  pattern       = "*"
-
-  allows_deletions    = true
-  allows_force_pushes = true
 }
 
 resource "github_actions_secret" "alex_up_bot_github_token" {

@@ -39,13 +39,7 @@ variable "has_wiki" {
 variable "required_ci_checks" {
   type        = list(string)
   description = "List of actions that must pass in the GitHub Actions CI environment before it can be merged into main."
-  default     = null
-}
-
-variable "enable_branch_protection" {
-  type        = bool
-  description = "Enable branch protection on main."
-  default     = false
+  default     = []
 }
 
 variable "alex_up_bot_github_token" {
