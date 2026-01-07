@@ -33,13 +33,14 @@ resource "github_repository_ruleset" "default" {
   repository  = github_repository.default.name
   target      = "branch"
   enforcement = "active"
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
 
   rules {
-    branch_name_pattern {
-      pattern  = "^main$"
-      operator = "regex"
-    }
-
     pull_request {
       required_approving_review_count = 0
     }
