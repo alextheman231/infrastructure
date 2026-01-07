@@ -25,6 +25,10 @@ resource "github_repository" "default" {
   delete_branch_on_merge = true
 
   archived = var.archived
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_repository_ruleset" "default" {
