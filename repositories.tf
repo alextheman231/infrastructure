@@ -1,10 +1,5 @@
 locals {
   repositories = {
-    "commit-to-you" = {
-      description = "Source files for the Commit To You album (Logic Pro + SynthV sources)."
-      visibility  = "public"
-    }
-
     "infrastructure" = {
       description        = "Infrastructure for my GitHub repositories."
       visibility         = "public"
