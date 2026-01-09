@@ -12,3 +12,10 @@ variable "alex_up_bot_github_token" {
   type        = string
   sensitive   = true
 }
+
+variable "webhook_url" {
+  description = "The URL of a webhook to receive notifications about my organisation."
+  type        = string
+  sensitive   = true
+}
+
