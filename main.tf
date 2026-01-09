@@ -43,6 +43,12 @@ variable "billing_email" {
   }
 }
 
+variable "webhook_url" {
+  description = "The URL of a webhook to receive notifications about my organisation"
+  type        = string
+  sensitive   = true
+}
+
 provider "github" {
   token = var.github_token
   owner = var.github_owner
@@ -52,4 +58,5 @@ module "github_organisation" {
   source                   = "./modules/github_organisation"
   billing_email            = var.billing_email
   alex_up_bot_github_token = var.alex_up_bot_github_token
+  webhook_url              = var.webhook_url
 }

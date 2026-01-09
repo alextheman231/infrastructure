@@ -26,3 +26,14 @@ resource "github_actions_organization_secret" "alex_up_bot_github_token" {
   plaintext_value = var.alex_up_bot_github_token
   visibility      = "all"
 }
+
+resource "github_organization_webhook" "default" {
+  configuration {
+    url          = var.webhook_url
+    content_type = "json"
+  }
+
+  active = true
+
+  events = ["push", "issues"]
+}
