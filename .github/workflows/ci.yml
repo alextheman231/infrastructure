@@ -50,4 +50,4 @@ jobs:
         run: pnpm run lint
 
   actions-ci:
-    uses: AlexMan123456/github-actions/.github/workflows/actions-ci.yml@15f945caadf76b8408942fa118f99da7fd2554e3 # v4.1.0
+    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@15f945caadf76b8408942fa118f99da7fd2554e3 # v4.1.0
