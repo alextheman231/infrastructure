@@ -39,8 +39,8 @@ resource "github_repository_ruleset" "default" {
   enforcement = "active"
 
   bypass_actors {
-    actor_type  = "RepositoryRole"
-    actor_id    = "5"
+    actor_type  = "OrganizationAdmin"
+    actor_id    = "1"
     bypass_mode = "always"
   }
 
