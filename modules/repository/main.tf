@@ -55,6 +55,7 @@ resource "github_repository_ruleset" "default" {
     pull_request {
       required_approving_review_count = 0
     }
+
     required_status_checks {
       strict_required_status_checks_policy = true
 
@@ -63,6 +64,13 @@ resource "github_repository_ruleset" "default" {
         content {
           context = required_check.value
         }
+      }
+    }
+
+    dynamic "merge_queue" {
+      for_each = var.enable_merge_queue ? [1] : []
+      content {
+        merge_method = "MERGE"
       }
     }
   }

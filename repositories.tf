@@ -10,6 +10,7 @@ locals {
       description        = "Helpful utility functions."
       visibility         = "public"
       required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+      enable_merge_queue = true
     }
 
     "eslint-plugin" = {
@@ -65,4 +66,5 @@ module "repository" {
   archived = try(each.value.archived, false)
 
   required_ci_checks = try(each.value.required_ci_checks, [])
+  enable_merge_queue = try(each.value.enable_merge_queue, false)
 }
