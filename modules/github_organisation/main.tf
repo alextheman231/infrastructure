@@ -24,7 +24,7 @@ resource "github_organization_settings" "default" {
 
 resource "github_actions_organization_secret" "alex_up_bot_github_token" {
   secret_name     = "ALEX_UP_BOT_GITHUB_TOKEN"
-  plaintext_value = var.alex_up_bot_github_token
+  encrypted_value = var.alex_up_bot_github_token
   visibility      = "all"
 }
 
