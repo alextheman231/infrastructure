@@ -20,6 +20,10 @@ resource "github_organization_settings" "default" {
   default_repository_permission           = "read"
   members_can_create_public_repositories  = false
   members_can_create_private_repositories = false
+
+  lifecycle {
+    ignore_changes = [members_can_create_repositories]
+  }
 }
 
 resource "github_actions_organization_secret" "alex_up_bot_github_token" {
