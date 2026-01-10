@@ -36,5 +36,5 @@ resource "github_organization_webhook" "default" {
 
   active = true
 
-  events = ["push", "issues"]
+  events = ["push", "issues", "release"]
 }
