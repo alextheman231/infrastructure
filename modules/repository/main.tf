@@ -24,6 +24,8 @@ resource "github_repository" "default" {
   allow_squash_merge     = false
   delete_branch_on_merge = true
 
+  allow_update_branch = true
+
   archived = var.archived
 
   lifecycle {
@@ -70,7 +72,9 @@ resource "github_repository_ruleset" "default" {
     dynamic "merge_queue" {
       for_each = var.enable_merge_queue ? [1] : []
       content {
-        merge_method = "MERGE"
+        merge_method                      = "MERGE"
+        min_entries_to_merge              = 2
+        min_entries_to_merge_wait_minutes = 1
       }
     }
   }

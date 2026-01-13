@@ -45,5 +45,5 @@ variable "required_ci_checks" {
 variable "enable_merge_queue" {
   type        = bool
   description = "Enable merge queues for this repository"
-  default     = false
+  default     = true
 }
