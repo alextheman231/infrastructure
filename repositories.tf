@@ -66,5 +66,5 @@ module "repository" {
   archived = try(each.value.archived, false)
 
   required_ci_checks = try(each.value.required_ci_checks, [])
-  enable_merge_queue = try(each.value.enable_merge_queue, false)
+  enable_merge_queue = try(each.value.enable_merge_queue, true)
 }
