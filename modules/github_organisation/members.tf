@@ -4,3 +4,10 @@ resource "github_membership" "admins" {
   username = each.value
   role     = "admin"
 }
+
+resource "github_membership" "members" {
+  for_each = toset(["Badstagram33"])
+
+  username = each.value
+  role     = "member"
+}
