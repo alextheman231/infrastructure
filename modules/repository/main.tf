@@ -24,6 +24,8 @@ resource "github_repository" "default" {
   allow_squash_merge     = false
   delete_branch_on_merge = true
 
+  allow_update_branch = true
+
   archived = var.archived
 
   lifecycle {
