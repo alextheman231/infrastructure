@@ -37,6 +37,11 @@ locals {
       required_ci_checks = ["self-ci"]
     }
 
+    "blog-site" = {
+      description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
+      visibility  = "public"
+    }
+
     "neurosongs-2" = {
       description        = "New version of my music-sharing app, Neurosongs."
       visibility         = "public"
