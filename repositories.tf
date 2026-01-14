@@ -1,75 +1,71 @@
-locals {
-  repositories = {
-    "infrastructure" = {
-      description        = "Infrastructure for my GitHub repositories."
-      visibility         = "public"
-      required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav"]
-      enable_merge_queue = false
-    }
-
-    "utility" = {
-      description        = "Helpful utility functions."
-      visibility         = "public"
-      required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
-    }
-
-    "eslint-plugin" = {
-      description        = "A package to provide custom ESLint rules and configs."
-      visibility         = "public"
-      required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
-    }
-
-    "components" = {
-      description        = "A package containing common React components used across my projects."
-      visibility         = "public"
-      required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
-    }
-
-    "alex-c-line" = {
-      description        = "Command-line tool with commands to streamline the developer workflow."
-      visibility         = "public"
-      required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
-    }
-
-    "github-actions" = {
-      description        = "Common GitHub Actions used across my repositories."
-      visibility         = "public"
-      required_ci_checks = ["self-ci"]
-    }
-
-    "blog-site" = {
-      description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
-      visibility  = "public"
-    }
-
-    "neurosongs-2" = {
-      description        = "New version of my music-sharing app, Neurosongs."
-      visibility         = "public"
-      required_ci_checks = ["neurosongs-ci", "actions-ci / actions-ci"]
-    }
-
-    "alex-g-bot-2" = {
-      description        = "Discord moderation bot created in TypeScript."
-      visibility         = "public"
-      required_ci_checks = ["alex-g-bot-ci", "actions-ci / actions-ci"]
-    }
-  }
+module "infrastructure_repository" {
+  source             = "./modules/repository"
+  name               = "infrastructure"
+  description        = "Infrastructure for my GitHub repositories."
+  visibility         = "public"
+  required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav"]
+  enable_merge_queue = false
 }
 
-module "repository" {
-  for_each = local.repositories
-  source   = "./modules/repository"
+module "utility_repository" {
+  source             = "./modules/repository"
+  name               = "utility"
+  description        = "Helpful utility functions."
+  visibility         = "public"
+  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+}
 
-  name        = each.key
-  description = each.value.description
-  visibility  = each.value.visibility
+module "eslint_plugin_repository" {
+  source             = "./modules/repository"
+  name               = "eslint-plugin"
+  description        = "A package to provide custom ESLint rules and configs."
+  visibility         = "public"
+  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+}
 
-  has_issues   = try(each.value.has_issues, true)
-  has_projects = try(each.value.has_projects, false)
-  has_wiki     = try(each.value.has_wiki, false)
+module "components_repository" {
+  source             = "./modules/repository"
+  name               = "components"
+  description        = "A package containing common React components used across my projects."
+  visibility         = "public"
+  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+}
 
-  archived = try(each.value.archived, false)
+module "alex_c_line_repository" {
+  source             = "./modules/repository"
+  name               = "alex-c-line"
+  description        = "Command-line tool with commands to streamline the developer workflow."
+  visibility         = "public"
+  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+}
 
-  required_ci_checks = try(each.value.required_ci_checks, [])
-  enable_merge_queue = try(each.value.enable_merge_queue, true)
+module "github_actions_repository" {
+  source             = "./modules/repository"
+  name               = "github-actions"
+  description        = "Common GitHub Actions used across my repositories."
+  visibility         = "public"
+  required_ci_checks = ["self-ci"]
+}
+
+module "blog_site_repository" {
+  source      = "./modules/repository"
+  name        = "blog-site"
+  description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
+  visibility  = "public"
+}
+
+module "neurosongs_2_repository" {
+  source             = "./modules/repository"
+  name               = "neurosongs-2"
+  description        = "New version of my music-sharing app, Neurosongs."
+  visibility         = "public"
+  required_ci_checks = ["neurosongs-ci", "actions-ci / actions-ci"]
+}
+
+module "alex_g_bot_2_repository" {
+  source             = "./modules/repository"
+  name               = "alex-g-bot-2"
+  description        = "Discord moderation bot created in TypeScript."
+  visibility         = "public"
+  required_ci_checks = ["alex-g-bot-ci", "actions-ci / actions-ci"]
 }
