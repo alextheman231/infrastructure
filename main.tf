@@ -34,6 +34,12 @@ variable "alex_up_bot_github_token" {
   sensitive   = true
 }
 
+variable "alex_up_bot_app_id" {
+  description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions. This is intended to replace alex_up_bot_github_token as that is a PAT and less secure than a GitHub App. This should be used alongside alex_up_bot_private_key."
+  type        = string
+  sensitive   = true
+}
+
 variable "alex_up_bot_private_key" {
   description = "Private key for alex-up-bot app, commonly used to create pull requests in GitHub Actions. This is intended to replace alex_up_bot_github_token as that is a PAT and less secure than a GitHub App."
   type        = string
@@ -64,6 +70,7 @@ module "github_organisation" {
   source                   = "./modules/github_organisation"
   billing_email            = var.billing_email
   alex_up_bot_github_token = var.alex_up_bot_github_token
+  alex_up_bot_app_id       = var.alex_up_bot_app_id
   alex_up_bot_private_key  = var.alex_up_bot_private_key
   webhook_url              = var.webhook_url
 }
