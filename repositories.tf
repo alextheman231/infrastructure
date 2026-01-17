@@ -11,7 +11,7 @@ module "infrastructure_repository" {
 module "utility_repository" {
   source             = "./modules/repository"
   name               = "utility"
-  description        = "Helpful utility functions."
+  description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
   required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
