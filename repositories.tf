@@ -5,6 +5,7 @@ module "infrastructure_repository" {
   visibility         = "public"
   required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav"]
   enable_merge_queue = false
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "utility_repository" {
@@ -13,6 +14,7 @@ module "utility_repository" {
   description        = "Helpful utility functions."
   visibility         = "public"
   required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "eslint_plugin_repository" {
@@ -21,6 +23,7 @@ module "eslint_plugin_repository" {
   description        = "A package to provide custom ESLint rules and configs."
   visibility         = "public"
   required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "components_repository" {
@@ -29,6 +32,7 @@ module "components_repository" {
   description        = "A package containing common React components used across my projects."
   visibility         = "public"
   required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "alex_c_line_repository" {
@@ -37,6 +41,7 @@ module "alex_c_line_repository" {
   description        = "Command-line tool with commands to streamline the developer workflow."
   visibility         = "public"
   required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "github_actions_repository" {
@@ -45,13 +50,15 @@ module "github_actions_repository" {
   description        = "Common GitHub Actions used across my repositories."
   visibility         = "public"
   required_ci_checks = ["self-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "blog_site_repository" {
-  source      = "./modules/repository"
-  name        = "blog-site"
-  description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
-  visibility  = "public"
+  source             = "./modules/repository"
+  name               = "blog-site"
+  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
+  visibility         = "public"
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "neurosongs_2_repository" {
@@ -60,6 +67,7 @@ module "neurosongs_2_repository" {
   description        = "New version of my music-sharing app, Neurosongs."
   visibility         = "public"
   required_ci_checks = ["neurosongs-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "alex_g_bot_2_repository" {
@@ -68,4 +76,5 @@ module "alex_g_bot_2_repository" {
   description        = "Discord moderation bot created in TypeScript."
   visibility         = "public"
   required_ci_checks = ["alex-g-bot-ci", "actions-ci / actions-ci"]
+  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
