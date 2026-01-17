@@ -77,7 +77,7 @@ resource "github_repository_ruleset" "pull_request_reviews" {
   bypass_actors {
     actor_type  = "OrganizationAdmin"
     actor_id    = 1
-    bypass_mode = "pull_request"
+    bypass_mode = "exempt"
   }
 
   conditions {
