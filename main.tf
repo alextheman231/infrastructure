@@ -17,12 +17,6 @@ terraform {
   }
 }
 
-variable "github_token" {
-  description = "GitHub token."
-  type        = string
-  sensitive   = true
-}
-
 variable "github_owner" {
   description = "GitHub username."
   type        = string
@@ -36,6 +30,22 @@ variable "alex_up_bot_app_id" {
 
 variable "alex_up_bot_private_key" {
   description = "Private key for alex-up-bot app, commonly used to create pull requests in GitHub Actions."
+  type        = string
+  sensitive   = true
+}
+
+variable "alex_infrastructure_bot_app_id" {
+  description = "App ID for infrastructure bot, which helps Terraform apply the configuration."
+  type        = string
+}
+
+variable "alex_infrastructure_bot_installation_id" {
+  description = "The ID associated with the Infrastructure bot's installation into the organisation."
+  type        = string
+}
+
+variable "alex_infrastructure_bot_private_key_base64" {
+  description = "Base64 encoded version of the alex-infrastructure-bot private key."
   type        = string
   sensitive   = true
 }
@@ -55,9 +65,15 @@ variable "webhook_url" {
   sensitive   = true
 }
 
+
 provider "github" {
-  token = var.github_token
   owner = var.github_owner
+
+  app_auth {
+    id              = var.alex_infrastructure_bot_app_id
+    installation_id = var.alex_infrastructure_bot_installation_id
+    pem_file        = trimspace(base64decode(var.alex_infrastructure_bot_private_key_base64))
+  }
 }
 
 module "github_organisation" {
