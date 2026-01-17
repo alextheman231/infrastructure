@@ -93,3 +93,35 @@ resource "github_repository_ruleset" "pull_request_reviews" {
     }
   }
 }
+
+resource "github_repository_ruleset" "no_version_tags" {
+  name        = "Restriction against creating version tags (bypassable by alex-up-bot)"
+  repository  = github_repository.default.name
+  target      = "tag"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["refs/tags/*"]
+      exclude = []
+    }
+  }
+
+  bypass_actors {
+    actor_type  = "Integration"
+    actor_id    = var.alex_up_bot_app_id
+    bypass_mode = "exempt"
+  }
+
+  rules {
+    creation = true
+    update   = true
+    deletion = true
+
+    tag_name_pattern {
+      operator = "regex"
+      name     = "Version numbers"
+      pattern  = "^(?:v)?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+    }
+  }
+}
