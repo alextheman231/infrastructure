@@ -42,7 +42,6 @@ resource "github_repository_ruleset" "ci_checks" {
 
   bypass_actors {
     actor_type  = "OrganizationAdmin"
-    actor_id    = "1"
     bypass_mode = "pull_request"
   }
 
@@ -74,15 +73,14 @@ resource "github_repository_ruleset" "ci_checks" {
   }
 }
 
-resource "github_repository_ruleset" "pull_request_reviews" {
-  name        = "Pull request review conditions (bypassable by admins)"
+resource "github_repository_ruleset" "pull_request_conditions" {
+  name        = "Pull request conditions (bypassable by admins)"
   repository  = github_repository.default.name
   target      = "branch"
   enforcement = "active"
 
   bypass_actors {
     actor_type  = "OrganizationAdmin"
-    actor_id    = "1"
     bypass_mode = "exempt"
   }
 
