@@ -40,6 +40,12 @@ resource "github_repository_ruleset" "ci_checks" {
   target      = "branch"
   enforcement = "active"
 
+  bypass_actors {
+    actor_type  = "OrganizationAdmin"
+    actor_id    = 1
+    bypass_mode = "pull_request"
+  }
+
   conditions {
     ref_name {
       include = ["~DEFAULT_BRANCH"]
