@@ -1,9 +1,3 @@
-import { defineAlexCLineConfig } from "alex-c-line/configs"
+import { infrastructureConfig } from "alex-c-line/configs/internal"
 
-export default defineAlexCLineConfig({
-    createPullRequestTemplate: {
-        category: "infrastructure",
-        infrastructureProvider: "Terraform",
-        requireConfirmationFrom: "AlexMan123456"
-    }
-})
+export default infrastructureConfig
