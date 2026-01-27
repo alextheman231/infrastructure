@@ -4,7 +4,6 @@ module "infrastructure_repository" {
   description        = "Infrastructure for my GitHub repositories."
   visibility         = "public"
   required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav"]
-  enable_merge_queue = false
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 

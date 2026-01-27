@@ -42,12 +42,6 @@ variable "required_ci_checks" {
   default     = []
 }
 
-variable "enable_merge_queue" {
-  type        = bool
-  description = "Enable merge queues for this repository"
-  default     = false
-}
-
 variable "alex_up_bot_app_id" {
   description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions."
   type        = string
