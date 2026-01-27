@@ -33,26 +33,6 @@ resource "github_repository" "default" {
   }
 }
 
-resource "github_repository_ruleset" "linear_history" {
-  count       = !var.archived ? 1 : 0
-  name        = "Require linear history on all branches"
-  repository  = github_repository.default.name
-  target      = "branch"
-  enforcement = "active"
-
-  conditions {
-    ref_name {
-      include = ["~ALL"]
-      exclude = ["~DEFAULT_BRANCH"]
-    }
-  }
-
-  rules {
-    required_linear_history = true
-    non_fast_forward        = false # Allow force-pushes
-  }
-}
-
 resource "github_repository_ruleset" "ci_checks" {
   count       = length(var.required_ci_checks) > 0 && !var.archived ? 1 : 0
   name        = "CI checks to run on main"
