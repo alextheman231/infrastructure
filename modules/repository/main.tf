@@ -34,6 +34,7 @@ resource "github_repository" "default" {
 }
 
 resource "github_repository_ruleset" "linear_history" {
+  count       = !var.archived ? 1 : 0
   name        = "Require linear history on all branches"
   repository  = github_repository.default.name
   target      = "branch"
@@ -53,7 +54,7 @@ resource "github_repository_ruleset" "linear_history" {
 }
 
 resource "github_repository_ruleset" "ci_checks" {
-  count       = length(var.required_ci_checks) > 0 ? 1 : 0
+  count       = length(var.required_ci_checks) > 0 && !var.archived ? 1 : 0
   name        = "CI checks to run on main"
   repository  = github_repository.default.name
   target      = "branch"
@@ -86,6 +87,7 @@ resource "github_repository_ruleset" "ci_checks" {
 }
 
 resource "github_repository_ruleset" "pull_request_conditions" {
+  count       = !var.archived ? 1 : 0
   name        = "Pull request conditions (bypassable by admins)"
   repository  = github_repository.default.name
   target      = "branch"
@@ -113,6 +115,7 @@ resource "github_repository_ruleset" "pull_request_conditions" {
 }
 
 resource "github_repository_ruleset" "restrict_version_tags" {
+  count       = !var.archived ? 1 : 0
   name        = "Restriction against creating version tags (bypassable by alex-up-bot)"
   repository  = github_repository.default.name
   target      = "tag"
