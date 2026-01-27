@@ -66,6 +66,35 @@ resource "github_repository_ruleset" "ci_checks" {
   }
 }
 
+resource "github_branch_protection" "linear_history" {
+  count                   = !var.archived ? 1 : 0
+  repository_id           = github_repository.default.name
+  pattern                 = "*"
+  required_linear_history = true
+  allows_deletions        = true
+  allows_force_pushes     = true
+}
+
+resource "github_repository_ruleset" "no_deletion_or_force_push" {
+  count       = !var.archived ? 1 : 0
+  name        = "Protect main from being deleted/force-pushed"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    deletion         = true
+    non_fast_forward = true
+  }
+}
+
 resource "github_repository_ruleset" "pull_request_conditions" {
   count       = !var.archived ? 1 : 0
   name        = "Pull request conditions (bypassable by admins)"
