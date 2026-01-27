@@ -164,6 +164,18 @@ resource "github_repository_ruleset" "alex_up_bot_branches" {
   target      = "branch"
   enforcement = "active"
 
+  bypass_actors {
+    actor_type  = "Integration"
+    actor_id    = var.alex_up_bot_app_id
+    bypass_mode = "exempt"
+  }
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
   rules {
     creation = true
     update   = true
