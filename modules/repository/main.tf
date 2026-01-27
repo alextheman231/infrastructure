@@ -156,3 +156,23 @@ resource "github_repository_ruleset" "restrict_version_tags" {
     }
   }
 }
+
+resource "github_repository_ruleset" "alex_up_bot_branches" {
+  count       = !var.archived ? 1 : 0
+  name        = "Restriction against creation alex-up-bot branches (bypassable by alex-up-bot)"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  rules {
+    creation = true
+    update   = true
+    deletion = true
+
+    branch_name_pattern {
+      operator = "startswith"
+      name     = "alex-up-bot branch"
+      pattern  = "alex-up-bot/"
+    }
+  }
+}
