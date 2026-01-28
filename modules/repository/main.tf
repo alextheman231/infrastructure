@@ -182,9 +182,9 @@ resource "github_repository_ruleset" "alex_up_bot_branches" {
     deletion = true
 
     branch_name_pattern {
-      operator = "starts_with"
+      operator = "regex"
       name     = "alex-up-bot branch"
-      pattern  = "alex-up-bot/"
+      pattern  = "^alex-up-bot/"
     }
   }
 }
