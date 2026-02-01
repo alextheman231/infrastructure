@@ -12,7 +12,7 @@ module "utility_repository" {
   name               = "utility"
   description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
-  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci", "actions-ci / actions-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -21,7 +21,7 @@ module "eslint_plugin_repository" {
   name               = "eslint-plugin"
   description        = "A package to provide custom ESLint rules and configs."
   visibility         = "public"
-  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci", "actions-ci / actions-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -30,7 +30,7 @@ module "components_repository" {
   name               = "components"
   description        = "A package containing common React components used across my projects."
   visibility         = "public"
-  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci", "actions-ci / actions-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -39,7 +39,7 @@ module "alex_c_line_repository" {
   name               = "alex-c-line"
   description        = "Command-line tool with commands to streamline the developer workflow."
   visibility         = "public"
-  required_ci_checks = ["package-ci / pnpm-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci", "actions-ci / actions-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
