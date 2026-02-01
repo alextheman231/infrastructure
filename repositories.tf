@@ -3,7 +3,7 @@ module "infrastructure_repository" {
   name               = "infrastructure"
   description        = "Infrastructure for my GitHub repositories."
   visibility         = "public"
-  required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav"]
+  required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -12,7 +12,7 @@ module "utility_repository" {
   name               = "utility"
   description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -21,7 +21,7 @@ module "eslint_plugin_repository" {
   name               = "eslint-plugin"
   description        = "A package to provide custom ESLint rules and configs."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -30,7 +30,7 @@ module "components_repository" {
   name               = "components"
   description        = "A package containing common React components used across my projects."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -39,7 +39,7 @@ module "alex_c_line_repository" {
   name               = "alex-c-line"
   description        = "Command-line tool with commands to streamline the developer workflow."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -48,7 +48,7 @@ module "github_actions_repository" {
   name               = "github-actions"
   description        = "Common GitHub Actions used across my repositories."
   visibility         = "public"
-  required_ci_checks = ["self-ci", "version-change-ci / version-change-ci"]
+  required_ci_checks = ["self-ci", "version-change-ci / version-change-ci", "restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -65,7 +65,7 @@ module "neurosongs_2_repository" {
   name               = "neurosongs-2"
   description        = "New version of my music-sharing app, Neurosongs."
   visibility         = "public"
-  required_ci_checks = ["neurosongs-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["neurosongs-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
@@ -74,6 +74,6 @@ module "alex_g_bot_2_repository" {
   name               = "alex-g-bot-2"
   description        = "Discord moderation bot created in TypeScript."
   visibility         = "public"
-  required_ci_checks = ["alex-g-bot-ci", "actions-ci / actions-ci"]
+  required_ci_checks = ["alex-g-bot-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
