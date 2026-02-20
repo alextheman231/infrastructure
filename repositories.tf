@@ -48,7 +48,7 @@ module "github_actions_repository" {
   name               = "github-actions"
   description        = "Common GitHub Actions used across my repositories."
   visibility         = "public"
-  required_ci_checks = ["self-ci", "version-change-ci / version-change-ci", "restrict-alex-up-bot-branches"]
+  required_ci_checks = ["actions-ci", "artwork-ci", "version-change-ci / version-change-ci", "restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
