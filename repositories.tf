@@ -21,7 +21,7 @@ module "eslint_plugin_repository" {
   name               = "eslint-plugin"
   description        = "A package to provide custom ESLint rules and configs."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches", "end-to-end-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
