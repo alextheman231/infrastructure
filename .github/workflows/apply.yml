@@ -12,7 +12,7 @@ env:
 
 jobs:
   terraform-apply:
-    if: github.repository != 'hashicorp-education/learn-terraform-github-actions'
+    if: github.repository == 'alextheman231/infrastructure'
     name: "Terraform Apply"
     runs-on: ubuntu-latest
     permissions:
