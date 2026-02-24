@@ -3,7 +3,7 @@ module "infrastructure_repository" {
   name               = "infrastructure"
   description        = "Infrastructure for my GitHub repositories."
   visibility         = "public"
-  required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "Terraform Cloud/alextheman/repo-id-ZkeqqaSSmNywdbav", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
+  required_ci_checks = ["terraform-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
