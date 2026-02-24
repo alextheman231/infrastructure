@@ -85,47 +85,31 @@ jobs:
           app-id: ${{ secrets.ALEX_UP_BOT_APP_ID }}
           private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY  }}
 
-      - name: Comment the plan on the pull request
-        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
-        id: plan-comment
-        if: ${{ github.event_name == 'pull_request' }}
-        env:
-          RESOURCES_ADDED: ${{ steps.plan-output.outputs.add }}
-          RESOURCES_CHANGED: ${{ steps.plan-output.outputs.change }}
-          RESOURCES_DESTROYED: ${{ steps.plan-output.outputs.destroy }}
-          RUN_LINK: ${{ steps.plan-run.outputs.run_link }}
+      - name: Find Comment
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
+        id: find-comment
         with:
-          github-token: ${{ steps.app-token.outputs.token }}
-          script: |
-            // 1. Retrieve existing bot comments for the PR
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-            });
-            const botComment = comments.find(comment => {
-              return comment.user.type === 'Bot' && comment.body.includes('HCP Terraform Plan Output')
-            });
-            const output = `#### HCP Terraform Plan Output
-            \`\`\`
-            Plan: ${process.env.RESOURCES_ADDED} to add, ${process.env.RESOURCES_CHANGED} to change, ${process.env.RESOURCES_DESTROYED} to destroy.
-            \`\`\`
-            [HCP Terraform Plan](${process.env.RUN_LINK})
-            `;
-            // 3. Delete previous comment so PR timeline makes sense
-            if (botComment) {
-              github.rest.issues.deleteComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: botComment.id,
-              });
-            }
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: output
-            });
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "alex-up-bot[bot]"
+          body-includes: #### HCP Terraform Plan Output
+
+      - name: Comment the plan on the pull request
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
+        if: ${{ github.event_name == 'pull_request' }}
+        id: create-comment
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          body: |
+            #### HCP Terraform Plan Output
+            ```
+            Plan: 
+            ${{ steps.plan-output.outputs.add }} to add,
+            ${{ steps.plan-output.outputs.change }} to change,
+            ${{ steps.plan-output.outputs.destroy }} to destroy.
+            ```
+            [HCP Terraform Plan](${{ steps.plan-run.outputs.run_link }})
 
   actions-ci:
     permissions:
