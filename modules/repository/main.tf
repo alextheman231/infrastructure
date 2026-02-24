@@ -33,6 +33,13 @@ resource "github_repository" "default" {
   }
 }
 
+resource "github_actions_repository_permissions" "default" {
+  count                = !var.archived ? 1 : 0
+  repository           = github_repository.default.name
+  allowed_actions      = "all"
+  sha_pinning_required = true
+}
+
 resource "github_repository_ruleset" "ci_checks" {
   count       = length(var.required_ci_checks) > 0 && !var.archived ? 1 : 0
   name        = "CI checks to run on main"
