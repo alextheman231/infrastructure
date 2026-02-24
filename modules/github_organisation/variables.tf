@@ -19,6 +19,12 @@ variable "alex_up_bot_app_id" {
   sensitive   = true
 }
 
+variable "tfe_token" {
+  description = "Token to use to connect with HCP Terraform"
+  type        = string
+  sensitive   = true
+}
+
 variable "webhook_url" {
   description = "The URL of a webhook to receive notifications about my organisation."
   type        = string
