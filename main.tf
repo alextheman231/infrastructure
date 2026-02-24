@@ -65,6 +65,12 @@ variable "webhook_url" {
   sensitive   = true
 }
 
+variable "tfe_token" {
+  description = "Token to use to connect with HCP Terraform"
+  type        = string
+  sensitive   = true
+}
+
 
 provider "github" {
   owner = var.github_owner
@@ -82,4 +88,5 @@ module "github_organisation" {
   alex_up_bot_app_id      = var.alex_up_bot_app_id
   alex_up_bot_private_key = var.alex_up_bot_private_key
   webhook_url             = var.webhook_url
+  tfe_token               = var.tfe_token
 }
