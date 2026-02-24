@@ -8,11 +8,16 @@ on:
   merge_group:
     types: [checks_requested]
 
-permissions:
-  contents: read
+env:
+  TF_CLOUD_ORGANIZATION: "alextheman"
+  TF_API_TOKEN: "${{ secrets.TFE_TOKEN }}"
+  TF_WORKSPACE: "infrastructure"
 
 jobs:
   terraform-ci:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -51,5 +56,77 @@ jobs:
       - name: Run linting checks
         run: pnpm run lint
 
+      - name: Upload Configuration
+        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
+        id: plan-upload
+        with:
+          workspace: ${{ env.TF_WORKSPACE }}
+          directory: "./"
+          speculative: true
+
+      - name: Create Plan Run
+        uses: hashicorp/tfc-workflows-github/actions/create-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
+        id: plan-run
+        with:
+          workspace: ${{ env.TF_WORKSPACE }}
+          configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+          plan_only: true
+
+      - name: Get Plan Output
+        uses: hashicorp/tfc-workflows-github/actions/plan-output@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
+        id: plan-output
+        with:
+          plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
+
+      - name: Get alex-up-bot GitHub token
+        id: app-token
+        uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
+        with:
+          app-id: ${{ secrets.ALEX_UP_BOT_APP_ID }}
+          private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY  }}
+
+      - name: Comment the plan on the pull request
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8.0.0
+        id: plan-comment
+        env:
+          RESOURCES_ADDED: ${{ steps.plan-output.outputs.add }}
+          RESOURCES_CHANGED: ${{ steps.plan-output.outputs.change }}
+          RESOURCES_DESTROYED: ${{ steps.plan-output.outputs.destroy }}
+          RUN_LINK: ${{ steps.plan-run.outputs.run_link }}
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            });
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('HCP Terraform Plan Output')
+            });
+            const output = `#### HCP Terraform Plan Output
+            \`\`\`
+            Plan: ${process.env.RESOURCES_ADDED} to add, ${process.env.RESOURCES_CHANGED} to change, ${process.env.RESOURCES_DESTROYED} to destroy.
+            \`\`\`
+            [HCP Terraform Plan](${process.env.RUN_LINK})
+            `;
+            // 3. Delete previous comment so PR timeline makes sense
+            if (botComment) {
+              github.rest.issues.deleteComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+              });
+            }
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: output
+            });
+
   actions-ci:
+    permissions:
+      contents: read
     uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@3db51f2a57ee95cda50310b3856cfdc0ae171cf7 # v8.3.3
