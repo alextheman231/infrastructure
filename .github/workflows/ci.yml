@@ -108,13 +108,22 @@ jobs:
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
           edit-mode: replace
           body: |
-            #### HCP Terraform Plan Output
+            # HCP Terraform Plan Output
+
+            ## Summary
+
             ```
-            Plan: 
             ${{ steps.plan-output.outputs.add }} to add,
             ${{ steps.plan-output.outputs.change }} to change,
             ${{ steps.plan-output.outputs.destroy }} to destroy.
             ```
+
+            ## Details
+
+            ```
+            ${{ steps.plan-output.outputs.plan_output }}
+            ```
+
             [HCP Terraform Plan](${{ steps.plan-run.outputs.run_link }})
 
   actions-ci:
