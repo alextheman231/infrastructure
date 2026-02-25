@@ -8,11 +8,6 @@ on:
   merge_group:
     types: [checks_requested]
 
-env:
-  TF_CLOUD_ORGANIZATION: "alextheman"
-  TF_API_TOKEN: "${{ secrets.TFE_TOKEN }}"
-  TF_WORKSPACE: "infrastructure"
-
 jobs:
   terraform-lint-ci:
     permissions:
@@ -36,7 +31,7 @@ jobs:
           cache: "pnpm"
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@b9cd54a3c349d3f38e8881555d616ced269862dd # v3.1.2
+        uses: hashicorp/setup-terraform@5e8dbf3c6d9deaf4193ca7a8fb23f2ac83bb6c85 # v4.0.0
         with:
           terraform_version: 1.14.3
 
@@ -51,6 +46,8 @@ jobs:
 
   terraform-plan-ci:
     permissions:
+      actions: read
+      checks: write
       contents: read
       pull-requests: write
     runs-on: ubuntu-latest
@@ -60,47 +57,46 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Upload Configuration
-        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        id: plan-upload
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@5e8dbf3c6d9deaf4193ca7a8fb23f2ac83bb6c85 # v4.0.0
         with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          directory: "./"
-          speculative: true
+          terraform_version: 1.14.3
 
-      - name: Create Plan Run
-        uses: hashicorp/tfc-workflows-github/actions/create-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        id: plan-run
-        with:
-          workspace: ${{ env.TF_WORKSPACE }}
-          configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
-          plan_only: true
-
-      - name: Get Plan Output
-        uses: hashicorp/tfc-workflows-github/actions/plan-output@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
+      - name: Run the plan
+        uses: op5dev/tf-via-pr@5a4229041e3c90818d85813d4e4a4d44f653d5e9 # v13.7.2
         id: plan-output
         with:
-          plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
+          command: plan
+          plan-encrypt: ${{ secrets.PASSPHRASE }}
+          comment-pr: never
+          expand-diff: true
+          expand-summary: true
+          arg-lock-timeout: 30m
+        env:
+          TF_CLOUD_ORGANIZATION: "alextheman"
+          TF_TOKEN_app_terraform_io: "${{ secrets.TFE_TOKEN }}"
+          TF_WORKSPACE: "infrastructure"
 
       - name: Get alex-up-bot GitHub token
+        if: ${{ github.event_name == 'pull_request' }}
         id: app-token
         uses: actions/create-github-app-token@29824e69f54612133e76f7eaac726eef6c875baf # v2.2.1
         with:
           app-id: ${{ secrets.ALEX_UP_BOT_APP_ID }}
-          private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY  }}
+          private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
 
       - name: Find Comment
-        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
         if: ${{ github.event_name == 'pull_request' }}
+        uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-author: "alex-up-bot[bot]"
-          body-includes: #### HCP Terraform Plan Output
+          body-includes: # HCP Terraform Plan Output
 
       - name: Comment the plan on the pull request
-        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         if: ${{ github.event_name == 'pull_request' }}
+        uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         id: create-comment
         with:
           token: ${{ steps.app-token.outputs.token }}
@@ -110,21 +106,7 @@ jobs:
           body: |
             # HCP Terraform Plan Output
 
-            ## Summary
-
-            ```
-            ${{ steps.plan-output.outputs.add }} to add,
-            ${{ steps.plan-output.outputs.change }} to change,
-            ${{ steps.plan-output.outputs.destroy }} to destroy.
-            ```
-
-            ## Details
-
-            ```
-            ${{ steps.plan-output.outputs.plan_output }}
-            ```
-
-            [HCP Terraform Plan](${{ steps.plan-run.outputs.run_link }})
+            ${{ steps.plan-output.outputs.comment-body }}
 
   actions-ci:
     permissions:
