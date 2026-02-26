@@ -15,3 +15,9 @@ resource "github_actions_organization_secret" "tfe_token" {
   encrypted_value = var.tfe_token
   visibility      = "all"
 }
+
+resource "github_actions_organization_secret" "tf_via_pr_passphrase" {
+  secret_name     = "PASSPHRASE"
+  encrypted_value = var.tf_via_pr_passphrase
+  visibility      = "all"
+}

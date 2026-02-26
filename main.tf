@@ -65,6 +65,12 @@ variable "webhook_url" {
   sensitive   = true
 }
 
+variable "tf_via_pr_passphrase" {
+  description = "Passphrase to use with TF_via_PR action in Infrastructure CI."
+  type        = string
+  sensitive   = true
+}
+
 variable "tfe_token" {
   description = "Token to use to connect with HCP Terraform"
   type        = string
@@ -89,4 +95,5 @@ module "github_organisation" {
   alex_up_bot_private_key = var.alex_up_bot_private_key
   webhook_url             = var.webhook_url
   tfe_token               = var.tfe_token
+  tf_via_pr_passphrase    = var.tf_via_pr_passphrase
 }

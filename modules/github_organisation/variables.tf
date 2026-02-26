@@ -20,7 +20,13 @@ variable "alex_up_bot_app_id" {
 }
 
 variable "tfe_token" {
-  description = "Token to use to connect with HCP Terraform"
+  description = "Token to use to connect with HCP Terraform."
+  type        = string
+  sensitive   = true
+}
+
+variable "tf_via_pr_passphrase" {
+  description = "Passphrase to use with TF_via_PR action in Infrastructure CI."
   type        = string
   sensitive   = true
 }
