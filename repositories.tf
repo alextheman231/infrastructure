@@ -12,7 +12,7 @@ module "utility_repository" {
   name               = "utility"
   description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
-  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches", "end-to-end-ci"]
+  required_ci_checks = ["package-ci / source-code-ci", "package-ci / version-change-ci / version-change-ci", "actions-ci / actions-ci", "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches", "end-to-end-ci (ubuntu-latest)", "end-to-end-ci (macos-latest)"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
