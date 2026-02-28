@@ -83,7 +83,7 @@ module "github_actions_repository" {
   required_ci_checks = [
     "actions-ci",
     "version-change-ci / version-change-ci",
-    "restrict-alex-up-bot-branches"
+    "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"
   ]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
