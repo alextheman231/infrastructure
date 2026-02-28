@@ -22,8 +22,7 @@ module "utility_repository" {
     "package-ci / version-change-ci / version-change-ci",
     "actions-ci / actions-ci",
     "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches",
-    "end-to-end-ci (ubuntu-latest)",
-    "end-to-end-ci (macos-latest)"
+    "end-to-end-ci"
   ]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
