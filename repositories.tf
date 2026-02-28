@@ -81,7 +81,7 @@ module "github_actions_repository" {
   description = "Common GitHub Actions used across my repositories."
   visibility  = "public"
   required_ci_checks = [
-    "actions-ci", "artwork-ci",
+    "actions-ci",
     "version-change-ci / version-change-ci",
     "restrict-alex-up-bot-branches"
   ]
