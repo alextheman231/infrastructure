@@ -63,11 +63,14 @@ module "alex_c_line_repository" {
   description = "Command-line tool with commands to streamline the developer workflow."
   visibility  = "public"
   required_ci_checks = [
-    "package-ci / source-code-ci",
+    "package-ci / source-code-ci (ubuntu-latest)",
+    "package-ci / source-code-ci (windows-latest)",
+    "package-ci / source-code-ci (macos-latest)",
     "package-ci / version-change-ci / version-change-ci",
     "actions-ci / actions-ci",
     "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches",
-    "end-to-end-ci"
+    "end-to-end-ci (ubuntu-latest)",
+    "end-to-end-ci (macos-latest)"
   ]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
