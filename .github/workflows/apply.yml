@@ -30,17 +30,17 @@ jobs:
           workspace: ${{ env.TF_WORKSPACE }}
           directory: ./
 
-      - name: Create Apply Run
+      - name: Verify the plan
         uses: hashicorp/tfc-workflows-github/actions/create-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        id: apply-run
+        id: plan-run
         with:
           workspace: ${{ env.TF_WORKSPACE }}
           configuration_version: ${{ steps.apply-upload.outputs.configuration_version_id }}
 
-      - name: Apply the configuration
+      - name: Approve and apply the configuration
         uses: hashicorp/tfc-workflows-github/actions/apply-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        if: fromJSON(steps.apply-run.outputs.payload).data.attributes.actions.IsConfirmable
+        if: fromJSON(steps.plan-run.outputs.payload).data.attributes.actions.IsConfirmable
         id: apply
         with:
-          run: ${{ steps.apply-run.outputs.run_id }}
+          run: ${{ steps.plan-run.outputs.run_id }}
           comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
