@@ -123,5 +123,6 @@ module "media_repository" {
   name               = "media"
   description        = "Media used in my projects, often created with Manim."
   visibility         = "public"
+  required_ci_checks = ["media-ci"]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
