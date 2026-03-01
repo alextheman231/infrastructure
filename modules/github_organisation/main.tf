@@ -36,9 +36,3 @@ resource "github_organization_webhook" "default" {
 
   events = ["push", "issues", "release"]
 }
-
-resource "github_actions_organization_variable" "default" {
-  variable_name = "timeout_minutes"
-  visibility    = "all"
-  value         = 30
-}
