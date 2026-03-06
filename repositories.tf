@@ -85,10 +85,15 @@ module "github_actions_repository" {
 }
 
 module "blog_site_repository" {
-  source             = "./modules/repository"
-  name               = "blog-site"
-  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
-  visibility         = "public"
+  source      = "./modules/repository"
+  name        = "blog-site"
+  description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
+  visibility  = "public"
+  required_ci_checks = [
+    "blog-site-ci",
+    "actions-ci",
+    "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches"
+  ]
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
