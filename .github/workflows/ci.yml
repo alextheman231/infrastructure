@@ -25,7 +25,7 @@ jobs:
           run_install: false
 
       - name: Use Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: 22
           cache: "pnpm"
@@ -111,4 +111,4 @@ jobs:
   actions-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@a00c59786bf2f81fe88d9084008fc05452dc45b2 # v9.0.2
+    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@dc2d1246a158a1a04045a85a8c1bfd1978afeaf2 # v10.1.0
