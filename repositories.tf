@@ -97,6 +97,7 @@ module "neurosongs_2_repository" {
   name        = "neurosongs-2"
   description = "New version of my music-sharing app, Neurosongs."
   visibility  = "public"
+  archived    = true
   required_ci_checks = [
     "neurosongs-ci",
     "actions-ci / actions-ci",
@@ -110,6 +111,7 @@ module "alex_g_bot_2_repository" {
   name        = "alex-g-bot-2"
   description = "Discord moderation bot created in TypeScript."
   visibility  = "public"
+  archived    = true
   required_ci_checks = [
     "alex-g-bot-ci",
     "actions-ci / actions-ci",
