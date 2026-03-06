@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@alextheman/eslint-plugin':
-        specifier: ^5.9.0
-        version: 5.9.0(0ce66351f9da5c7ff462085b92d1cfed)
+        specifier: ^5.10.0
+        version: 5.10.0(0ce66351f9da5c7ff462085b92d1cfed)
       alex-c-line:
         specifier: ^2.0.1
         version: 2.0.1
@@ -32,8 +32,8 @@ importers:
 
 packages:
 
-  '@alextheman/eslint-plugin@5.9.0':
-    resolution: {integrity: sha512-bE1YkXsxLHlY7OvivAYF62X/8hnTjMZu9ylzHlrnddfcSe4lhUO7UA3Kta4d3E/fgbzrHJm6+ujHmT5TLSC2aQ==}
+  '@alextheman/eslint-plugin@5.10.0':
+    resolution: {integrity: sha512-87Dg4ikADEI9HRNWsdzRsvi7RNTPBYMd9PkjQmoOPbt2sYNU4hhhQ60yiscc3C+jZ7Pa7MYEhYxKazLtUtPuCw==}
     peerDependencies:
       '@eslint/js': '>=9.0.0'
       eslint: '>=9.0.0'
@@ -55,10 +55,6 @@ packages:
       typescript-eslint: '>=8.0.0'
       vite-tsconfig-paths: '>=5.1.4'
       vitest: '>=4.0.13'
-
-  '@alextheman/utility@5.5.0':
-    resolution: {integrity: sha512-5YMpCT98L49Yh1C0QKJ60bE2lleWMqCEpCqHvmYWG1glWY0WVG5B3UHXVc9x9XMO0iS96KAHKvqSj+Cxua0/Xw==}
-    engines: {node: '>=22.3.0'}
 
   '@alextheman/utility@5.6.1':
     resolution: {integrity: sha512-reTAMQHAYb401nzPMjys1d1T2zIVaa79GNFjUkd+uk38LgoKPwG9OkuJ/Mchs6IVSTDTcj13AcEP4bHCqLMuvQ==}
@@ -1072,8 +1068,8 @@ packages:
     resolution: {integrity: sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==}
     engines: {node: '>=16'}
 
-  caniuse-lite@1.0.30001776:
-    resolution: {integrity: sha512-sg01JDPzZ9jGshqKSckOQthXnYwOEP50jeVFhaSFbZcOy05TiuuaffDOfcwtCisJ9kNQuLBFibYywv2Bgm9osw==}
+  caniuse-lite@1.0.30001777:
+    resolution: {integrity: sha512-tmN+fJxroPndC74efCdp12j+0rk0RHwV5Jwa1zWaFVyw2ZxAuPeG8ZgWC3Wz7uSjT3qMRQ5XHZ4COgQmsCMJAQ==}
 
   canvas@3.2.1:
     resolution: {integrity: sha512-ej1sPFR5+0YWtaVp6S1N1FVz69TQCqmrkGeRvQxZeAB1nAIcjNTHVwrZtYtWFFBmQsF40/uDLehsW5KuYC99mg==}
@@ -1563,8 +1559,8 @@ packages:
     resolution: {integrity: sha512-f7ccFPK3SXFHpx15UIGyRJ/FJQctuKZ0zVuN3frBo4HnK3cay9VEW0R6yPYFHC0AgqhukPzKjq22t5DmAyqGyw==}
     engines: {node: '>=16'}
 
-  flatted@3.3.3:
-    resolution: {integrity: sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==}
+  flatted@3.3.4:
+    resolution: {integrity: sha512-3+mMldrTAPdta5kjX2G2J7iX4zxtnwpdA8Tr2ZSjkyPSanvbZAcy6flmtnXbEybHrDcU9641lxrMfFuUxVz9vA==}
 
   for-each@0.3.5:
     resolution: {integrity: sha512-dKx12eRCVIzqCxFGplyFKJMPvLEWgmNtUrpTiJIR5u97zEhRG8ySrtboPHZXx7daLxQVrl643cTzbab2tkQjxg==}
@@ -2708,9 +2704,9 @@ packages:
 
 snapshots:
 
-  '@alextheman/eslint-plugin@5.9.0(0ce66351f9da5c7ff462085b92d1cfed)':
+  '@alextheman/eslint-plugin@5.10.0(0ce66351f9da5c7ff462085b92d1cfed)':
     dependencies:
-      '@alextheman/utility': 5.5.0
+      '@alextheman/utility': 5.6.1
       '@eslint/compat': 2.0.2(eslint@10.0.2)
       '@eslint/js': 9.39.2
       '@typescript-eslint/types': 8.56.1
@@ -2740,13 +2736,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
-
-  '@alextheman/utility@5.5.0':
-    dependencies:
-      dotenv: 17.3.1
-      execa: 9.6.1
-      libsodium-wrappers: 0.8.2
-      zod: 4.3.6
 
   '@alextheman/utility@5.6.1':
     dependencies:
@@ -3633,7 +3622,7 @@ snapshots:
   browserslist@4.28.1:
     dependencies:
       baseline-browser-mapping: 2.10.0
-      caniuse-lite: 1.0.30001776
+      caniuse-lite: 1.0.30001777
       electron-to-chromium: 1.5.307
       node-releases: 2.0.36
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
@@ -3662,7 +3651,7 @@ snapshots:
 
   camelcase@8.0.0: {}
 
-  caniuse-lite@1.0.30001776: {}
+  caniuse-lite@1.0.30001777: {}
 
   canvas@3.2.1:
     dependencies:
@@ -4303,10 +4292,10 @@ snapshots:
 
   flat-cache@4.0.1:
     dependencies:
-      flatted: 3.3.3
+      flatted: 3.3.4
       keyv: 4.5.4
 
-  flatted@3.3.3: {}
+  flatted@3.3.4: {}
 
   for-each@0.3.5:
     dependencies:
