@@ -14,7 +14,7 @@
     "lint-prettier-yml": "prettier --check \"./**/*.{yml,yaml}\"",
     "lint-terraform-fmt": "terraform fmt -check -recursive",
     "lint-terraform-validate": "terraform validate",
-    "pre-commit": "alex-c-line pre-commit-2",
+    "pre-commit": "alex-c-line pre-commit",
     "prepare": "husky",
     "prepare-live-alex-c-line": "pnpm uninstall alex-c-line && pnpm install --save-dev alex-c-line",
     "prepare-live-eslint-plugin": "pnpm uninstall @alextheman/eslint-plugin && pnpm install --save-dev @alextheman/eslint-plugin",
@@ -32,7 +32,7 @@
   "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017",
   "devDependencies": {
     "@alextheman/eslint-plugin": "^5.9.0",
-    "alex-c-line": "^1.31.0",
+    "alex-c-line": "^2.0.1",
     "dotenv-cli": "^11.0.0",
     "eslint": "^10.0.2",
     "husky": "^9.1.7",
