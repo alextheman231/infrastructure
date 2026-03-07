@@ -20,8 +20,8 @@ locals {
       version_change_ci = "version-change-ci / version-change-ci"
     }
 
-    blog_site = {
-      ci = "blog-site-ci"
+    lexicon = {
+      ci = "lexicon-ci"
     }
 
     neurosongs = {
@@ -122,12 +122,12 @@ module "github_actions_repository" {
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
-module "blog_site_repository" {
+module "lexicon_repository" {
   source             = "./modules/repository"
-  name               = "blog-site"
-  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor to help with in-line images/audio/files in general."
+  name               = "lexicon"
+  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
   visibility         = "public"
-  required_ci_checks = concat(local.check_list.base, [local.check_name.blog_site.ci])
+  required_ci_checks = concat(local.check_list.base, [local.check_name.lexicon.ci])
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
