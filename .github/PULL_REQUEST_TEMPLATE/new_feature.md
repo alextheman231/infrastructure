@@ -1,3 +1,4 @@
+
 # New Feature
 
 This is a new feature for `infrastructure` that adds a new Terraform-managed resource.

@@ -1,3 +1,4 @@
+
 # Refactor
 
 This is a change to the code layout of `infrastructure`. It changes how the code is presented in terms of quality and structure without changing the overall plan.

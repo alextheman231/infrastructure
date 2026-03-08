@@ -1,3 +1,4 @@
+
 # Bug Fix
 
 This is a bug fix for `infrastructure`. It fixes an unintended side-effect of the configuration or deployment.
