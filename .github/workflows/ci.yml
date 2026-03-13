@@ -20,7 +20,7 @@ jobs:
           persist-credentials: false
 
       - name: Use PNPM
-        uses: pnpm/action-setup@41ff72655975bd51cab0327fa583b6e92b6d3061 # v4.2.0
+        uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v4.4.0
         with:
           run_install: false
 
@@ -63,7 +63,7 @@ jobs:
           terraform_version: 1.14.3
 
       - name: Run the plan
-        uses: op5dev/tf-via-pr@5a4229041e3c90818d85813d4e4a4d44f653d5e9 # v13.7.2
+        uses: op5dev/tf-via-pr@8d74c69c2863bcb3bb87c8313ca46bc2fc89b98a # v13.7.3
         id: plan-output
         with:
           command: plan
