@@ -6,7 +6,7 @@ resource "github_membership" "admins" {
 }
 
 resource "github_membership" "members" {
-  for_each = toset(["badstagram", "RLCreates"])
+  for_each = toset(["badstagram", "Mochipecan"])
 
   username = each.value
   role     = "member"
