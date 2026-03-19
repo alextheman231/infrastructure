@@ -47,3 +47,9 @@ variable "alex_up_bot_app_id" {
   type        = string
   sensitive   = true
 }
+
+variable "has_pages" {
+  description = "Enable GitHub Pages deployment for the repository."
+  type        = bool
+  default     = false
+}

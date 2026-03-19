@@ -81,6 +81,7 @@ module "utility_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  has_pages          = true
 }
 
 module "eslint_plugin_repository" {

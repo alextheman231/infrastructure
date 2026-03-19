@@ -28,6 +28,13 @@ resource "github_repository" "default" {
 
   archived = var.archived
 
+  dynamic "pages" {
+    for_each = var.has_pages ? [1] : []
+    content {
+      build_type = "workflow"
+    }
+  }
+
   lifecycle {
     prevent_destroy = true
   }
