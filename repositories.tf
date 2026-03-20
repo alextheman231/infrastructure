@@ -120,6 +120,7 @@ module "github_actions_repository" {
     local.check_list.github_actions.base,
     [local.check_name.github_actions.actions_ci, local.check_name.github_actions.version_change_ci]
   )
+  has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
