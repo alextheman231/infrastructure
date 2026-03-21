@@ -99,6 +99,7 @@ module "components_repository" {
   description        = "A package containing common React components used across my projects."
   visibility         = "public"
   required_ci_checks = local.check_list.package
+  has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
