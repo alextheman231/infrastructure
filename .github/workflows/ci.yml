@@ -111,4 +111,4 @@ jobs:
   actions-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@4678b06c12b239500b3af61580637f9b7f3cd09a # v10.1.1
+    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@e4a092a202ca5bac12242bbf53a046f32a08455a # v10.4.0
