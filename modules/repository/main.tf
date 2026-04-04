@@ -170,3 +170,10 @@ resource "github_repository_ruleset" "restrict_version_tags" {
     }
   }
 }
+
+resource "github_actions_secret" "default" {
+  for_each        = nonsensitive(var.secrets)
+  repository      = var.name
+  secret_name     = each.key
+  encrypted_value = each.value
+}

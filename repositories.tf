@@ -72,6 +72,10 @@ module "infrastructure_repository" {
     local.check_name.terraform.plan_ci,
   ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  secrets = {
+    TFE_TOKEN  = var.tfe_token_infrastructure
+    PASSPHRASE = var.tf_via_pr_passphrase
+  }
 }
 
 module "utility_repository" {

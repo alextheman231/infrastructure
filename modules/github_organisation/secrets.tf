@@ -9,15 +9,3 @@ resource "github_actions_organization_secret" "alex_up_bot_private_key" {
   encrypted_value = var.alex_up_bot_private_key
   visibility      = "all"
 }
-
-resource "github_actions_organization_secret" "tfe_token" {
-  secret_name     = "TFE_TOKEN"
-  encrypted_value = var.tfe_token
-  visibility      = "all"
-}
-
-resource "github_actions_organization_secret" "tf_via_pr_passphrase" {
-  secret_name     = "PASSPHRASE"
-  encrypted_value = var.tf_via_pr_passphrase
-  visibility      = "all"
-}

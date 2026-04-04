@@ -53,3 +53,9 @@ variable "has_pages" {
   type        = bool
   default     = false
 }
+
+variable "secrets" {
+  type      = map(string)
+  sensitive = true
+  default   = {}
+}
