@@ -72,17 +72,10 @@ variable "tf_via_pr_passphrase" {
 }
 
 variable "tfe_token" {
-  description = "Token to use to connect with HCP Terraform"
-  type        = string
-  sensitive   = true
-}
-
-variable "tfe_token_infrastructure" {
   description = "Token to use to connect with HCP Terraform, encrypted and scoped with respect to the Infrastructure repository"
   type        = string
   sensitive   = true
 }
-
 
 provider "github" {
   owner = var.github_owner
