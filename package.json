@@ -41,7 +41,6 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-      "canvas",
       "esbuild",
       "unrs-resolver"
     ]
