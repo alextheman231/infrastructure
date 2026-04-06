@@ -63,7 +63,7 @@ locals {
 }
 
 module "infrastructure_repository" {
-  source      = "./modules/repository"
+  source      = "./modules/github_repository"
   name        = "infrastructure"
   description = "Infrastructure for my GitHub repositories."
   visibility  = "public"
@@ -79,7 +79,7 @@ module "infrastructure_repository" {
 }
 
 module "utility_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "utility"
   description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
@@ -89,7 +89,7 @@ module "utility_repository" {
 }
 
 module "eslint_plugin_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "eslint-plugin"
   description        = "A package to provide custom ESLint rules and configs."
   visibility         = "public"
@@ -98,7 +98,7 @@ module "eslint_plugin_repository" {
 }
 
 module "components_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "components"
   description        = "A package containing common React components used across my projects."
   visibility         = "public"
@@ -108,7 +108,7 @@ module "components_repository" {
 }
 
 module "alex_c_line_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "alex-c-line"
   description        = "Command-line tool with commands to streamline the developer workflow."
   visibility         = "public"
@@ -117,7 +117,7 @@ module "alex_c_line_repository" {
 }
 
 module "github_actions_repository" {
-  source      = "./modules/repository"
+  source      = "./modules/github_repository"
   name        = "github-actions"
   description = "Common GitHub Actions used across my repositories."
   visibility  = "public"
@@ -130,7 +130,7 @@ module "github_actions_repository" {
 }
 
 module "lexicon_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "lexicon"
   description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
   visibility         = "public"
@@ -139,7 +139,7 @@ module "lexicon_repository" {
 }
 
 module "neurosongs_2_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "neurosongs-2"
   description        = "New version of my music-sharing app, Neurosongs."
   visibility         = "public"
@@ -149,7 +149,7 @@ module "neurosongs_2_repository" {
 }
 
 module "alex_g_bot_2_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "alex-g-bot-2"
   description        = "Discord moderation bot created in TypeScript."
   visibility         = "public"
@@ -159,7 +159,7 @@ module "alex_g_bot_2_repository" {
 }
 
 module "media_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "media"
   description        = "Media used in my projects, often created with Manim."
   visibility         = "public"
@@ -168,7 +168,7 @@ module "media_repository" {
 }
 
 module "typescript_actions_repository" {
-  source             = "./modules/repository"
+  source             = "./modules/github_repository"
   name               = "typescript-actions"
   description        = "Composite actions developed in TypeScript to use in GitHub Actions workflows."
   visibility         = "public"
