@@ -91,7 +91,7 @@ jobs:
           run: ${{ steps.get-run-id.outputs.run-id }}
 
       - name: Discard the plan run if needed
-        if: ${{ steps.run-details.outputs.run_status == 'planned_and_saved' }}
+        if: fromJSON(steps.run-details.outputs.payload).data.attributes.actions.IsConfirmable
         uses: hashicorp/tfc-workflows-github/actions/discard-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
         with:
           token: ${{ secrets.TFE_TOKEN }}
