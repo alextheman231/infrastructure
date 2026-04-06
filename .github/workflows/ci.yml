@@ -46,10 +46,8 @@ jobs:
 
   terraform-plan-ci:
     permissions:
-      actions: read
       checks: write
       contents: read
-      pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repository
@@ -77,8 +75,43 @@ jobs:
           TF_TOKEN_app_terraform_io: "${{ secrets.TFE_TOKEN }}"
           TF_WORKSPACE: "infrastructure"
 
-      - name: Get alex-up-bot GitHub token
+      - name: Save plan output
         if: ${{ github.event_name == 'pull_request' }}
+        env:
+          COMMENT_BODY: ${{ steps.plan-output.outputs.comment-body }}
+        run: echo "$COMMENT_BODY" > plan.txt
+
+      - name: Upload the plan to be used in pull request comment
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: terraform-plan
+          path: plan.txt
+
+  comment-terraform-plan:
+    needs: [terraform-plan-ci]
+    if: ${{ github.event_name == 'pull_request' }}
+    permissions:
+      actions: read
+      checks: write
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the plan
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: terraform-plan
+
+      - name: Save the plan to the GitHub Output
+        id: get-plan
+        run: |
+          PLAN=$(cat plan.txt)
+          echo "comment-body<<EOF" >> $GITHUB_OUTPUT
+          echo "$PLAN" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Get alex-up-bot GitHub token
         id: app-token
         uses: actions/create-github-app-token@f8d387b68d61c58ab83c6c016672934102569859 # v3.0.0
         with:
@@ -86,7 +119,6 @@ jobs:
           private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
 
       - name: Find existing comment
-        if: ${{ github.event_name == 'pull_request' }}
         uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
         id: find-comment
         with:
@@ -95,7 +127,6 @@ jobs:
           body-includes: # HCP Terraform Plan Output
 
       - name: Comment the plan on the pull request
-        if: ${{ github.event_name == 'pull_request' }}
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5.0.0
         id: create-comment
         with:
@@ -106,7 +137,7 @@ jobs:
           body: |
             # HCP Terraform Plan Output
 
-            ${{ steps.plan-output.outputs.comment-body }}
+            ${{ steps.get-plan.outputs.comment-body }}
 
   actions-ci:
     permissions:
