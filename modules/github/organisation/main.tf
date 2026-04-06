@@ -9,13 +9,9 @@ terraform {
   }
 }
 
-data "github_organization" "default" {
-  name = "alextheman231"
-}
-
 resource "github_organization_settings" "default" {
   billing_email                           = var.billing_email
-  name                                    = data.github_organization.default.name
+  name                                    = "alextheman231"
   description                             = "This GitHub organisation is home to all my mainline NPM packages, shared GitHub Actions, Infrastructure, and applications."
   default_repository_permission           = "write"
   members_can_create_public_repositories  = false
