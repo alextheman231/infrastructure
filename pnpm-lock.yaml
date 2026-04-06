@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@alextheman/utility':
+        specifier: 5.10.1
+        version: 5.10.1
     devDependencies:
       '@alextheman/eslint-plugin':
         specifier: 5.12.0
@@ -53,6 +57,10 @@ packages:
       typedoc-plugin-markdown: '>=4.9.0'
       typedoc-rhineai-theme: '>=1.2.0'
       typescript-eslint: '>=8.0.0'
+
+  '@alextheman/utility@5.10.1':
+    resolution: {integrity: sha512-nXroO9Q7DSKAgS7FKUffKCRWz8yNu8qrSbfaPypTs7ds13aoqu5vdZNpGUF3SlleS5+54aYpHIGnqrzpF+/SIw==}
+    engines: {node: '>=22.3.0'}
 
   '@alextheman/utility@5.9.0':
     resolution: {integrity: sha512-ALMb9uCOiV3AxavIgcB8rb4B04jfwGU7zLmvzX1Y078oOzQ000MyHG44MVyKvRVT/oXjIPAmizm/E/9BL85Vng==}
@@ -2143,6 +2151,13 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
+
+  '@alextheman/utility@5.10.1':
+    dependencies:
+      dotenv: 17.4.0
+      execa: 9.6.1
+      libsodium-wrappers: 0.8.2
+      zod: 4.3.6
 
   '@alextheman/utility@5.9.0':
     dependencies:

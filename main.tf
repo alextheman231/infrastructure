@@ -14,6 +14,10 @@ terraform {
       source  = "integrations/github"
       version = "~> 6.0"
     }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "~> 0.76.1"
+    }
   }
 }
 
@@ -27,6 +31,10 @@ provider "github" {
   }
 }
 
+provider "tfe" {
+  token = var.tfe_org_token
+}
+
 module "github_organisation" {
   source                  = "./modules/github/organisation"
   billing_email           = var.billing_email
@@ -34,3 +42,4 @@ module "github_organisation" {
   alex_up_bot_private_key = var.alex_up_bot_private_key
   webhook_url             = var.webhook_url
 }
+
