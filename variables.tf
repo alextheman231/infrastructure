@@ -57,3 +57,20 @@ variable "tfe_token" {
   type        = string
   sensitive   = true
 }
+
+variable "tfe_org_token" {
+  description = "Token to use to manage the HCP Terraform organisation"
+  type        = string
+  sensitive   = true
+}
+
+variable "alex_email" {
+  description = "My email address"
+  type        = string
+}
+
+variable "tfe_organisation_name" {
+  description = "The TFE organisation name."
+  type        = string
+  default     = "alextheman"
+}
