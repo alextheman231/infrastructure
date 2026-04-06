@@ -75,6 +75,22 @@ jobs:
           TF_TOKEN_app_terraform_io: "${{ secrets.TFE_TOKEN }}"
           TF_WORKSPACE: "infrastructure"
 
+      - name: Extract run ID
+        id: get-run-id
+        env:
+          COMMENT_BODY: ${{ steps.plan-output.outputs.comment-body }}
+        run: |
+          RUN_ID=$(echo "$COMMENT_BODY" | grep -oE 'https://app\.terraform\.io/app/[^/]+/[^/]+/runs/(run-[a-zA-Z0-9]+)' | sed 's#.*/##')
+          echo "run-id=$RUN_ID" >> $GITHUB_OUTPUT
+
+      - name: Discard the plan run
+        uses: hashicorp/tfc-workflows-github/actions/discard-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
+        id: discard
+        with:
+          token: ${{ secrets.TFE_TOKEN }}
+          run: ${{ steps.get-run-id.outputs.run-id }}
+          comment: "Discarded from GitHub Actions CI"
+
       - name: Save plan output
         if: ${{ github.event_name == 'pull_request' }}
         env:
