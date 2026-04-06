@@ -12,7 +12,7 @@ locals {
 
     terraform = {
       lint_ci = "terraform-lint-ci"
-      plan_ci = "terraform-plan-ci"
+      plan_ci = "comment-terraform-plan"
     }
 
     github_actions = {
