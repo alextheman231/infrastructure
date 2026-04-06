@@ -85,7 +85,6 @@ jobs:
 
       - name: Discard the plan run
         uses: hashicorp/tfc-workflows-github/actions/discard-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        id: discard
         with:
           token: ${{ secrets.TFE_TOKEN }}
           run: ${{ steps.get-run-id.outputs.run-id }}
