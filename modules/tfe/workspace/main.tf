@@ -14,3 +14,9 @@ resource "tfe_workspace" "default" {
   file_triggers_enabled = false
   speculative_enabled   = true
 }
+
+resource "tfe_workspace_settings" "default" {
+  workspace_id   = tfe_workspace.default.id
+  execution_mode = "remote"
+  auto_apply     = false
+}
