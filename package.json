@@ -44,8 +44,5 @@
       "esbuild",
       "unrs-resolver"
     ]
-  },
-  "dependencies": {
-    "@alextheman/utility": "5.10.1"
   }
 }
