@@ -8,7 +8,7 @@ locals {
       version_change_ci = "package-ci / version-change-ci / version-change-ci"
     }
 
-    end_to_end_ci = "end-to-end-ci"
+    end_to_end_ci = "end-to-end-ci / end-to-end-ci"
 
     terraform = {
       lint_ci = "terraform-lint-ci"
@@ -98,11 +98,15 @@ module "eslint_plugin_repository" {
 }
 
 module "components_repository" {
-  source             = "./modules/github/repository"
-  name               = "components"
-  description        = "A package containing common React components used across my projects."
-  visibility         = "public"
-  required_ci_checks = local.check_list.package
+  source      = "./modules/github/repository"
+  name        = "components"
+  description = "A package containing common React components used across my projects."
+  visibility  = "public"
+  required_ci_checks = concat([
+    for check in local.check_list.package :
+    check
+    if check != local.check_name.end_to_end_ci
+  ], ["end-to-end-ci"])
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
