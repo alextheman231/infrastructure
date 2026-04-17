@@ -1,3 +1,3 @@
-import { infrastructureConfig } from "alex-c-line/configs/internal"
+import alexCLineConfig from "./dist-configs/alex-c-line.js"
 
-export default infrastructureConfig
+export default alexCLineConfig
