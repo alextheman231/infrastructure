@@ -74,3 +74,14 @@ variable "tfe_organisation_name" {
   type        = string
   default     = "alextheman"
 }
+
+variable "vercel_api_token" {
+  description = "Token to use with Vercel"
+  type        = string
+  sensitive   = true
+}
+
+variable "vercel_team_id" {
+  description = "ID for my Vercel team"
+  type        = string
+}
