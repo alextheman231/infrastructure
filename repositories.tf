@@ -21,7 +21,8 @@ locals {
     }
 
     lexicon = {
-      ci = "lexicon-ci"
+      lint_ci = "lexicon-lint-ci"
+      test_ci = "lexicon-test-ci"
     }
 
     neurosongs = {
@@ -138,7 +139,7 @@ module "lexicon_repository" {
   name               = "lexicon"
   description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
   visibility         = "public"
-  required_ci_checks = concat(local.check_list.base, [local.check_name.lexicon.ci])
+  required_ci_checks = concat(local.check_list.base, [local.check_name.lexicon.lint_ci, local.check_name.lexicon.test_ci])
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
