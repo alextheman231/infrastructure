@@ -59,3 +59,9 @@ variable "secrets" {
   sensitive = true
   default   = {}
 }
+
+variable "variables" {
+  type        = map(string)
+  description = "Non-sensitive variables to use in GitHub Actions workflows."
+  default     = {}
+}
