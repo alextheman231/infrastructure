@@ -130,3 +130,9 @@ variable "lexicon_repository_url" {
   description = "The link to the Lexicon GitHub repository"
   type        = string
 }
+
+variable "lexicon_render_deploy_key" {
+  description = "Render deploy key to use to deploy the Lexicon back-end server. This has been encrypted with respect to the Lexicon GitHub repository."
+  type        = string
+  sensitive   = true
+}
