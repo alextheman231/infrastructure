@@ -49,6 +49,7 @@ provider "registry.terraform.io/vercel/vercel" {
   version     = "5.2.0"
   constraints = ">= 4.8.0"
   hashes = [
+    "h1:1ogVbFdpJe4PpP5hO+3NkuWQv+ZopE6eE9c6ukJnhP8=",
     "h1:s8lWZdMxNI43AE37YisgLCMF3IV4BiUgwKZHJ0JzaOQ=",
     "zh:116164c797cdda9e67c56e408800033afd61cc1f771440b51c361b2a62e87b27",
     "zh:1893d1cbb50382ff396e71d394f365593eb2b7744e0ac1bc3793eb9db8233fd2",
