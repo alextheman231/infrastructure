@@ -27,5 +27,6 @@ module "lexicon_server" {
   repository_url = var.lexicon_repository_url
   secrets = {
     DATABASE_URL = var.lexicon_database_url
+    NODE_ENV     = "production"
   }
 }
