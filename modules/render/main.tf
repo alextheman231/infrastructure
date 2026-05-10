@@ -46,3 +46,7 @@ resource "render_env_group" "default" {
     }
   }
 }
+
+resource "render_log_stream" "default" {
+  preview = "send"
+}
