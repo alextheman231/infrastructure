@@ -136,3 +136,8 @@ variable "lexicon_render_key" {
   type        = string
   sensitive   = true
 }
+
+variable "lexicon_render_service_id" {
+  description = "Render service ID for Lexicon back-end server"
+  type        = string
+}
