@@ -114,3 +114,14 @@ variable "neon_organisation_id" {
   description = "The ID of the Neon organisation."
   type        = string
 }
+
+variable "render_api_key" {
+  description = "API key to use with Render to deploy the Lexicon server."
+  type        = string
+  sensitive   = true
+}
+
+variable "render_owner_id" {
+  description = "My Render user ID"
+  type        = string
+}

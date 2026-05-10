@@ -20,3 +20,8 @@ module "lexicon_database" {
   pg_version            = 17
   default_database_name = "lexicon-prod"
 }
+
+module "lexicon_server" {
+  source = "./modules/render"
+  name   = "Lexicon"
+}
