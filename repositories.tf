@@ -147,6 +147,7 @@ module "lexicon_repository" {
     VERCEL_TOKEN      = var.vercel_api_token_lexicon_github
     VERCEL_ORG_ID     = var.vercel_team_id_lexicon_github
     VERCEL_PROJECT_ID = var.vercel_lexicon_project_id
+    RENDER_DEPLOY_KEY = var.lexicon_render_deploy_key
   }
 }
 
