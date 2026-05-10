@@ -7,3 +7,10 @@ variable "repository_url" {
   description = "The link to the repository to deploy from."
   type        = string
 }
+
+variable "secrets" {
+  description = "A map of secrets for the given Render project."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
+}

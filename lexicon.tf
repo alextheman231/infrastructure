@@ -25,4 +25,7 @@ module "lexicon_server" {
   source         = "./modules/render"
   name           = "Lexicon"
   repository_url = var.lexicon_repository_url
+  secrets = {
+    DATABASE_URL = var.lexicon_database_url
+  }
 }
