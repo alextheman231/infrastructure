@@ -76,12 +76,30 @@ variable "tfe_organisation_name" {
 }
 
 variable "vercel_api_token" {
-  description = "Token to use with Vercel"
+  description = "Token to use with Vercel."
+  type        = string
+  sensitive   = true
+}
+
+variable "vercel_api_token_lexicon_github" {
+  description = "Token to use with Vercel, encrypted with respect to the Lexicon GitHub repository."
   type        = string
   sensitive   = true
 }
 
 variable "vercel_team_id" {
-  description = "ID for my Vercel team"
+  description = "ID for my Vercel team."
   type        = string
+}
+
+variable "vercel_team_id_lexicon_github" {
+  description = "The Vercel team ID for use in Lexicon, encrypted with respect to the Lexicon GitHub repository."
+  type        = string
+  sensitive   = true
+}
+
+variable "vercel_lexicon_project_id" {
+  description = "The ID for the Lexicon Vercel project, encrypted with respect to the Lexicon GitHub repository."
+  type        = string
+  sensitive   = true
 }
