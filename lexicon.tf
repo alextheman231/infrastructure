@@ -14,8 +14,9 @@ module "lexicon_project" {
 }
 
 module "lexicon_database" {
-  source     = "./modules/neon"
-  name       = "Lexicon"
-  org_id     = var.neon_organisation_id
-  pg_version = 17
+  source                = "./modules/neon"
+  name                  = "Lexicon"
+  org_id                = var.neon_organisation_id
+  pg_version            = 17
+  default_database_name = "lexicon-prod"
 }
