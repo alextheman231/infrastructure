@@ -125,3 +125,8 @@ variable "render_owner_id" {
   description = "My Render user ID"
   type        = string
 }
+
+variable "lexicon_repository_url" {
+  description = "The link to the Lexicon GitHub repository"
+  type        = string
+}
