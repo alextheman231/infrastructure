@@ -148,6 +148,7 @@ module "lexicon_repository" {
     VERCEL_ORG_ID     = var.vercel_team_id_lexicon_github
     VERCEL_PROJECT_ID = var.vercel_lexicon_project_id
     RENDER_DEPLOY_KEY = var.lexicon_render_key
+    DATABASE_URL      = var.lexicon_database_url
   }
   variables = {
     RENDER_SERVICE_ID = var.lexicon_render_service_id
