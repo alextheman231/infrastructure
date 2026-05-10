@@ -20,3 +20,18 @@ resource "render_project" "default" {
     }
   }
 }
+
+resource "render_web_service" "production" {
+  name           = "${var.name}-api"
+  plan           = "starter"
+  region         = "frankfurt"
+  environment_id = render_project.default.environments["production"].id
+
+  runtime_source = {
+    docker = {
+      auto_deploy = false
+      branch      = "main"
+      repo_url    = var.repository_url
+    }
+  }
+}

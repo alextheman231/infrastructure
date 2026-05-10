@@ -22,6 +22,7 @@ module "lexicon_database" {
 }
 
 module "lexicon_server" {
-  source = "./modules/render"
-  name   = "Lexicon"
+  source         = "./modules/render"
+  name           = "Lexicon"
+  repository_url = var.lexicon_repository_url
 }
