@@ -142,8 +142,14 @@ variable "lexicon_render_service_id" {
   type        = string
 }
 
-variable "lexicon_database_url" {
+variable "lexicon_database_url_encrypted" {
   description = "The Lexicon database URL, encrypted with respect to the Lexicon repository."
+  type        = string
+  sensitive   = true
+}
+
+variable "lexicon_database_url" {
+  description = "The Lexicon database URL in plaintext."
   type        = string
   sensitive   = true
 }

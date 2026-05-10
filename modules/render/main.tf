@@ -35,3 +35,14 @@ resource "render_web_service" "production" {
     }
   }
 }
+
+resource "render_env_group" "default" {
+  name           = "${var.name} secrets"
+  environment_id = render_project.default.environments["production"].id
+  env_vars = {
+    for key, value in nonsensitive(var.secrets) :
+    key => {
+      value = value
+    }
+  }
+}
