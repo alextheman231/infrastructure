@@ -12,3 +12,10 @@ module "lexicon_project" {
   framework        = "vite"
   output_directory = "apps/front-end/dist"
 }
+
+module "lexicon_database" {
+  source     = "./modules/neon"
+  name       = "Lexicon"
+  org_id     = var.neon_organisation_id
+  pg_version = 17
+}
