@@ -131,8 +131,8 @@ variable "lexicon_repository_url" {
   type        = string
 }
 
-variable "lexicon_render_deploy_key" {
-  description = "Render deploy key to use to deploy the Lexicon back-end server. This has been encrypted with respect to the Lexicon GitHub repository."
+variable "lexicon_render_key" {
+  description = "Render API key to use to deploy the Lexicon back-end server. This has been encrypted with respect to the Lexicon GitHub repository."
   type        = string
   sensitive   = true
 }
