@@ -12,5 +12,10 @@ resource "neon_project" "default" {
   org_id                    = var.org_id
   pg_version                = var.pg_version
   history_retention_seconds = 21600
+
+  branch {
+    name          = var.default_branch_name
+    database_name = var.default_database_name
+  }
 }
 
