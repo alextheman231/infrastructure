@@ -11,8 +11,9 @@ locals {
     end_to_end_ci = "end-to-end-ci / end-to-end-ci"
 
     terraform = {
-      lint_ci = "terraform-lint-ci"
-      plan_ci = "comment-terraform-plan"
+      lint_ci      = "terraform-lint-ci"
+      plan_ci      = "terraform-plan-ci"
+      comment_plan = "comment-terraform-plan"
     }
 
     github_actions = {
@@ -71,6 +72,7 @@ module "infrastructure_repository" {
   required_ci_checks = concat(local.check_list.base, [
     local.check_name.terraform.lint_ci,
     local.check_name.terraform.plan_ci,
+    local.check_name.terraform.comment_plan
   ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
   secrets = {
