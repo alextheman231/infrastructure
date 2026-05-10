@@ -22,6 +22,10 @@ terraform {
       source  = "vercel/vercel"
       version = ">= 4.8"
     }
+    neon = {
+      source  = "kislerdm/neon"
+      version = ">= 0.13.0"
+    }
   }
 }
 
@@ -41,6 +45,10 @@ provider "tfe" {
 
 provider "vercel" {
   api_token = var.vercel_api_token
+}
+
+provider "neon" {
+  api_key = var.neon_api_key
 }
 
 module "github_organisation" {

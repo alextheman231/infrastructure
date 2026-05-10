@@ -103,3 +103,14 @@ variable "vercel_lexicon_project_id" {
   type        = string
   sensitive   = true
 }
+
+variable "neon_api_key" {
+  description = "API key to use with Neon"
+  type        = string
+  sensitive   = true
+}
+
+variable "neon_organisation_id" {
+  description = "The ID of the Neon organisation."
+  type        = string
+}
