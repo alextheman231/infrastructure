@@ -8,8 +8,9 @@ terraform {
 }
 
 resource "neon_project" "default" {
-  name       = var.name
-  org_id     = var.org_id
-  pg_version = var.pg_version
+  name                      = var.name
+  org_id                    = var.org_id
+  pg_version                = var.pg_version
+  history_retention_seconds = 21600
 }
 
