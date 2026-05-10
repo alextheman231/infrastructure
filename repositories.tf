@@ -149,6 +149,9 @@ module "lexicon_repository" {
     VERCEL_PROJECT_ID = var.vercel_lexicon_project_id
     RENDER_DEPLOY_KEY = var.lexicon_render_key
   }
+  variables = {
+    RENDER_SERVICE_ID = var.lexicon_render_service_id
+  }
 }
 
 module "neurosongs_2_repository" {
