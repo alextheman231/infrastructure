@@ -153,3 +153,8 @@ variable "lexicon_database_url" {
   type        = string
   sensitive   = true
 }
+
+variable "lexicon_api_base_url" {
+  description = "Base URL for Lexicon API"
+  type        = string
+}
