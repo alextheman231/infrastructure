@@ -23,3 +23,16 @@ variable "build_command" {
   type        = string
   default     = "pnpm run build"
 }
+
+variable "secrets" {
+  description = "A map of secrets for the given Vercel project."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
+}
+
+variable "variables" {
+  type        = map(string)
+  description = "Non-sensitive variables to use in the given Vercel project."
+  default     = {}
+}
