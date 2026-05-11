@@ -156,3 +156,14 @@ variable "lexicon_domain" {
   description = "The domain name for Lexicon"
   type        = string
 }
+
+variable "lexicon_google_client_id" {
+  description = "The Google Client ID for the Lexicon project."
+  type        = string
+}
+
+variable "lexicon_google_client_secret" {
+  description = "The Google Client Secret for the Lexicon project."
+  type        = string
+  sensitive   = true
+}
