@@ -149,6 +149,7 @@ module "lexicon_repository" {
     DATABASE_URL      = var.lexicon_database_url_encrypted
   }
   variables = {
+    VITE_API_BASE_URL = var.lexicon_api_base_url
     VERCEL_ORG_ID     = var.vercel_team_id
     VERCEL_PROJECT_ID = var.lexicon_vercel_project_id
     RENDER_SERVICE_ID = var.lexicon_render_service_id
