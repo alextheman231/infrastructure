@@ -4,3 +4,4 @@ node_modules
 .terraform
 .alex-c-line.private.config.js
 dist-configs
+.DS_Store
