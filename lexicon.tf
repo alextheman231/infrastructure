@@ -11,6 +11,9 @@ module "lexicon_project" {
   name             = "lexicon-front-end"
   framework        = "vite"
   output_directory = "apps/front-end/dist"
+  secrets = {
+    VITE_API_BASE_URL = var.lexicon_api_base_url
+  }
 }
 
 module "lexicon_database" {
