@@ -34,22 +34,13 @@ resource "render_web_service" "production" {
       repo_url    = var.repository_url
     }
   }
-}
 
-resource "render_env_group" "default" {
-  name           = "${var.name} secrets"
-  environment_id = render_project.default.environments["production"].id
   env_vars = {
     for key, value in nonsensitive(var.secrets) :
     key => {
       value = value
     }
   }
-}
-
-resource "render_env_group_link" "default" {
-  env_group_id = render_env_group.default.id
-  service_ids  = [render_web_service.production.id]
 }
 
 resource "render_log_stream" "default" {
