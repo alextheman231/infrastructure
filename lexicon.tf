@@ -30,6 +30,6 @@ module "lexicon_server" {
     DATABASE_URL    = var.lexicon_database_url
     NODE_ENV        = "production"
     API_BASE_URL    = var.lexicon_api_base_url
-    ALLOWED_ORIGINS = "https://lexicon-front-n9bwg11a6-alextheman.vercel.app"
+    ALLOWED_ORIGINS = "https://${var.lexicon_domain}"
   }
 }
