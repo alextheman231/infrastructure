@@ -151,3 +151,8 @@ variable "lexicon_api_base_url" {
   description = "Base URL for Lexicon API"
   type        = string
 }
+
+variable "lexicon_domain" {
+  description = "The domain name for Lexicon"
+  type        = string
+}

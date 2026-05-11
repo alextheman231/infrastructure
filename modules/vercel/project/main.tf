@@ -32,3 +32,8 @@ resource "vercel_project_environment_variable" "default" {
   value      = each.value
   sensitive  = true
 }
+
+resource "vercel_project_domain" "default" {
+  project_id = vercel_project.default.id
+  domain     = var.domain
+}

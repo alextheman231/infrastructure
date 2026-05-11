@@ -11,6 +11,7 @@ module "lexicon_project" {
   name             = "lexicon-front-end"
   framework        = "vite"
   output_directory = "apps/front-end/dist"
+  domain           = var.lexicon_domain
 }
 
 module "lexicon_database" {

@@ -36,3 +36,8 @@ variable "variables" {
   description = "Non-sensitive variables to use in the given Vercel project."
   default     = {}
 }
+
+variable "domain" {
+  description = "The domain to use for the project."
+  type        = string
+}
