@@ -92,16 +92,9 @@ variable "vercel_team_id" {
   type        = string
 }
 
-variable "vercel_team_id_lexicon_github" {
-  description = "The Vercel team ID for use in Lexicon, encrypted with respect to the Lexicon GitHub repository."
+variable "lexicon_vercel_project_id" {
+  description = "The ID for the Lexicon Vercel project."
   type        = string
-  sensitive   = true
-}
-
-variable "vercel_lexicon_project_id" {
-  description = "The ID for the Lexicon Vercel project, encrypted with respect to the Lexicon GitHub repository."
-  type        = string
-  sensitive   = true
 }
 
 variable "neon_api_key" {
