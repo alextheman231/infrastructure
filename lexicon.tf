@@ -11,6 +11,7 @@ module "lexicon_project" {
   name             = "lexicon-front-end"
   framework        = "vite"
   output_directory = "apps/front-end/dist"
+  build_command    = "pnpm --dir apps/front-end run build"
   secrets = {
     VITE_API_BASE_URL = var.lexicon_api_base_url
   }
