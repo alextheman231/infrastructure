@@ -47,6 +47,11 @@ resource "render_env_group" "default" {
   }
 }
 
+resource "render_env_group_link" "default" {
+  env_group_id = render_env_group.default.id
+  service_ids  = [render_web_service.production.id]
+}
+
 resource "render_log_stream" "default" {
   preview = "send"
 }
