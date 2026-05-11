@@ -13,6 +13,9 @@ resource "vercel_project" "default" {
   framework        = var.framework
   output_directory = var.output_directory
   build_command    = var.build_command
+  vercel_authentication = {
+    deployment_type = "none"
+  }
 }
 
 resource "vercel_project_environment_variable" "secret" {
