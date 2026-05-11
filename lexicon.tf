@@ -11,7 +11,6 @@ module "lexicon_project" {
   name             = "lexicon-front-end"
   framework        = "vite"
   output_directory = "apps/front-end/dist"
-  build_command    = "pnpm --dir packages/models run build && pnpm --dir apps/front-end run build"
 }
 
 module "lexicon_database" {
