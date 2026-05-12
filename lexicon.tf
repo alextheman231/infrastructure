@@ -29,9 +29,10 @@ module "lexicon_server" {
 }
 
 module "lexicon_image" {
-  source    = "./modules/docker"
-  namespace = var.docker_username
-  name      = "lexicon"
+  source      = "./modules/docker"
+  namespace   = var.docker_username
+  name        = "lexicon"
+  description = "Dockerhub repository for the Lexicon back-end server image."
 }
 
 module "lexicon_project" {
