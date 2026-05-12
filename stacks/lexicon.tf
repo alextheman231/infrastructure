@@ -1,5 +1,5 @@
 module "lexicon_database" {
-  source                = "./modules/neon"
+  source                = "../modules/neon"
   name                  = "Lexicon"
   org_id                = var.neon_organisation_id
   pg_version            = 17
@@ -7,7 +7,7 @@ module "lexicon_database" {
 }
 
 module "lexicon_server" {
-  source         = "./modules/render"
+  source         = "../modules/render"
   name           = "Lexicon"
   repository_url = var.lexicon_repository_url
   docker_image   = "${var.docker_username}/lexicon"
@@ -22,14 +22,14 @@ module "lexicon_server" {
 }
 
 module "lexicon_image" {
-  source      = "./modules/docker"
+  source      = "../modules/docker"
   namespace   = var.docker_username
   name        = "lexicon"
   description = "Dockerhub repository for the Lexicon back-end server image."
 }
 
 module "lexicon_project" {
-  source           = "./modules/vercel/project"
+  source           = "../modules/vercel/project"
   vercel_team_id   = var.vercel_team_id
   name             = "lexicon-front-end"
   framework        = "vite"
