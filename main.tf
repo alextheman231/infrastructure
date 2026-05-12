@@ -30,6 +30,10 @@ terraform {
       source  = "render-oss/render"
       version = ">= 1.8.0"
     }
+    docker = {
+      source  = "docker/docker"
+      version = ">=0.2.0"
+    }
   }
 }
 
@@ -58,6 +62,11 @@ provider "neon" {
 provider "render" {
   api_key  = var.render_api_key
   owner_id = var.render_owner_id
+}
+
+provider "docker" {
+  username = var.docker_username
+  password = var.docker_pat
 }
 
 module "github_organisation" {
