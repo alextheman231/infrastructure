@@ -28,6 +28,12 @@ module "lexicon_server" {
   }
 }
 
+module "lexicon_image" {
+  source    = "./modules/docker"
+  namespace = var.docker_username
+  name      = "lexicon"
+}
+
 module "lexicon_project" {
   source           = "./modules/vercel/project"
   vercel_team_id   = var.vercel_team_id

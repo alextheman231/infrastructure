@@ -147,6 +147,7 @@ module "lexicon_repository" {
     VERCEL_TOKEN      = var.vercel_api_token_lexicon_github
     RENDER_DEPLOY_KEY = var.lexicon_render_key
     DATABASE_URL      = var.lexicon_database_url_encrypted
+    DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
     VITE_API_BASE_URL = var.lexicon_api_base_url
