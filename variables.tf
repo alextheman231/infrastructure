@@ -6,7 +6,6 @@ variable "github_owner" {
 variable "alex_up_bot_app_id" {
   description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions. This should be used alongside alex_up_bot_private_key."
   type        = string
-  sensitive   = true
 }
 
 variable "alex_up_bot_private_key" {

@@ -45,7 +45,6 @@ variable "required_ci_checks" {
 variable "alex_up_bot_app_id" {
   description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions."
   type        = string
-  sensitive   = true
 }
 
 variable "has_pages" {
