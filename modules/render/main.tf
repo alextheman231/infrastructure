@@ -40,7 +40,3 @@ resource "render_web_service" "production" {
     }
   }
 }
-
-resource "render_log_stream" "default" {
-  preview = "send"
-}
