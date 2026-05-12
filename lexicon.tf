@@ -1,11 +1,3 @@
-module "vercel_team" {
-  source         = "./modules/vercel/team"
-  vercel_team_id = var.vercel_team_id
-  name           = "AlexTheMan"
-  description    = "Vercel team for my personal alextheman organisation, to help with managing the deployment of my Turborepo apps."
-}
-
-
 module "lexicon_database" {
   source                = "./modules/neon"
   name                  = "Lexicon"
@@ -44,4 +36,3 @@ module "lexicon_project" {
   output_directory = "apps/front-end/dist"
   domain           = var.lexicon_domain
 }
-
