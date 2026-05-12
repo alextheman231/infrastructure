@@ -1,3 +1,25 @@
+module "lexicon_repository" {
+  source             = "../modules/github/repository"
+  name               = "lexicon"
+  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
+  visibility         = "public"
+  required_ci_checks = concat(local.check_list.base, [local.check_name.lexicon.lint_ci, local.check_name.lexicon.test_ci])
+  alex_up_bot_app_id = var.alex_up_bot_app_id
+  secrets = {
+    VERCEL_TOKEN      = var.vercel_api_token_lexicon_github
+    RENDER_DEPLOY_KEY = var.lexicon_render_key
+    DATABASE_URL      = var.lexicon_database_url_encrypted
+    DOCKER_PAT        = var.docker_pat_lexicon_encrypted
+  }
+  variables = {
+    VITE_API_BASE_URL = var.lexicon_api_base_url
+    VERCEL_ORG_ID     = var.vercel_team_id
+    VERCEL_PROJECT_ID = var.lexicon_vercel_project_id
+    RENDER_SERVICE_ID = var.lexicon_render_service_id
+    DOCKER_USERNAME   = var.docker_username
+  }
+}
+
 module "lexicon_database" {
   source                = "../modules/neon"
   name                  = "Lexicon"
