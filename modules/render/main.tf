@@ -28,10 +28,8 @@ resource "render_web_service" "production" {
   environment_id = render_project.default.environments["production"].id
 
   runtime_source = {
-    docker = {
-      auto_deploy = false
-      branch      = "main"
-      repo_url    = var.repository_url
+    image = {
+      image_url = var.docker_image
     }
   }
 
