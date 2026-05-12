@@ -14,8 +14,3 @@ variable "secrets" {
   sensitive   = true
   default     = {}
 }
-
-variable "docker_image" {
-  description = "The URL to the Docker image to deploy."
-  type        = string
-}
