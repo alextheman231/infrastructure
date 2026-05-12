@@ -154,6 +154,7 @@ module "lexicon_repository" {
     VERCEL_ORG_ID     = var.vercel_team_id
     VERCEL_PROJECT_ID = var.lexicon_vercel_project_id
     RENDER_SERVICE_ID = var.lexicon_render_service_id
+    DOCKER_USERNAME   = var.docker_username
   }
 }
 
