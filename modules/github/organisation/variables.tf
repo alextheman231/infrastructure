@@ -36,3 +36,13 @@ variable "variables" {
   type        = map(string)
   default     = {}
 }
+
+variable "admins" {
+  description = "Admins of the organisation, often having higher-level permissions."
+  type        = set(string)
+}
+
+variable "members" {
+  description = "Members of the organisation."
+  type        = set(string)
+}

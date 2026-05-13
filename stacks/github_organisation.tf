@@ -10,4 +10,6 @@ module "github_organisation" {
   secrets = {
     ALEX_UP_BOT_PRIVATE_KEY = var.alex_up_bot_private_key
   }
+  admins  = ["AlexMan123456"]
+  members = ["badstagram", "RLCreates"]
 }
