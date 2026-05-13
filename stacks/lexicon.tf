@@ -12,11 +12,12 @@ module "lexicon_repository" {
     DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
-    VITE_API_BASE_URL = var.lexicon_api_base_url
-    VERCEL_ORG_ID     = var.vercel_team_id
-    VERCEL_PROJECT_ID = var.lexicon_vercel_project_id
-    RENDER_SERVICE_ID = var.lexicon_render_service_id
-    DOCKER_USERNAME   = var.docker_username
+    VITE_API_BASE_URL    = var.lexicon_api_base_url
+    VERCEL_ORG_ID        = var.vercel_team_id
+    VERCEL_PROJECT_ID    = var.lexicon_vercel_project_id
+    RENDER_SERVICE_ID    = var.lexicon_render_service_id
+    DOCKER_USERNAME      = var.docker_username
+    FRONT_END_SENTRY_DSN = var.lexicon_front_end_sentry_dsn
   }
 }
 
@@ -40,6 +41,7 @@ module "lexicon_server" {
     ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
+    SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
 }
 
