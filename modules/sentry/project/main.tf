@@ -8,7 +8,7 @@ terraform {
 }
 
 resource "sentry_project" "default" {
-  organization = var.organisation_id
+  organization = var.organisation_name
   name         = var.name
   teams        = [var.organisation_name]
   platform     = var.platform
