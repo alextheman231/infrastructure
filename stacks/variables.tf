@@ -183,3 +183,14 @@ variable "docker_pat_lexicon_encrypted" {
   type        = string
   sensitive   = true
 }
+
+variable "sentry_infrastructure_token" {
+  description = "Token for Terraform to use for Sentry."
+  type        = string
+  sensitive   = true
+}
+
+variable "sentry_organisation_id" {
+  description = "ID of the Sentry organisation"
+  type        = string
+}
