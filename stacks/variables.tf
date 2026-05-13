@@ -194,3 +194,13 @@ variable "sentry_organisation_id" {
   description = "ID of the Sentry organisation"
   type        = string
 }
+
+variable "lexicon_front_end_sentry_dsn" {
+  description = "The Sentry DSN for the Lexicon front-end."
+  type        = string
+}
+
+variable "lexicon_back_end_sentry_dsn" {
+  description = "The Sentry DSN for the Lexicon back-end."
+  type        = string
+}

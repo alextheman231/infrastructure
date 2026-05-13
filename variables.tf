@@ -192,3 +192,11 @@ variable "sentry_infrastructure_token" {
 variable "sentry_organisation_id" {
   type = string
 }
+
+variable "lexicon_front_end_sentry_dsn" {
+  type = string
+}
+
+variable "lexicon_back_end_sentry_dsn" {
+  type = string
+}
