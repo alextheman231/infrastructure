@@ -4,11 +4,6 @@ variable "organisation_name" {
   default     = "alextheman231"
 }
 
-variable "organisation_id" {
-  description = "The ID of the Sentry organisation"
-  type        = string
-}
-
 variable "name" {
   description = "The name of the project."
   type        = string
