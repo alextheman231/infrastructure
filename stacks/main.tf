@@ -24,6 +24,10 @@ terraform {
       source  = "docker/docker"
       version = ">=0.2.0"
     }
+    sentry = {
+      source  = "jianyuan/sentry"
+      version = ">=0.14.3"
+    }
   }
 }
 
@@ -57,4 +61,8 @@ provider "render" {
 provider "docker" {
   username = var.docker_username
   password = var.docker_pat
+}
+
+provider "sentry" {
+  token = var.sentry_infrastructure_token
 }

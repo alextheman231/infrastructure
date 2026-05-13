@@ -46,4 +46,6 @@ module "stacks" {
   vercel_api_token                           = var.vercel_api_token
   lexicon_vercel_project_id                  = var.lexicon_vercel_project_id
   docker_pat_lexicon_encrypted               = var.docker_pat_lexicon_encrypted
+  sentry_infrastructure_token                = var.sentry_infrastructure_token
+  sentry_organisation_id                     = var.sentry_organisation_id
 }

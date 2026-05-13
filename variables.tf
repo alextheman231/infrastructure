@@ -183,3 +183,12 @@ variable "docker_pat_lexicon_encrypted" {
   type        = string
   sensitive   = true
 }
+
+variable "sentry_infrastructure_token" {
+  type      = string
+  sensitive = true
+}
+
+variable "sentry_organisation_id" {
+  type = string
+}

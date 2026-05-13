@@ -58,3 +58,17 @@ module "lexicon_project" {
   output_directory = "apps/front-end/dist"
   domain           = var.lexicon_domain
 }
+
+module "lexicon_sentry_back_end" {
+  source          = "../modules/sentry/project"
+  organisation_id = var.sentry_organisation_id
+  name            = "lexicon-back-end"
+  platform        = "node-express"
+}
+
+module "lexicon_sentry_front_end" {
+  source          = "../modules/sentry/project"
+  organisation_id = var.sentry_organisation_id
+  name            = "lexicon-front-end"
+  platform        = "javascript-react"
+}
