@@ -50,4 +50,5 @@ module "stacks" {
   sentry_organisation_id                     = var.sentry_organisation_id
   lexicon_back_end_sentry_dsn                = var.lexicon_back_end_sentry_dsn
   lexicon_front_end_sentry_dsn               = var.lexicon_front_end_sentry_dsn
+  sentry_organisation_token                  = var.sentry_organisation_token
 }

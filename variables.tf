@@ -200,3 +200,8 @@ variable "lexicon_front_end_sentry_dsn" {
 variable "lexicon_back_end_sentry_dsn" {
   type = string
 }
+
+variable "sentry_organisation_token" {
+  type      = string
+  sensitive = true
+}
