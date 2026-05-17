@@ -137,6 +137,7 @@ provider "registry.terraform.io/vercel/vercel" {
   constraints = ">= 4.8.0"
   hashes = [
     "h1:LDptyy10X6325qdvt+7dHdahQryK/lEMMNPSiTyz88s=",
+    "h1:dWkASEFLbSBSMyI1RqK8UpAq7kilI9dCquRV35YaYtE=",
     "zh:00e198bdee517d4f9c9848971c62312c087757efc726795debe24569bc842d38",
     "zh:08102e24a768418c928c9f78cf97161d4184959039a2b52e17e5795bfc22d123",
     "zh:136cfd3bec6647b41fdcc9baa4662eb8ca8a43fc03d9fdd949fe55bd6b656ec1",
