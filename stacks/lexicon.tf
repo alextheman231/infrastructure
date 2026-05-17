@@ -1,9 +1,13 @@
 module "lexicon_repository" {
-  source             = "../modules/github/repository"
-  name               = "lexicon"
-  description        = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
-  visibility         = "public"
-  required_ci_checks = concat(local.check_list.base, [local.check_name.lexicon.lint_ci, local.check_name.lexicon.test_ci])
+  source      = "../modules/github/repository"
+  name        = "lexicon"
+  description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
+  visibility  = "public"
+  required_ci_checks = concat(local.check_list.base, [
+    local.check_name.lexicon.lint_ci,
+    local.check_name.lexicon.test_ci,
+    local.check_name.lexicon.end_to_end_ci
+  ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
   secrets = {
     VERCEL_TOKEN      = var.vercel_api_token_lexicon_github
