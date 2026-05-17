@@ -22,8 +22,9 @@ locals {
     }
 
     lexicon = {
-      lint_ci = "lexicon-lint-ci"
-      test_ci = "lexicon-test-ci"
+      lint_ci       = "lexicon-lint-ci"
+      test_ci       = "lexicon-test-ci"
+      end_to_end_ci = "end-to-end-ci"
     }
 
     neurosongs = {
