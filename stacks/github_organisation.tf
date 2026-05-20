@@ -1,7 +1,7 @@
 module "github_organisation" {
   source  = "../modules/github/organisation"
   admins  = ["AlexMan123456"]
-  members = ["badstagram", "RLCreates"]
+  members = ["badstagram", "RLCreates", "peatsham"]
 
 
   billing_email = var.billing_email
