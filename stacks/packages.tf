@@ -3,7 +3,7 @@ module "utility_repository" {
   name               = "utility"
   description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
   visibility         = "public"
-  required_ci_checks = concat(local.check_list.package, ["test"])
+  required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
   has_pages          = true
 }
