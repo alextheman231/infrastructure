@@ -139,6 +139,8 @@ jobs:
         with:
           client-id: ${{ vars.ALEX_UP_BOT_APP_ID }}
           private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
+          permission-contents: read
+          permission-pull-requests: write
 
       - name: Find existing comment
         uses: peter-evans/find-comment@b30e6a3c0ed37e7c023ccd3f1db5c6c0b0c23aad # v4.0.0
