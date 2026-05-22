@@ -2,3 +2,6 @@ allowBuilds:
   unrs-resolver: true
   esbuild: true
 savePrefix: ""
+minimumReleaseAgeExclude:
+  - "@alextheman/*"
+  - alex-c-line
