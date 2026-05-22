@@ -22,6 +22,7 @@ provider "registry.terraform.io/hashicorp/tfe" {
   constraints = ">= 0.76.1"
   hashes = [
     "h1:25IZeldaZTKH+cXCPFmm9DrD2x6XIJMrvkul/5M1H/k=",
+    "h1:Btb+ERIoxhGhmSxTtF1aBAK6gMQYS8YGdki4hDaEuX0=",
     "zh:0c1cb858cd20708174d4353a1de5fcb368d888df922bebd27785898d5364cabc",
     "zh:0ff64c5866579c99fe045f860aa1a8e2b282d901b3f6280f10af395e7e7b6e1d",
     "zh:1a722049921e85cbb25a40cba2d0f5e76f2c346253a9bf81951b5dbf3de053fa",
@@ -135,6 +136,7 @@ provider "registry.terraform.io/vercel/vercel" {
   version     = "5.3.0"
   constraints = ">= 4.8.0"
   hashes = [
+    "h1:6Xf/dJya2q8N/kte7WLzjgUM7azTV6nRv+wf6uHfa7w=",
     "h1:Zg61UQ3pqL1w+Goe70lnKIwXu6Sf4OOzkAeWb9aSI1I=",
     "zh:23216fea1c6c78df34acce4f614ae4251565be05e596bdb24ff6d508fb943b15",
     "zh:36c6551cba94d1f55ae8d1764f2ad0cce4e60ffb32b1864b66999cc21be001fc",
