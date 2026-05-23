@@ -11,8 +11,8 @@ terraform {
 }
 
 
-module "stacks" {
-  source = "./stacks"
+module "services" {
+  source = "./services"
 
   github_owner                               = var.github_owner
   tfe_token                                  = var.tfe_token
