@@ -25,7 +25,7 @@ module "lexicon_repository" {
   }
 }
 
-module "lexicon_database_v18" {
+module "lexicon_database" {
   source                = "../modules/neon"
   name                  = "Lexicon"
   org_id                = var.neon_organisation_id
