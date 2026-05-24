@@ -25,14 +25,6 @@ module "lexicon_repository" {
   }
 }
 
-module "lexicon_database" {
-  source                = "../modules/neon"
-  name                  = "Lexicon"
-  org_id                = var.neon_organisation_id
-  pg_version            = 17
-  default_database_name = "lexicon-prod"
-}
-
 module "lexicon_database_v18" {
   source                = "../modules/neon"
   name                  = "Lexicon"
