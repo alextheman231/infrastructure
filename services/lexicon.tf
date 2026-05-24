@@ -33,6 +33,14 @@ module "lexicon_database" {
   default_database_name = "lexicon-prod"
 }
 
+module "lexicon_database_v18" {
+  source                = "../modules/neon"
+  name                  = "Lexicon"
+  org_id                = var.neon_organisation_id
+  pg_version            = 18
+  default_database_name = "lexicon-prod"
+}
+
 module "lexicon_server" {
   source         = "../modules/render"
   name           = "Lexicon"
