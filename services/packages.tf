@@ -26,7 +26,7 @@ module "components_repository" {
     for check in local.check_list.package :
     check
     if check != local.check_name.end_to_end_ci
-  ], ["end-to-end-ci"])
+  ], [local.check_name.components.end_to_end_ci])
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
 }
