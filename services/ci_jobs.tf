@@ -16,6 +16,10 @@ locals {
       comment_plan = "comment-terraform-plan"
     }
 
+    components = {
+      end_to_end_ci = "end-to-end-ci"
+    }
+
     github_actions = {
       actions_ci        = "actions-ci"
       version_change_ci = "version-change-ci / version-change-ci"
