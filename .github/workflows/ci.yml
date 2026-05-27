@@ -163,6 +163,9 @@ jobs:
 
             ${{ steps.get-plan.outputs.comment-body }}
 
+      - name: Give a 30-second plan review window before passing
+        run: sleep 30
+
   actions-ci:
     permissions:
       contents: read
