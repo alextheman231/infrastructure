@@ -85,3 +85,11 @@ module "lexicon_dns_record" {
   zone_id = var.cloudflare_lexicon_zone_id
   content = "e7098f9ead20285a.vercel-dns-017.com"
 }
+
+module "lexicon_api_dns_record" {
+  source  = "../modules/cloudflare/dns"
+  name    = "api.lexiconblogs.com"
+  type    = "CNAME"
+  zone_id = var.cloudflare_lexicon_zone_id
+  content = "lexicon-api-lryv.onrender.com"
+}
