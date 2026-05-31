@@ -47,6 +47,7 @@ module "lexicon_server" {
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
+  custom_domains = ["api.lexiconblogs.com"]
 }
 
 module "lexicon_image" {
