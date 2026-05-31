@@ -76,3 +76,11 @@ module "lexicon_sentry_front_end" {
   name     = "lexicon-front-end"
   platform = "javascript-react"
 }
+
+module "lexicon_dns_record" {
+  source  = "../modules/cloudflare/dns"
+  name    = "lexiconblogs.com"
+  type    = "CNAME"
+  zone_id = var.cloudflare_lexicon_zone_id
+  content = "e7098f9ead20285a.vercel-dns-017.com"
+}

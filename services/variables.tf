@@ -210,3 +210,14 @@ variable "sentry_organisation_token" {
   type        = string
   sensitive   = true
 }
+
+variable "cloudflare_api_token" {
+  description = "Token to interact with Cloudflare"
+  type        = string
+  sensitive   = true
+}
+
+variable "cloudflare_lexicon_zone_id" {
+  description = "The Cloudflare Lexicon Zone ID"
+  type        = string
+}
