@@ -146,8 +146,8 @@ variable "lexicon_database_url" {
   sensitive   = true
 }
 
-variable "lexicon_api_base_url" {
-  description = "Base URL for Lexicon API"
+variable "lexicon_api_domain" {
+  description = "Domain name for Lexicon API"
   type        = string
 }
 
