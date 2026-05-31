@@ -19,3 +19,8 @@ variable "docker_image" {
   description = "The URL to the Docker image to deploy."
   type        = string
 }
+
+variable "custom_domains" {
+  description = "Custom domains to associate with the service"
+  type        = list(string)
+}

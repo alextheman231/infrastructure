@@ -39,4 +39,6 @@ resource "render_web_service" "production" {
       value = value
     }
   }
+
+  custom_domains = [for value in var.custom_domains : { name : value }]
 }
