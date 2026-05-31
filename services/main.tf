@@ -28,6 +28,10 @@ terraform {
       source  = "jianyuan/sentry"
       version = ">=0.14.3"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = ">=5.0.0"
+    }
   }
 }
 
@@ -65,4 +69,8 @@ provider "docker" {
 
 provider "sentry" {
   token = var.sentry_infrastructure_token
+}
+
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
 }
