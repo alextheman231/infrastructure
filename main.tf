@@ -18,7 +18,7 @@ module "services" {
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
   billing_email                              = var.billing_email
-  lexicon_api_base_url                       = var.lexicon_api_base_url
+  lexicon_api_domain                         = var.lexicon_api_domain
   lexicon_database_url                       = var.lexicon_database_url
   lexicon_google_client_id                   = var.lexicon_google_client_id
   neon_organisation_id                       = var.neon_organisation_id

@@ -16,7 +16,7 @@ module "lexicon_repository" {
     DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
-    VITE_API_BASE_URL    = "https://${var.lexicon_api_base_url}"
+    VITE_API_BASE_URL    = "https://${var.lexicon_api_domain}"
     VERCEL_ORG_ID        = var.vercel_team_id
     VERCEL_PROJECT_ID    = var.lexicon_vercel_project_id
     RENDER_SERVICE_ID    = var.lexicon_render_service_id
@@ -41,13 +41,13 @@ module "lexicon_server" {
   secrets = {
     DATABASE_URL         = var.lexicon_database_url
     NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_api_base_url}"
+    API_BASE_URL         = "https://${var.lexicon_api_domain}"
     ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
-  custom_domains = [var.lexicon_api_base_url]
+  custom_domains = [var.lexicon_api_domain]
 }
 
 module "lexicon_image" {
@@ -88,7 +88,7 @@ module "lexicon_dns_record" {
 
 module "lexicon_api_dns_record" {
   source  = "../modules/cloudflare/dns"
-  name    = var.lexicon_api_base_url
+  name    = var.lexicon_api_domain
   type    = "CNAME"
   zone_id = var.cloudflare_lexicon_zone_id
   content = "lexicon-api-lryv.onrender.com"
