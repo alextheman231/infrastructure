@@ -53,4 +53,6 @@ module "services" {
   sentry_organisation_token                  = var.sentry_organisation_token
   cloudflare_api_token                       = var.cloudflare_api_token
   cloudflare_lexicon_zone_id                 = var.cloudflare_lexicon_zone_id
+  lexicon_google_key                         = var.lexicon_google_key
+  lexicon_google_project_id                  = var.lexicon_google_project_id
 }
