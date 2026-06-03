@@ -93,14 +93,3 @@ module "lexicon_api_dns_record" {
   zone_id = var.cloudflare_lexicon_zone_id
   content = "lexicon-api-lryv.onrender.com"
 }
-
-module "lexicon_google_project" {
-  source                = "../modules/google"
-  credentials           = var.lexicon_google_key
-  google_client_id      = var.lexicon_google_client_id
-  allowed_redirect_uris = ["https://${var.lexicon_api_domain}/api/v1/auth/google/callback"]
-  location              = "global"
-  project_id            = var.lexicon_google_project_id
-  display_name          = "Lexicon OAuth Client 2"
-  description           = "The Google OAuth Client for Lexicon to allow for Google SSO."
-}
