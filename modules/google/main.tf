@@ -20,4 +20,5 @@ resource "google_iam_oauth_client" "default" {
   location              = var.location
   display_name          = var.display_name
   description           = var.description
+  client_type           = var.client_type
 }

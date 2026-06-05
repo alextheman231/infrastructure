@@ -35,3 +35,9 @@ variable "description" {
   type        = string
   default     = ""
 }
+
+variable "client_type" {
+  description = "The type of OAuthClient. Possible values: CLIENT_TYPE_UNSPECIFIED PUBLIC_CLIENT CONFIDENTIAL_CLIENT"
+  type        = string
+  default     = "PUBLIC_CLIENT"
+}
