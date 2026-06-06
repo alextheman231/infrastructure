@@ -5,4 +5,3 @@ node_modules
 .alex-c-line.private.config.js
 dist-configs
 .DS_Store
-google-key.json
