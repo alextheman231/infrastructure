@@ -24,3 +24,9 @@ variable "custom_domains" {
   description = "Custom domains to associate with the service"
   type        = list(string)
 }
+
+variable "health_check_path" {
+  description = "The path where the server will always return a 200 response. Used to monitor the app and for zero downtime deploys."
+  type        = string
+  default     = "/api"
+}

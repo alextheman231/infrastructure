@@ -22,10 +22,11 @@ resource "render_project" "default" {
 }
 
 resource "render_web_service" "production" {
-  name           = "${var.name}-api"
-  plan           = "starter"
-  region         = "frankfurt"
-  environment_id = render_project.default.environments["production"].id
+  name              = "${var.name}-api"
+  plan              = "starter"
+  region            = "frankfurt"
+  environment_id    = render_project.default.environments["production"].id
+  health_check_path = var.health_check_path
 
   runtime_source = {
     image = {
