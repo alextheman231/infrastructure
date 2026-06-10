@@ -38,6 +38,7 @@ module "lexicon_server" {
   name           = "Lexicon"
   repository_url = var.lexicon_repository_url
   docker_image   = "${var.docker_username}/lexicon"
+
   secrets = {
     DATABASE_URL         = var.lexicon_database_url
     NODE_ENV             = "production"
@@ -47,7 +48,9 @@ module "lexicon_server" {
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
-  custom_domains = [var.lexicon_api_domain]
+
+  custom_domains    = [var.lexicon_api_domain]
+  health_check_path = "/api/v1"
 }
 
 module "lexicon_image" {
