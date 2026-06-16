@@ -189,7 +189,7 @@ resource "github_issue_label" "low_risk" {
 
   repository  = github_repository.default.name
   name        = "low risk"
-  color       = "#008672"
+  color       = "008672"
   description = "Low risk change"
 }
 
@@ -198,7 +198,7 @@ resource "github_issue_label" "medium_risk" {
 
   repository  = github_repository.default.name
   name        = "medium risk"
-  color       = "#7057FF"
+  color       = "7057FF"
   description = "Medium risk change"
 }
 
@@ -207,7 +207,7 @@ resource "github_issue_label" "high_risk" {
 
   repository  = github_repository.default.name
   name        = "high risk"
-  color       = "#E4E669"
+  color       = "E4E669"
   description = "High risk change"
 }
 
