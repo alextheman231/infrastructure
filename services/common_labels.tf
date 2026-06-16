@@ -37,7 +37,7 @@ locals {
     infrastructure = {
       "manual change" = {
         color       = "FBCA04"
-        description = "Requires manual Terraform actions. MUST require review from AlexMan123456, with confirmation the changes were made."
+        description = "Requires manual Terraform actions and confirmation from AlexMan123456 before deployment."
       }
       "irreversible destruction" = {
         color       = "B60205"
