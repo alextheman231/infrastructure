@@ -6,6 +6,7 @@ module "utility_repository" {
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
   has_pages          = true
+  labels             = local.labels.standard
 }
 
 module "eslint_plugin_repository" {
@@ -15,6 +16,7 @@ module "eslint_plugin_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  labels             = local.labels.standard
 }
 
 module "components_repository" {
@@ -29,6 +31,7 @@ module "components_repository" {
   ], [local.check_name.components.end_to_end_ci])
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  labels             = local.labels.standard
 }
 
 module "alex_c_line_repository" {
@@ -38,6 +41,7 @@ module "alex_c_line_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  labels             = local.labels.standard
 }
 
 module "github_actions_repository" {
@@ -51,6 +55,7 @@ module "github_actions_repository" {
   )
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  labels             = local.labels.standard
 }
 
 module "typescript_actions_repository" {
@@ -60,4 +65,5 @@ module "typescript_actions_repository" {
   visibility         = "public"
   required_ci_checks = concat(local.check_list.base, [local.check_name.package.source_code_ci])
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  labels             = local.labels.standard
 }
