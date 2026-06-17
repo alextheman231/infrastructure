@@ -13,6 +13,10 @@ locals {
         color       = "28A745"
         description = "Enhances the capabilities of an existing feature."
       }
+      "feature rewrite" = {
+        color       = "F9D0C4"
+        description = "Reimplements an existing feature."
+      }
       "bug fix" = {
         color       = "D73A4A"
         description = "Fixes a bug."
