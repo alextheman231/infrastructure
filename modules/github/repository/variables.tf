@@ -64,3 +64,12 @@ variable "variables" {
   description = "Non-sensitive variables to use in GitHub Actions workflows."
   default     = {}
 }
+
+variable "labels" {
+  type = map(object({
+    color       = string
+    description = string
+  }))
+
+  default = {}
+}
