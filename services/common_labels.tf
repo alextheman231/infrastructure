@@ -9,6 +9,10 @@ locals {
         color       = "A2EEEF"
         description = "Introduces new functionality."
       }
+      "feature enhancement" = {
+        color       = "1D76DB"
+        description = "Enhances the capabilities of an existing feature."
+      }
       "bug fix" = {
         color       = "D73A4A"
         description = "Fixes a bug."
@@ -65,7 +69,6 @@ locals {
         color       = "7057FF"
         description = "Changes the layout of the UI."
       }
-
       "accessibility" = {
         color       = "0E8A16"
         description = "Improves the accessibility without changing the UI layout."
