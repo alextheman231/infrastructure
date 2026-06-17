@@ -238,7 +238,7 @@ resource "github_issue_label" "high_priority" {
   description = "High priority change"
 }
 
-resource "github_issue_label" "critical" {
+resource "github_issue_label" "critical_priority" {
   count = !var.archived ? 1 : 0
 
   repository  = github_repository.default.name
