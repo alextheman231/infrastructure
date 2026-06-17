@@ -183,3 +183,39 @@ resource "github_actions_variable" "default" {
   variable_name = each.key
   value         = each.value
 }
+
+resource "github_issue_label" "low_risk" {
+  count = !var.archived ? 1 : 0
+
+  repository  = github_repository.default.name
+  name        = "low risk"
+  color       = "008672"
+  description = "Low risk change"
+}
+
+resource "github_issue_label" "medium_risk" {
+  count = !var.archived ? 1 : 0
+
+  repository  = github_repository.default.name
+  name        = "medium risk"
+  color       = "7057FF"
+  description = "Medium risk change"
+}
+
+resource "github_issue_label" "high_risk" {
+  count = !var.archived ? 1 : 0
+
+  repository  = github_repository.default.name
+  name        = "high risk"
+  color       = "E4E669"
+  description = "High risk change"
+}
+
+resource "github_issue_label" "default" {
+  for_each = var.labels
+
+  repository  = github_repository.default.name
+  name        = each.key
+  color       = each.value.color
+  description = each.value.description
+}

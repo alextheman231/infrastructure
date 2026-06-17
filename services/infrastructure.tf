@@ -24,4 +24,5 @@ module "infrastructure_repository" {
     TFE_TOKEN  = var.tfe_token
     PASSPHRASE = var.tf_via_pr_passphrase
   }
+  labels = merge(local.labels.standard, local.labels.infrastructure)
 }

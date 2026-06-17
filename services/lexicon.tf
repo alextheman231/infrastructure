@@ -23,6 +23,7 @@ module "lexicon_repository" {
     DOCKER_USERNAME      = var.docker_username
     FRONT_END_SENTRY_DSN = var.lexicon_front_end_sentry_dsn
   }
+  labels = merge(local.labels.standard, local.labels.app)
 }
 
 module "lexicon_database" {
