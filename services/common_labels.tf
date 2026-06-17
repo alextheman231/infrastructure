@@ -55,6 +55,14 @@ locals {
         color       = "5319E7"
         description = "Updates an existing resource."
       }
+      "resource creation" = {
+        color       = "28A745"
+        description = "Creates a new managed resource."
+      }
+      "resource replacement" = {
+        color       = "E99695"
+        description = "Replaces an existing managed resource."
+      }
     }
     app = {
       "migration" = {
