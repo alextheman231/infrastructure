@@ -10,7 +10,7 @@ locals {
         description = "Introduces new functionality."
       }
       "feature enhancement" = {
-        color       = "1D76DB"
+        color       = "28A745"
         description = "Enhances the capabilities of an existing feature."
       }
       "bug fix" = {
