@@ -1,7 +1,7 @@
 module "lexicon_repository" {
   source      = "../modules/github/repository"
   name        = "lexicon"
-  description = "The true successor to Neurosongs, allowing users to write blogs and share them, with a dynamic editor."
+  description = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
   visibility  = "public"
   required_ci_checks = concat(local.check_list.base, [
     local.check_name.lexicon.lint_ci,
