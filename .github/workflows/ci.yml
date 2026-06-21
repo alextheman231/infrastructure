@@ -50,6 +50,12 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    env:
+      TF_CLOUD_ORGANIZATION: "alextheman"
+      TF_TOKEN_app_terraform_io: ${{ secrets.TFE_TOKEN }}
+      TF_WORKSPACE: "infrastructure"
+    outputs:
+      plan_summary: ${{ steps.plan_summary.outputs.plan_summary }}
     steps:
       - name: Checkout the repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -61,54 +67,36 @@ jobs:
         with:
           terraform_version: 1.15
 
+      - name: Initialise Terraform
+        run: terraform init
+
       - name: Run the plan
-        uses: op5dev/tf-via-pr@39ed2635c056ca408ed24cc5c2baf0ef4381a7a5 # v13.7.4
-        id: plan-output
-        with:
-          command: plan
-          plan-encrypt: ${{ secrets.PASSPHRASE }}
-          comment-pr: never
-          expand-diff: true
-          expand-summary: true
-          arg-lock-timeout: 30m
-        env:
-          TF_CLOUD_ORGANIZATION: "alextheman"
-          TF_TOKEN_app_terraform_io: "${{ secrets.TFE_TOKEN }}"
-          TF_WORKSPACE: "infrastructure"
-
-      - name: Extract run ID
-        id: get-run-id
-        env:
-          COMMENT_BODY: ${{ steps.plan-output.outputs.comment-body }}
-        run: |
-          RUN_ID=$(echo "$COMMENT_BODY" | grep -oE 'https://app\.terraform\.io/app/[^/]+/[^/]+/runs/(run-[a-zA-Z0-9]+)' | sed 's#.*/##')
-          echo "run-id=$RUN_ID" >> $GITHUB_OUTPUT
-
-      - name: Get plan run details
-        uses: hashicorp/tfc-workflows-github/actions/show-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        id: run-details
-        with:
-          token: ${{ secrets.TFE_TOKEN }}
-          run: ${{ steps.get-run-id.outputs.run-id }}
-
-      - name: Discard the plan run if needed
-        if: fromJSON(steps.run-details.outputs.payload).data.attributes.actions.IsConfirmable
-        uses: hashicorp/tfc-workflows-github/actions/discard-run@8e08d1ba957673f5fbf971a22b3219639dc45661 # v1.3.2
-        with:
-          token: ${{ secrets.TFE_TOKEN }}
-          run: ${{ steps.run-details.outputs.run_id }}
-          comment: "Discarded from GitHub Actions CI"
+        id: plan
+        run: terraform plan -no-color
 
       - name: Save plan output
         env:
-          COMMENT_BODY: ${{ steps.plan-output.outputs.comment-body }}
-        run: echo "$COMMENT_BODY" > plan.txt
+          PLAN_OUTPUT: ${{ steps.plan.outputs.stdout }}
+        run: |
+          awk '
+          /Terraform used the selected providers to generate the following execution/ {
+            printing=1
+          }
+
+          printing
+          ' <<< "$PLAN_OUTPUT" > plan.md
+
+      - name: Save plan summary
+        id: plan_summary
+        run: |
+          PLAN_SUMMARY=$(grep '^Plan:' plan.md)
+          echo "plan_summary=$PLAN_SUMMARY" >> $GITHUB_OUTPUT
 
       - name: Upload the plan to be used in pull request comment
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: terraform-plan
-          path: plan.txt
+          path: plan.md
 
   comment-terraform-plan:
     needs: [terraform-plan-ci]
@@ -128,7 +116,7 @@ jobs:
       - name: Save the plan to the GitHub Output
         id: get-plan
         run: |
-          PLAN=$(cat plan.txt)
+          PLAN=$(cat plan.md)
           echo "comment-body<<EOF" >> $GITHUB_OUTPUT
           echo "$PLAN" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
@@ -161,7 +149,14 @@ jobs:
           body: |
             # HCP Terraform Plan Output
 
+            <details>
+            <summary>${{ needs.terraform-plan-ci.outputs.plan_summary }}</summary>
+
+            ```hcl
             ${{ steps.get-plan.outputs.comment-body }}
+            ```
+
+            </details>
 
       - name: Give a 30-second plan review window before passing
         run: sleep 30
