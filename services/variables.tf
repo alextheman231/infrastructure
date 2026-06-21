@@ -221,3 +221,14 @@ variable "cloudflare_lexicon_zone_id" {
   description = "The Cloudflare Lexicon Zone ID"
   type        = string
 }
+
+variable "lexicon_google_key" {
+  description = "Key for the Lexicon Google project"
+  type        = string
+  sensitive   = true
+}
+
+variable "lexicon_google_project_id" {
+  description = "The Google Project ID for Lexicon"
+  type        = string
+}
