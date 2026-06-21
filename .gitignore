@@ -6,4 +6,3 @@ node_modules
 dist-configs
 .DS_Store
 tfplan
-google-key.json
