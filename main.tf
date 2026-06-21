@@ -11,7 +11,7 @@ terraform {
 }
 
 
-module "services" {
+module "stacks" {
   source = "./services"
 
   github_owner                               = var.github_owner
