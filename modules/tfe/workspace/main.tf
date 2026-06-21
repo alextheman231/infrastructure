@@ -13,6 +13,7 @@ resource "tfe_workspace" "default" {
   description           = var.description
   file_triggers_enabled = false
   speculative_enabled   = true
+  terraform_version     = var.terraform_version
 }
 
 resource "tfe_workspace_settings" "default" {
