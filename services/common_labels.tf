@@ -29,13 +29,15 @@ locals {
         color       = "0075CA"
         description = "Documentation updates."
       }
-      "internal" = {
-        color       = "FBCA04"
-        description = "Changes to internal APIs or implementation details."
-      }
       "refactor" = {
         color       = "C2E0C6"
         description = "Code quality improvements without behavioural changes."
+      }
+    }
+    package = {
+      "internal" = {
+        color       = "FBCA04"
+        description = "Changes to internal APIs or implementation details."
       }
     }
     infrastructure = {
