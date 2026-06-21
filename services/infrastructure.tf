@@ -7,6 +7,7 @@ module "infrastructure_workspace" {
   source            = "../modules/tfe/workspace"
   name              = "infrastructure"
   organisation_name = var.tfe_organisation_name
+  terraform_version = "~>1.15"
 }
 
 module "infrastructure_repository" {
