@@ -37,10 +37,6 @@ locals {
         color       = "C2E0C6"
         description = "Code quality improvements without behavioural changes."
       }
-      "miscellaneous" = {
-        color       = "BFDADC"
-        description = "Changes that do not fit another category."
-      }
     }
     infrastructure = {
       "manual change" = {
