@@ -78,18 +78,30 @@ jobs:
         env:
           PLAN_OUTPUT: ${{ steps.plan.outputs.stdout }}
         run: |
-          awk '
-          /Terraform used the selected providers to generate the following execution/ {
-            printing=1
-          }
+          if grep -q '^No changes\.' <<< "$PLAN_OUTPUT"; then
+            awk '
+            /No changes. Your infrastructure matches the configuration/ {
+              printing=1
+            }
 
-          printing
-          ' <<< "$PLAN_OUTPUT" > plan.md
+            printing
+            ' <<< "$PLAN_OUTPUT" > plan.md
+          else
+            awk '
+            /Terraform used the selected providers to generate the following execution/ {
+              printing=1
+            }
+
+            printing
+            ' <<< "$PLAN_OUTPUT" > plan.md
+          fi
 
       - name: Save plan summary
         id: plan_summary
+        env:
+          PLAN_OUTPUT: ${{ steps.plan.outputs.stdout }}
         run: |
-          PLAN_SUMMARY=$(grep '^Plan:' plan.md)
+          PLAN_SUMMARY=$(grep -E '^(Plan:|No changes\.)' <<< $PLAN_OUTPUT | head -n1)
           echo "plan_summary=$PLAN_SUMMARY" >> $GITHUB_OUTPUT
 
       - name: Upload the plan to be used in pull request comment
