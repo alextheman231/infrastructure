@@ -6,6 +6,7 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
   constraints = ">= 5.0.0"
   hashes = [
     "h1:GHS9VFEa0rXjux9Cipqy2QGEmQ0bst6Xqd5WUUJsOwI=",
+    "h1:TJQJrskWa1FJ8gk6BAhj4X6fa5TFqI255T6Y6ZKrFkU=",
     "zh:2d3dc17f27dcf308f52bdede3b7bb00e6cda6c1a9fbdafd1bfe4a915e75fdc44",
     "zh:413e3569ad0cc89f8ac425d8a197d9e892ff356ac24dedde386820cf5880a48e",
     "zh:59f262b9af9a8845afeb2734a6bd83b260aa2c521e5c318850745823ef62b38d",
@@ -39,6 +40,7 @@ provider "registry.terraform.io/hashicorp/tfe" {
   constraints = ">= 0.76.1"
   hashes = [
     "h1:G1hH2nmuFT7rXMxBhz+s32Xv0BSUNblRqr30FXQIpQc=",
+    "h1:gvl+5DZ2q7RMxV1f+DTN2TWFLZUDqLyoideG5Lm7DVM=",
     "zh:07a92efc738951a8c942db2be6dcf82e79345c6e088e70d0c0bedcdeabc87e85",
     "zh:27483e407af30aad50bfcedfefc044fc37c5a31ac4c36c161cef6ff962b76b75",
     "zh:425af1b3deb27c59057faa7c46893c9f486df14d893df71e554f313c5037592e",
@@ -82,6 +84,7 @@ provider "registry.terraform.io/jianyuan/sentry" {
   constraints = ">= 0.14.3"
   hashes = [
     "h1:FBow7sfJrCAXekOikJVfqmbgfzd+r16sM2paPX6C6Z4=",
+    "h1:QV6/Cg0Mq7WreHYe57v5FEHKOV2Xo9kF8BM82U7dgfg=",
     "zh:0dde99e7b343fa01f8eefc378171fb8621bedb20f59157d6cc8e3d46c738105f",
     "zh:2094c05c59fa1272bb43b122fbe313374ab678e83bff52f7b1c12c27ff9629de",
     "zh:478a41252f280868131cb7d4c51291f1a63f1fc422d37ecb26de7e15039360bd",
