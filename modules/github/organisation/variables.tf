@@ -1,3 +1,13 @@
+variable "name" {
+  description = "The organisation name."
+  type        = string
+}
+
+variable "description" {
+  description = "The organisation description."
+  type        = string
+}
+
 variable "billing_email" {
   description = "Email associated with the organisation"
   type        = string
