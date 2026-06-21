@@ -32,7 +32,18 @@ jobs:
         run: terraform init
 
       - name: Verify the plan
-        run: terraform plan -out=tfplan
+        id: plan
+        run: |
+          set +e
+          terraform plan -detailed-exitcode -out=tfplan
+          EXIT_CODE=$?
+
+          echo "exit_code=$EXIT_CODE" >> "$GITHUB_OUTPUT"
+
+          if [ "$EXIT_CODE" -eq 1 ]; then
+            exit 1
+          fi
 
       - name: Approve and apply the configuration
+        if: steps.plan.outputs.exit_code == '2'
         run: terraform apply tfplan
