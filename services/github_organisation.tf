@@ -1,7 +1,9 @@
 module "github_organisation" {
-  source  = "../modules/github/organisation"
-  admins  = ["AlexMan123456"]
-  members = ["badstagram", "RLCreates", "peatsham"]
+  source      = "../modules/github/organisation"
+  name        = "alextheman231"
+  description = "This GitHub organisation is home to all my mainline NPM packages, shared GitHub Actions, Infrastructure, and applications."
+  admins      = ["AlexMan123456"]
+  members     = ["badstagram", "RLCreates", "peatsham"]
 
 
   billing_email = var.billing_email
