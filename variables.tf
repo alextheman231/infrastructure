@@ -226,3 +226,8 @@ variable "aws_secret_key" {
   type        = string
   sensitive   = true
 }
+
+variable "aws_instance_arn" {
+  description = "The AWS instance ARN to create resources under."
+  type        = string
+}
