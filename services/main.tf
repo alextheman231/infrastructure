@@ -32,6 +32,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = ">=5.0.0"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = ">=6.51.0"
+    }
   }
 }
 
@@ -73,4 +77,10 @@ provider "sentry" {
 
 provider "cloudflare" {
   api_token = var.cloudflare_api_token
+}
+
+provider "aws" {
+  region     = "eu-north-1"
+  access_key = var.aws_access_key
+  secret_key = var.aws_secret_key
 }
