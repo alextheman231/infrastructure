@@ -83,6 +83,10 @@ locals {
         color       = "0E8A16"
         description = "Improves the accessibility without changing the UI layout."
       }
+      "deployment" = {
+        color       = "0366D6"
+        description = "Changes deployment, hosting, build, or release behaviour."
+      }
     }
   }
 }
