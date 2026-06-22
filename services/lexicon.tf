@@ -49,6 +49,7 @@ module "lexicon_bastion" {
   allowed_ipv4s = {
     alex_home = "81.103.172.13/32"
   }
+  public_ssh_key = var.public_ssh_key
 }
 
 module "lexicon_server" {
