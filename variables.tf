@@ -215,3 +215,14 @@ variable "cloudflare_lexicon_zone_id" {
   description = "The Cloudflare Lexicon Zone ID"
   type        = string
 }
+
+variable "aws_access_key" {
+  description = "Public access key for use with AWS."
+  type        = string
+}
+
+variable "aws_secret_key" {
+  description = "Secret key for use with AWS."
+  type        = string
+  sensitive   = true
+}
