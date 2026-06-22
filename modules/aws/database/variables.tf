@@ -1,0 +1,26 @@
+variable "db_identifier" {
+  description = "The database identifier"
+  type        = string
+}
+
+variable "initial_db_name" {
+  description = "The initial database name"
+  type        = string
+}
+
+variable "postgres_version" {
+  description = "The Postgres version"
+  type        = string
+  default     = "18"
+}
+
+variable "username" {
+  description = "The database user's username"
+  type        = string
+}
+
+variable "password" {
+  description = "The database user's password"
+  type        = string
+  sensitive   = true
+}
