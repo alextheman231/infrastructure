@@ -43,14 +43,14 @@ module "lexicon_server" {
   secrets = {
     DATABASE_URL         = var.lexicon_database_url
     NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_api_domain}"
+    API_BASE_URL         = "https://${var.lexicon_domain}"
     ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
 
-  custom_domains    = [var.lexicon_api_domain]
+  custom_domains    = [var.lexicon_domain]
   health_check_path = "/api/v1"
 }
 
@@ -59,15 +59,6 @@ module "lexicon_image" {
   namespace   = var.docker_username
   name        = "lexicon"
   description = "Dockerhub repository for the Lexicon back-end server image."
-}
-
-module "lexicon_project" {
-  source           = "../modules/vercel/project"
-  vercel_team_id   = var.vercel_team_id
-  name             = "lexicon-front-end"
-  framework        = "vite"
-  output_directory = "apps/front-end/dist"
-  domain           = var.lexicon_domain
 }
 
 module "lexicon_sentry_back_end" {
@@ -85,14 +76,6 @@ module "lexicon_sentry_front_end" {
 module "lexicon_dns_record" {
   source  = "../modules/cloudflare/dns"
   name    = var.lexicon_domain
-  type    = "CNAME"
-  zone_id = var.cloudflare_lexicon_zone_id
-  content = "e7098f9ead20285a.vercel-dns-017.com"
-}
-
-module "lexicon_api_dns_record" {
-  source  = "../modules/cloudflare/dns"
-  name    = var.lexicon_api_domain
   type    = "CNAME"
   zone_id = var.cloudflare_lexicon_zone_id
   content = "lexicon-api-lryv.onrender.com"
