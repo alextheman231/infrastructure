@@ -237,3 +237,8 @@ variable "lexicon_database_password" {
   type        = string
   sensitive   = true
 }
+
+variable "public_ssh_key" {
+  description = "My public SSH key"
+  type        = string
+}

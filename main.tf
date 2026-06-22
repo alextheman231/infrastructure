@@ -57,4 +57,5 @@ module "services" {
   aws_secret_key                             = var.aws_secret_key
   aws_instance_arn                           = var.aws_instance_arn
   lexicon_database_password                  = var.lexicon_database_password
+  public_ssh_key                             = var.public_ssh_key
 }
