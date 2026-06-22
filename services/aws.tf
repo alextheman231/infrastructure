@@ -1,3 +1,4 @@
 module "aws_repository" {
-  source = "../modules/aws"
+  source       = "../modules/aws"
+  instance_arn = var.aws_instance_arn
 }
