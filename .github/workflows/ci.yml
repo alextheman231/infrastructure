@@ -157,7 +157,7 @@ jobs:
           body: |
             # HCP Terraform Plan Output
 
-            <details>
+            <details open>
             <summary>${{ needs.terraform-plan-ci.outputs.plan_summary }}</summary>
 
             ```hcl
