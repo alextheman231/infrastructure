@@ -12,3 +12,7 @@ resource "docker_hub_repository" "default" {
   name        = var.name
   description = var.description
 }
+
+output "image_name" {
+  value = docker_hub_repository.default.id
+}
