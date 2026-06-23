@@ -24,3 +24,8 @@ variable "password" {
   type        = string
   sensitive   = true
 }
+
+variable "bastion_security_group_id" {
+  description = "The security group ID for the associated Bastion."
+  type        = string
+}
