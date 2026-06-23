@@ -34,15 +34,6 @@ module "lexicon_database" {
   default_database_name = "lexicon-prod"
 }
 
-module "lexicon_database_aws" {
-  source           = "../modules/aws/database"
-  initial_db_name  = "lexicon"
-  db_identifier    = "lexicon-prod"
-  postgres_version = "18"
-  username         = "lexicon_user"
-  password         = var.lexicon_database_password
-}
-
 module "lexicon_bastion" {
   source = "../modules/aws/bastion"
   name   = "lexicon-bastion"
@@ -51,6 +42,17 @@ module "lexicon_bastion" {
   }
   public_ssh_key = var.public_ssh_key
 }
+
+module "lexicon_database_aws" {
+  source                    = "../modules/aws/database"
+  initial_db_name           = "lexicon"
+  db_identifier             = "lexicon-prod"
+  postgres_version          = "18"
+  username                  = "lexicon_user"
+  password                  = var.lexicon_database_password
+  bastion_security_group_id = module.lexicon_bastion.security_group_id
+}
+
 
 module "lexicon_server" {
   source         = "../modules/render"

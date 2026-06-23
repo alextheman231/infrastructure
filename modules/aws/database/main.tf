@@ -7,6 +7,15 @@ terraform {
   }
 }
 
+data "aws_vpc" "default" {
+  default = true
+}
+
+resource "aws_security_group" "database" {
+  name   = "${var.db_identifier}-database"
+  vpc_id = data.aws_vpc.default.id
+}
+
 resource "aws_db_instance" "default" {
   identifier = var.db_identifier
 
@@ -28,4 +37,31 @@ resource "aws_db_instance" "default" {
   deletion_protection = true
 
   publicly_accessible = false
+
+  vpc_security_group_ids = [aws_security_group.database.id]
+}
+
+resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {
+  security_group_id = aws_security_group.database.id
+
+  referenced_security_group_id = var.bastion_security_group_id
+
+  from_port   = 5432
+  to_port     = 5432
+  ip_protocol = "tcp"
+}
+
+resource "aws_vpc_security_group_egress_rule" "all" {
+  security_group_id = aws_security_group.database.id
+
+  ip_protocol = "-1"
+  cidr_ipv4   = "0.0.0.0/0"
+}
+
+output "endpoint" {
+  value = aws_db_instance.default.endpoint
+}
+
+output "security_group_id" {
+  value = aws_security_group.database.id
 }
