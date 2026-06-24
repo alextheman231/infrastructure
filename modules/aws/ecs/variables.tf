@@ -29,5 +29,5 @@ variable "environment_variables" {
 variable "fargate_version" {
   description = "The Fargate version"
   type        = string
-  default     = "1.4"
+  default     = "1.4.0"
 }
