@@ -14,6 +14,10 @@ data "aws_vpc" "default" {
 resource "aws_security_group" "database" {
   name   = "${var.db_identifier}-database"
   vpc_id = data.aws_vpc.default.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_db_instance" "default" {
