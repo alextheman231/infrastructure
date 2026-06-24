@@ -42,7 +42,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
 }
 
 resource "aws_security_group" "ecs" {
-  name   = var.name
+  name   = "${var.name}-ecs"
   vpc_id = data.aws_vpc.default.id
 }
 
