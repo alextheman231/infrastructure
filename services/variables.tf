@@ -74,28 +74,6 @@ variable "tfe_organisation_name" {
   default     = "alextheman"
 }
 
-variable "vercel_api_token" {
-  description = "Token to use with Vercel."
-  type        = string
-  sensitive   = true
-}
-
-variable "vercel_api_token_lexicon_github" {
-  description = "Token to use with Vercel, encrypted with respect to the Lexicon GitHub repository."
-  type        = string
-  sensitive   = true
-}
-
-variable "vercel_team_id" {
-  description = "ID for my Vercel team."
-  type        = string
-}
-
-variable "lexicon_vercel_project_id" {
-  description = "The ID for the Lexicon Vercel project."
-  type        = string
-}
-
 variable "neon_api_key" {
   description = "API key to use with Neon"
   type        = string
@@ -249,3 +227,7 @@ variable "public_ssh_key" {
   type        = string
 }
 
+variable "vercel_api_token" {
+  type      = string
+  sensitive = true
+}
