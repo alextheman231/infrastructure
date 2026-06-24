@@ -31,3 +31,9 @@ variable "fargate_version" {
   type        = string
   default     = "1.4.0"
 }
+
+variable "port" {
+  description = "The port to use"
+  type        = number
+  default     = 8080
+}

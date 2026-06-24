@@ -72,7 +72,7 @@ resource "aws_ecs_task_definition" "default" {
       image = var.image
 
       portMappings = [{
-        containerPort = 3000
+        containerPort = var.port
       }]
 
       logConfiguration = {
