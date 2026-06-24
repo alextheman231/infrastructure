@@ -71,15 +71,12 @@ module "lexicon_repository" {
   ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
   secrets = {
-    VERCEL_TOKEN      = var.vercel_api_token_lexicon_github
     RENDER_DEPLOY_KEY = var.lexicon_render_key
     DATABASE_URL      = var.lexicon_database_url_encrypted
     DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
     VITE_API_BASE_URL    = "https://${var.lexicon_api_domain}"
-    VERCEL_ORG_ID        = var.vercel_team_id
-    VERCEL_PROJECT_ID    = var.lexicon_vercel_project_id
     RENDER_SERVICE_ID    = var.lexicon_render_service_id
     DOCKER_USERNAME      = var.docker_username
     FRONT_END_SENTRY_DSN = var.lexicon_front_end_sentry_dsn

@@ -12,8 +12,8 @@ terraform {
 
 
 module "services" {
-  source = "./services"
-
+  source                                     = "./services"
+  vercel_api_token                           = var.vercel_api_token
   github_owner                               = var.github_owner
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
@@ -33,7 +33,6 @@ module "services" {
   render_owner_id                            = var.render_owner_id
   lexicon_database_url_encrypted             = var.lexicon_database_url_encrypted
   lexicon_repository_url                     = var.lexicon_repository_url
-  vercel_team_id                             = var.vercel_team_id
   alex_email                                 = var.alex_email
   lexicon_render_key                         = var.lexicon_render_key
   lexicon_render_service_id                  = var.lexicon_render_service_id
@@ -42,9 +41,6 @@ module "services" {
   neon_api_key                               = var.neon_api_key
   lexicon_google_client_secret               = var.lexicon_google_client_secret
   webhook_url                                = var.webhook_url
-  vercel_api_token_lexicon_github            = var.vercel_api_token_lexicon_github
-  vercel_api_token                           = var.vercel_api_token
-  lexicon_vercel_project_id                  = var.lexicon_vercel_project_id
   docker_pat_lexicon_encrypted               = var.docker_pat_lexicon_encrypted
   sentry_infrastructure_token                = var.sentry_infrastructure_token
   sentry_organisation_id                     = var.sentry_organisation_id
