@@ -37,3 +37,26 @@ variable "port" {
   type        = number
   default     = 8080
 }
+
+variable "task_definitions" {
+  description = "A list of tasks to associate with the service. It **must** contain exactly one task definition named 'service'."
+  type = list(object({
+    name    = string
+    command = optional(list(string))
+  }))
+  validation {
+    condition = length([
+      for task in var.task_definitions : task
+      if task.name == "service"
+    ]) == 1
+
+    error_message = "Exactly one task definition named \"service\" is required."
+  }
+  validation {
+    condition = length(var.task_definitions) == length(distinct([
+      for task in var.task_definitions : task.name
+    ]))
+
+    error_message = "Task definition names must be unique."
+  }
+}
