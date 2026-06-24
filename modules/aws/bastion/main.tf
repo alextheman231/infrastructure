@@ -32,6 +32,10 @@ data "aws_subnets" "default" {
 resource "aws_security_group" "bastion" {
   name   = var.name
   vpc_id = data.aws_vpc.default.id
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ssh" {
