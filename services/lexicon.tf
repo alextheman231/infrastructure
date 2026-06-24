@@ -27,7 +27,7 @@ module "lexicon_ecs_service" {
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
-  fargate_version = "1.4"
+  fargate_version = "1.4.0"
 }
 
 module "lexicon_database_aws" {
