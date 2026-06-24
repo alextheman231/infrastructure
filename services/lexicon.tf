@@ -1,55 +1,3 @@
-module "lexicon_bastion" {
-  source = "../modules/aws/bastion"
-  name   = "lexicon-bastion"
-  allowed_ipv4s = {
-    alex_home = "81.103.172.13/32"
-  }
-  public_ssh_key = var.public_ssh_key
-}
-
-module "lexicon_image" {
-  source      = "../modules/docker"
-  namespace   = var.docker_username
-  name        = "lexicon"
-  description = "Dockerhub repository for the Lexicon back-end server image."
-}
-
-module "lexicon_ecs_service" {
-  source = "../modules/aws/ecs"
-  name   = "lexicon"
-  image  = module.lexicon_image.image_name
-  environment_variables = {
-    DATABASE_URL         = module.lexicon_database_aws.database_url
-    NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_domain}"
-    ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
-    GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
-    GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
-    SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
-  }
-  fargate_version = "1.4.0"
-}
-
-module "lexicon_database_aws" {
-  source                    = "../modules/aws/database"
-  initial_db_name           = "lexicon"
-  db_identifier             = "lexicon-prod"
-  postgres_version          = "18"
-  username                  = "lexicon_user"
-  password                  = var.lexicon_database_password
-  bastion_security_group_id = module.lexicon_bastion.security_group_id
-}
-
-resource "aws_vpc_security_group_ingress_rule" "ecs" {
-  security_group_id = module.lexicon_database_aws.security_group_id
-
-  referenced_security_group_id = module.lexicon_ecs_service.security_group_id
-
-  from_port   = 5432
-  to_port     = 5432
-  ip_protocol = "tcp"
-}
-
 module "lexicon_repository" {
   source      = "../modules/github/repository"
   name        = "lexicon"
@@ -86,12 +34,31 @@ module "lexicon_database" {
   default_database_name = "lexicon-prod"
 }
 
+module "lexicon_bastion" {
+  source = "../modules/aws/bastion"
+  name   = "lexicon-bastion"
+  allowed_ipv4s = {
+    alex_home = "81.103.172.13/32"
+  }
+  public_ssh_key = var.public_ssh_key
+}
+
+module "lexicon_database_aws" {
+  source                    = "../modules/aws/database"
+  initial_db_name           = "lexicon"
+  db_identifier             = "lexicon-prod"
+  postgres_version          = "18"
+  username                  = "lexicon_user"
+  password                  = var.lexicon_database_password
+  bastion_security_group_id = module.lexicon_bastion.security_group_id
+}
+
 
 module "lexicon_server" {
   source         = "../modules/render"
   name           = "Lexicon"
   repository_url = var.lexicon_repository_url
-  docker_image   = module.lexicon_image.image_name
+  docker_image   = "${var.docker_username}/lexicon"
 
   secrets = {
     DATABASE_URL         = var.lexicon_database_url
@@ -105,6 +72,13 @@ module "lexicon_server" {
 
   custom_domains    = [var.lexicon_domain]
   health_check_path = "/api/v1"
+}
+
+module "lexicon_image" {
+  source      = "../modules/docker"
+  namespace   = var.docker_username
+  name        = "lexicon"
+  description = "Dockerhub repository for the Lexicon back-end server image."
 }
 
 module "lexicon_sentry_back_end" {
