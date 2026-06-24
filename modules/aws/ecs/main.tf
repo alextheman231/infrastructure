@@ -133,3 +133,22 @@ resource "aws_ecs_service" "default" {
 output "security_group_id" {
   value = aws_security_group.ecs.id
 }
+
+output "execution_role_arn" {
+  value = aws_iam_role.ecs_task_execution.arn
+}
+
+output "cluster_name" {
+  value = aws_ecs_cluster.default.name
+}
+
+output "service_name" {
+  value = aws_ecs_service.default.name
+}
+
+output "task_families" {
+  value = {
+    for name, task in aws_ecs_task_definition.task :
+    name => task.family
+  }
+}

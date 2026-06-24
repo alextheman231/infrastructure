@@ -49,6 +49,43 @@ module "lexicon_database_aws" {
   bastion_security_group_id = module.lexicon_bastion.security_group_id
 }
 
+data "aws_iam_policy_document" "lexicon_deploy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "ecs:DescribeServices",
+      "ecs:DescribeTaskDefinition",
+      "ecs:UpdateService",
+      "ecs:RunTask",
+      "ecs:DescribeTasks",
+      "ecs:DescribeClusters"
+    ]
+
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "iam:PassRole"
+    ]
+
+    resources = [
+      module.lexicon_ecs_service.execution_role_arn
+    ]
+  }
+}
+
+module "lexicon_deployment_role" {
+  source            = "../modules/aws/github_role"
+  repository        = "alextheman231/lexicon"
+  role_name         = "lexicon-deployment"
+  oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
+  policy_json       = data.aws_iam_policy_document.lexicon_deploy.json
+}
+
 resource "aws_vpc_security_group_ingress_rule" "ecs" {
   security_group_id = module.lexicon_database_aws.security_group_id
 
@@ -76,6 +113,7 @@ module "lexicon_repository" {
     DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
+    AWS_ROLE_ARN         = module.lexicon_deployment_role.role_arn
     VITE_API_BASE_URL    = "https://${var.lexicon_api_domain}"
     RENDER_SERVICE_ID    = var.lexicon_render_service_id
     DOCKER_USERNAME      = var.docker_username
