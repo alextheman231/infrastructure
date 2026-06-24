@@ -28,6 +28,15 @@ module "lexicon_ecs_service" {
     SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
   }
   fargate_version = "1.4.0"
+
+  task_definitions = [{
+    name = "service"
+    },
+    {
+      name    = "migrate"
+      command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
+    }
+  ]
 }
 
 module "lexicon_database_aws" {

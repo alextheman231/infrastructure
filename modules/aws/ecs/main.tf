@@ -61,8 +61,13 @@ resource "aws_ecs_cluster" "default" {
   name = var.name
 }
 
-resource "aws_ecs_task_definition" "default" {
-  family                   = var.name
+resource "aws_ecs_task_definition" "task" {
+  for_each = {
+    for task in var.task_definitions :
+    task.name => task
+  }
+
+  family                   = "${var.name}-${each.key}"
   requires_compatibilities = ["FARGATE"]
   network_mode             = "awsvpc"
   cpu                      = var.cpu
@@ -71,8 +76,8 @@ resource "aws_ecs_task_definition" "default" {
   execution_role_arn = aws_iam_role.ecs_task_execution.arn
 
   container_definitions = jsonencode([
-    {
-      name  = var.name
+    merge({
+      name  = "${var.name}-${each.value.name}"
       image = var.image
 
       portMappings = [{
@@ -95,7 +100,11 @@ resource "aws_ecs_task_definition" "default" {
           value = value
         }
       ]
-    }
+      },
+      each.value.command == null ? {} : {
+        command = each.value.command
+      }
+    )
   ])
 }
 
@@ -107,7 +116,7 @@ resource "aws_cloudwatch_log_group" "default" {
 resource "aws_ecs_service" "default" {
   name            = var.name
   cluster         = aws_ecs_cluster.default.id
-  task_definition = aws_ecs_task_definition.default.arn
+  task_definition = aws_ecs_task_definition.task["service"].arn
 
   desired_count = 1
 
