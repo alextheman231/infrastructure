@@ -18,6 +18,14 @@ data "aws_subnets" "default" {
   }
 }
 
+locals {
+  network_configuration = {
+    security_groups  = toset([aws_security_group.ecs.id])
+    subnets          = data.aws_subnets.default.ids
+    assign_public_ip = true
+  }
+}
+
 resource "aws_iam_role" "ecs_task_execution" {
   name = "${var.name}-ecs-task-execution"
 
@@ -124,9 +132,9 @@ resource "aws_ecs_service" "default" {
   platform_version = var.fargate_version
 
   network_configuration {
-    security_groups  = toset([aws_security_group.ecs.id])
-    subnets          = data.aws_subnets.default.ids
-    assign_public_ip = true
+    security_groups  = local.network_configuration.security_groups
+    subnets          = local.network_configuration.subnets
+    assign_public_ip = local.network_configuration.assign_public_ip
   }
 }
 
@@ -151,4 +159,12 @@ output "task_families" {
     for name, task in aws_ecs_task_definition.task :
     name => task.family
   }
+}
+
+output "subnet_ids" {
+  value = local.network_configuration.subnets
+}
+
+output "assign_public_ip" {
+  value = local.network_configuration.assign_public_ip
 }
