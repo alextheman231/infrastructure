@@ -113,12 +113,15 @@ module "lexicon_repository" {
     DOCKER_PAT        = var.docker_pat_lexicon_encrypted
   }
   variables = {
-    AWS_ROLE_ARN         = module.lexicon_deployment_role.role_arn
-    AWS_REGION           = local.aws_region
-    VITE_API_BASE_URL    = "https://${var.lexicon_api_domain}"
-    RENDER_SERVICE_ID    = var.lexicon_render_service_id
-    DOCKER_USERNAME      = var.docker_username
-    FRONT_END_SENTRY_DSN = var.lexicon_front_end_sentry_dsn
+    AWS_ROLE_ARN              = module.lexicon_deployment_role.role_arn
+    AWS_CLUSTER_NAME          = module.lexicon_ecs_service.cluster_name
+    AWS_SERVICE_NAME          = module.lexicon_ecs_service.service_name
+    AWS_MIGRATION_TASK_FAMILY = module.lexicon_ecs_service.task_families["migrate"]
+    AWS_REGION                = local.aws_region
+    VITE_API_BASE_URL         = "https://${var.lexicon_api_domain}"
+    RENDER_SERVICE_ID         = var.lexicon_render_service_id
+    DOCKER_USERNAME           = var.docker_username
+    FRONT_END_SENTRY_DSN      = var.lexicon_front_end_sentry_dsn
   }
   labels = merge(local.labels.standard, local.labels.app)
 }
