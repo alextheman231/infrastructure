@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/tfe"
       version = ">= 0.76.1"
     }
-    vercel = {
-      source  = "vercel/vercel"
-      version = ">= 4.8"
-    }
     neon = {
       source  = "kislerdm/neon"
       version = ">= 0.13.0"
@@ -51,10 +47,6 @@ provider "github" {
 
 provider "tfe" {
   token = var.tfe_org_token
-}
-
-provider "vercel" {
-  api_token = var.vercel_api_token
 }
 
 provider "neon" {

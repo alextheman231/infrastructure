@@ -12,8 +12,8 @@ terraform {
 
 
 module "services" {
-  source                                     = "./services"
-  vercel_api_token                           = var.vercel_api_token
+  source = "./services"
+
   github_owner                               = var.github_owner
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token

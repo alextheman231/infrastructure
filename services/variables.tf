@@ -226,8 +226,3 @@ variable "public_ssh_key" {
   description = "My public SSH key"
   type        = string
 }
-
-variable "vercel_api_token" {
-  type      = string
-  sensitive = true
-}
