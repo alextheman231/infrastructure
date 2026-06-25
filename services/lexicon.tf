@@ -118,6 +118,9 @@ module "lexicon_repository" {
     AWS_SERVICE_NAME          = module.lexicon_ecs_service.service_name
     AWS_MIGRATION_TASK_FAMILY = module.lexicon_ecs_service.task_families["migrate"]
     AWS_REGION                = local.aws_region
+    AWS_SECURITY_GROUP_ID     = module.lexicon_ecs_service.security_group_id
+    AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
+    AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
     VITE_API_BASE_URL         = "https://${var.lexicon_api_domain}"
     RENDER_SERVICE_ID         = var.lexicon_render_service_id
     DOCKER_USERNAME           = var.docker_username
