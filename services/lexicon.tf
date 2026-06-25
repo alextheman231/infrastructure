@@ -114,6 +114,7 @@ module "lexicon_repository" {
   }
   variables = {
     AWS_ROLE_ARN         = module.lexicon_deployment_role.role_arn
+    AWS_REGION           = local.aws_region
     VITE_API_BASE_URL    = "https://${var.lexicon_api_domain}"
     RENDER_SERVICE_ID    = var.lexicon_render_service_id
     DOCKER_USERNAME      = var.docker_username
