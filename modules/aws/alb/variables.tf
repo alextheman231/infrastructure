@@ -13,3 +13,8 @@ variable "health_check_path" {
   description = "The path to run the health check on."
   type        = string
 }
+
+variable "certificate_arn" {
+  description = "ARN of the default SSL server certificate."
+  type        = string
+}

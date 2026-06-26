@@ -28,11 +28,18 @@ module "lexicon_database_aws" {
   bastion_security_group_id = module.lexicon_bastion.security_group_id
 }
 
+module "lexicon_acm_certificate" {
+  source                    = "../modules/aws/acm_certificate"
+  domain_name               = var.lexicon_domain
+  subject_alternative_names = ["www.${var.lexicon_domain}"]
+}
+
 module "lexicon_load_balancer" {
   source            = "../modules/aws/alb"
   name              = "lexicon"
   health_check_path = "/api/v1"
   port              = local.backend_port
+  certificate_arn   = module.lexicon_acm_certificate.certificate_arn
 }
 
 module "lexicon_ecs_service" {
