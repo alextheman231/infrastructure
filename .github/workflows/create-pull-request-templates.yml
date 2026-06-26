@@ -12,7 +12,7 @@ permissions:
 jobs:
   create-pull-request-templates:
     if: ${{ github.repository == 'alextheman231/infrastructure' }}
-    uses: alextheman231/github-actions/.github/workflows/create-pull-request-templates.yml@3a7c224f60dbd26c8e2f31738236b6cbc8dd96e7 # v12.0.0
+    uses: alextheman231/github-actions/.github/workflows/create-pull-request-templates.yml@a96b47dfdaec760914ee3f069defad323bb35790 # v12.0.2
     with:
       run-build: false
     secrets:
