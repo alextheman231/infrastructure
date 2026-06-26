@@ -1,0 +1,15 @@
+variable "name" {
+  description = "The name of the Load balancer."
+  type        = string
+}
+
+variable "port" {
+  description = "The port to use."
+  type        = number
+  default     = 8080
+}
+
+variable "health_check_path" {
+  description = "The path to run the health check on."
+  type        = string
+}

@@ -136,35 +136,10 @@ resource "aws_ecs_service" "default" {
     subnets          = local.network_configuration.subnets
     assign_public_ip = local.network_configuration.assign_public_ip
   }
-}
 
-output "security_group_id" {
-  value = aws_security_group.ecs.id
-}
-
-output "execution_role_arn" {
-  value = aws_iam_role.ecs_task_execution.arn
-}
-
-output "cluster_name" {
-  value = aws_ecs_cluster.default.name
-}
-
-output "service_name" {
-  value = aws_ecs_service.default.name
-}
-
-output "task_families" {
-  value = {
-    for name, task in aws_ecs_task_definition.task :
-    name => task.family
+  load_balancer {
+    target_group_arn = var.target_group_arn
+    container_name   = "${var.name}-service"
+    container_port   = var.port
   }
-}
-
-output "subnet_ids" {
-  value = local.network_configuration.subnets
-}
-
-output "assign_public_ip" {
-  value = local.network_configuration.assign_public_ip
 }
