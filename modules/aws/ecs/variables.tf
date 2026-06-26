@@ -38,6 +38,16 @@ variable "port" {
   default     = 8080
 }
 
+variable "target_group_arn" {
+  description = "The target group ARN."
+  type        = string
+}
+
+variable "lb_listener_arn" {
+  description = "The load balancer listener ARN."
+  type        = string
+}
+
 variable "task_definitions" {
   description = "A list of tasks to associate with the service. It **must** contain exactly one task definition named 'service'."
   type = list(object({

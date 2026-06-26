@@ -1,3 +1,7 @@
+locals {
+  backend_port = 8080
+}
+
 module "lexicon_bastion" {
   source = "../modules/aws/bastion"
   name   = "lexicon-bastion"
@@ -14,10 +18,28 @@ module "lexicon_image" {
   description = "Dockerhub repository for the Lexicon back-end server image."
 }
 
+module "lexicon_database_aws" {
+  source                    = "../modules/aws/database"
+  initial_db_name           = "lexicon"
+  db_identifier             = "lexicon-prod"
+  postgres_version          = "18"
+  username                  = "lexicon_user"
+  password                  = var.lexicon_database_password
+  bastion_security_group_id = module.lexicon_bastion.security_group_id
+}
+
+module "lexicon_load_balancer" {
+  source            = "../modules/aws/alb"
+  name              = "lexicon"
+  health_check_path = "/api/v1"
+  port              = local.backend_port
+}
+
 module "lexicon_ecs_service" {
   source = "../modules/aws/ecs"
   name   = "lexicon"
   image  = module.lexicon_image.image_name
+  port   = local.backend_port
   environment_variables = {
     DATABASE_URL         = module.lexicon_database_aws.database_url
     NODE_ENV             = "production"
@@ -37,16 +59,9 @@ module "lexicon_ecs_service" {
       command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
     }
   ]
-}
 
-module "lexicon_database_aws" {
-  source                    = "../modules/aws/database"
-  initial_db_name           = "lexicon"
-  db_identifier             = "lexicon-prod"
-  postgres_version          = "18"
-  username                  = "lexicon_user"
-  password                  = var.lexicon_database_password
-  bastion_security_group_id = module.lexicon_bastion.security_group_id
+  target_group_arn = module.lexicon_load_balancer.target_group_arn
+  lb_listener_arn  = module.lexicon_load_balancer.listener_arn
 }
 
 data "aws_iam_policy_document" "lexicon_deploy" {
@@ -93,6 +108,16 @@ resource "aws_vpc_security_group_ingress_rule" "ecs" {
 
   from_port   = 5432
   to_port     = 5432
+  ip_protocol = "tcp"
+}
+
+resource "aws_vpc_security_group_ingress_rule" "alb" {
+  security_group_id = module.lexicon_ecs_service.security_group_id
+
+  referenced_security_group_id = module.lexicon_load_balancer.security_group_id
+
+  from_port   = local.backend_port
+  to_port     = local.backend_port
   ip_protocol = "tcp"
 }
 
