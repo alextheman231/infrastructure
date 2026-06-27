@@ -22,7 +22,11 @@ variable "image" {
 
 variable "environment_variables" {
   description = "The environment variables for the service."
-  sensitive   = true
+  type        = map(string)
+}
+
+variable "secret_arns" {
+  description = "Mapping of secret environment variable names to AWS Secrets Manager ARNs."
   type        = map(string)
 }
 
