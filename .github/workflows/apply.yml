@@ -18,6 +18,14 @@ jobs:
     permissions:
       contents: read
     steps:
+      - name: Do not allow anyone other than AlexMan123456 to directly apply manually
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          if [[ "$GITHUB_ACTOR" !=  "AlexMan123456" ]]; then
+            echo "Only AlexMan123456 is allowed to manually apply the configuration."
+            exit 1
+          fi
+
       - name: Checkout the repository
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
