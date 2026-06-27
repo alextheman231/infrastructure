@@ -31,7 +31,7 @@ jobs:
       - name: Get project name
         id: project_name
         run: |
-          PROJECT_NAME=$(.jq -r ".name" package.json)
+          PROJECT_NAME=$(jq -r ".name" package.json)
           echo "name=$PROJECT_NAME" >> "$GITHUB_OUTPUT"
 
       - name: Create the change request
