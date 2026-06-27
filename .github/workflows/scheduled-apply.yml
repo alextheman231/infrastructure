@@ -39,7 +39,7 @@ jobs:
         env:
           PROJECT_NAME: ${{ steps.project_name.outputs.name }}
         run: |
-          CHANGE_REQUEST_PATH=$(alex-c-line template change-request --project-name "$PROJECT_NAME" --reason "Scheduled apply" --description "This is a monthly scheduled apply of the Terraform configuration, intended to fix potential state drifts. Please review the plan carefully before merging." --requested-by "alex-up-bot[bot]")
+          CHANGE_REQUEST_PATH=$(alex-c-line template change-request create --project-name "$PROJECT_NAME" --reason "Scheduled apply" --description "This is a monthly scheduled apply of the Terraform configuration, intended to fix potential state drifts. Please review the plan carefully before merging." --requested-by "alex-up-bot[bot]")
           echo "path=$CHANGE_REQUEST_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Get alex-up-bot GitHub token
