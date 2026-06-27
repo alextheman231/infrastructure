@@ -13,4 +13,5 @@ resource "cloudflare_dns_record" "default" {
   type    = var.type
   zone_id = var.zone_id
   content = var.content
+  proxied = var.proxied
 }

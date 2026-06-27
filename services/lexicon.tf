@@ -34,7 +34,7 @@ module "lexicon_acm_certificate" {
   subject_alternative_names = ["www.${var.lexicon_domain}"]
 }
 
-module "lexicon_dns_records" {
+module "lexicon_dns_validation_records" {
   for_each = {
     for option in module.lexicon_acm_certificate.domain_validation_options :
     option.domain_name => option
@@ -47,6 +47,12 @@ module "lexicon_dns_records" {
   content = each.value.resource_record_value
 
   zone_id = var.cloudflare_lexicon_zone_id
+  proxied = false
+}
+
+moved {
+  from = module.lexicon_dns_records
+  to   = module.lexicon_dns_validation_records
 }
 
 module "lexicon_acm_certificate_validation" {
@@ -54,7 +60,7 @@ module "lexicon_acm_certificate_validation" {
 
   certificate_arn = module.lexicon_acm_certificate.certificate_arn
   validation_record_fqdns = [
-    for record in module.lexicon_dns_records :
+    for record in module.lexicon_dns_validation_records :
     record.fqdn
   ]
 }
@@ -65,6 +71,24 @@ module "lexicon_load_balancer" {
   health_check_path = "/api/v1"
   port              = local.backend_port
   certificate_arn   = module.lexicon_acm_certificate_validation.validated_certificate_arn
+}
+
+module "lexicon_dns_record" {
+  source = "../modules/cloudflare/dns"
+
+  name    = var.lexicon_domain
+  type    = "CNAME"
+  zone_id = var.cloudflare_lexicon_zone_id
+  content = module.lexicon_load_balancer.dns_name
+}
+
+module "lexicon_dns_record_www" {
+  source = "../modules/cloudflare/dns"
+
+  name    = "www.${var.lexicon_domain}"
+  type    = "CNAME"
+  zone_id = var.cloudflare_lexicon_zone_id
+  content = module.lexicon_load_balancer.dns_name
 }
 
 module "lexicon_ecs_service" {
