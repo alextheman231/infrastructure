@@ -95,7 +95,7 @@ jobs:
 
           printing
 
-          /^Plan:/ {
+          /^(Plan:|Note:)/ {
               plan_seen=1
           }
 
