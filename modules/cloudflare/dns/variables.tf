@@ -24,3 +24,9 @@ variable "content" {
   type        = string
   default     = null
 }
+
+variable "proxied" {
+  description = "Whether the record is receiving the performance and security benefits of Cloudflare."
+  type        = bool
+  default     = true
+}
