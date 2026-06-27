@@ -95,7 +95,7 @@ jobs:
 
           printing
 
-          /^(Plan:|Note:)/ {
+          /^(Plan:|and found no differences\, so no changes are needed\.)/ {
               plan_seen=1
           }
 
