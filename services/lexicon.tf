@@ -51,11 +51,6 @@ module "lexicon_dns_validation_records" {
   ttl     = 660
 }
 
-moved {
-  from = module.lexicon_dns_records
-  to   = module.lexicon_dns_validation_records
-}
-
 module "lexicon_acm_certificate_validation" {
   source = "../modules/aws/certificate_validation"
 
