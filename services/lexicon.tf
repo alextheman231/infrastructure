@@ -1,248 +1,124 @@
-locals {
-  backend_port = 8080
+moved {
+  from = data.aws_iam_policy_document.lexicon_deploy
+  to   = module.lexicon.data.aws_iam_policy_document.lexicon_deploy
 }
 
-module "lexicon_bastion" {
-  source = "../modules/aws/bastion"
-  name   = "lexicon-bastion"
-  allowed_ipv4s = {
-    alex_home = "81.103.172.13/32"
-  }
-  public_ssh_key = var.public_ssh_key
+moved {
+  from = module.lexicon_acm_certificate
+  to   = module.lexicon.module.lexicon_acm_certificate
 }
 
-module "lexicon_image" {
-  source      = "../modules/docker"
-  namespace   = var.docker_username
-  name        = "lexicon"
-  description = "Dockerhub repository for the Lexicon back-end server image."
+moved {
+  from = module.lexicon_acm_certificate_validation
+  to   = module.lexicon.module.lexicon_acm_certificate_validation
 }
 
-module "lexicon_database_aws" {
-  source                    = "../modules/aws/database"
-  initial_db_name           = "lexicon"
-  db_identifier             = "lexicon-prod"
-  postgres_version          = "18"
-  username                  = "lexicon_user"
-  password                  = var.lexicon_database_password
-  bastion_security_group_id = module.lexicon_bastion.security_group_id
+moved {
+  from = module.lexicon_bastion
+  to   = module.lexicon.module.lexicon_bastion
 }
 
-module "lexicon_acm_certificate" {
-  source                    = "../modules/aws/acm_certificate"
-  domain_name               = var.lexicon_domain
-  subject_alternative_names = ["www.${var.lexicon_domain}"]
+moved {
+  from = module.lexicon_database
+  to   = module.lexicon.module.lexicon_database
 }
 
-module "lexicon_dns_validation_records" {
-  for_each = {
-    for option in module.lexicon_acm_certificate.domain_validation_options :
-    option.domain_name => option
-  }
-
-  source = "../modules/cloudflare/dns"
-
-  name    = each.value.resource_record_name
-  type    = each.value.resource_record_type
-  content = each.value.resource_record_value
-
-  zone_id = var.cloudflare_lexicon_zone_id
-  proxied = false
-  ttl     = 660
+moved {
+  from = module.lexicon_database_aws
+  to   = module.lexicon.module.lexicon_database_aws
 }
 
-module "lexicon_acm_certificate_validation" {
-  source = "../modules/aws/certificate_validation"
-
-  certificate_arn = module.lexicon_acm_certificate.certificate_arn
-  validation_record_fqdns = [
-    for record in module.lexicon_dns_validation_records :
-    record.fqdn
-  ]
+moved {
+  from = module.lexicon_deployment_role
+  to   = module.lexicon.module.lexicon_deployment_role
 }
 
-module "lexicon_load_balancer" {
-  source            = "../modules/aws/alb"
-  name              = "lexicon"
-  health_check_path = "/api/v1"
-  port              = local.backend_port
-  certificate_arn   = module.lexicon_acm_certificate_validation.validated_certificate_arn
+moved {
+  from = module.lexicon_dns_record
+  to   = module.lexicon.module.lexicon_dns_record
 }
 
-module "lexicon_dns_record" {
-  source = "../modules/cloudflare/dns"
-
-  name    = var.lexicon_domain
-  type    = "CNAME"
-  zone_id = var.cloudflare_lexicon_zone_id
-  content = module.lexicon_load_balancer.dns_name
+moved {
+  from = module.lexicon_dns_record_www
+  to   = module.lexicon.module.lexicon_dns_record_www
 }
 
-module "lexicon_dns_record_www" {
-  source = "../modules/cloudflare/dns"
-
-  name    = "www.${var.lexicon_domain}"
-  type    = "CNAME"
-  zone_id = var.cloudflare_lexicon_zone_id
-  content = module.lexicon_load_balancer.dns_name
+moved {
+  from = module.lexicon_dns_validation_records
+  to   = module.lexicon.module.lexicon_dns_validation_records
 }
 
-module "lexicon_ecs_service" {
-  source = "../modules/aws/ecs"
-  name   = "lexicon"
-  image  = module.lexicon_image.image_name
-  port   = local.backend_port
-  environment_variables = {
-    DATABASE_URL         = module.lexicon_database_aws.database_url
-    NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_domain}"
-    ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
-    GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
-    GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
-    SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
-  }
-  fargate_version = "1.4.0"
-
-  task_definitions = [{
-    name = "service"
-    },
-    {
-      name    = "migrate"
-      command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
-    }
-  ]
-
-  target_group_arn = module.lexicon_load_balancer.target_group_arn
-  lb_listener_arn  = module.lexicon_load_balancer.listener_arn
+moved {
+  from = module.lexicon_ecs_service
+  to   = module.lexicon.module.lexicon_ecs_service
 }
 
-data "aws_iam_policy_document" "lexicon_deploy" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "ecs:DescribeServices",
-      "ecs:DescribeTaskDefinition",
-      "ecs:UpdateService",
-      "ecs:RunTask",
-      "ecs:DescribeTasks",
-      "ecs:DescribeClusters"
-    ]
-
-    resources = ["*"]
-  }
-
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "iam:PassRole"
-    ]
-
-    resources = [
-      module.lexicon_ecs_service.execution_role_arn
-    ]
-  }
+moved {
+  from = module.lexicon_image
+  to   = module.lexicon.module.lexicon_image
 }
 
-module "lexicon_deployment_role" {
-  source            = "../modules/aws/github_role"
-  repository        = "alextheman231/lexicon"
-  role_name         = "lexicon-deployment"
-  oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
-  policy_json       = data.aws_iam_policy_document.lexicon_deploy.json
+moved {
+  from = module.lexicon_load_balancer
+  to   = module.lexicon.module.lexicon_load_balancer
 }
 
-resource "aws_vpc_security_group_ingress_rule" "ecs" {
-  security_group_id = module.lexicon_database_aws.security_group_id
-
-  referenced_security_group_id = module.lexicon_ecs_service.security_group_id
-
-  from_port   = 5432
-  to_port     = 5432
-  ip_protocol = "tcp"
+moved {
+  from = module.lexicon_repository
+  to   = module.lexicon.module.lexicon_repository
 }
 
-resource "aws_vpc_security_group_ingress_rule" "alb" {
-  security_group_id = module.lexicon_ecs_service.security_group_id
-
-  referenced_security_group_id = module.lexicon_load_balancer.security_group_id
-
-  from_port   = local.backend_port
-  to_port     = local.backend_port
-  ip_protocol = "tcp"
+moved {
+  from = module.lexicon_sentry_back_end
+  to   = module.lexicon.module.lexicon_sentry_back_end
 }
 
-module "lexicon_repository" {
-  source      = "../modules/github/repository"
-  name        = "lexicon"
-  description = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
-  visibility  = "public"
+moved {
+  from = module.lexicon_sentry_front_end
+  to   = module.lexicon.module.lexicon_sentry_front_end
+}
+
+moved {
+  from = module.lexicon_server
+  to   = module.lexicon.module.lexicon_server
+}
+
+moved {
+  from = aws_vpc_security_group_ingress_rule.ecs
+  to   = module.lexicon.aws_vpc_security_group_ingress_rule.ecs
+}
+
+moved {
+  from = aws_vpc_security_group_ingress_rule.alb
+  to   = module.lexicon.aws_vpc_security_group_ingress_rule.alb
+}
+
+module "lexicon" {
+  source                    = "./lexicon"
+  lexicon_database_password = var.lexicon_database_password
+  docker_username           = var.docker_username
   required_ci_checks = concat(local.check_list.base, [
     local.check_name.lexicon.lint_ci,
     local.check_name.lexicon.test_ci,
     local.check_name.lexicon.end_to_end_ci
   ])
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  secrets = {
-    RENDER_DEPLOY_KEY = var.lexicon_render_key
-    DATABASE_URL      = var.lexicon_database_url_encrypted
-    DOCKER_PAT        = var.docker_pat_lexicon_encrypted
-  }
-  variables = {
-    AWS_ROLE_ARN              = module.lexicon_deployment_role.role_arn
-    AWS_CLUSTER_NAME          = module.lexicon_ecs_service.cluster_name
-    AWS_SERVICE_NAME          = module.lexicon_ecs_service.service_name
-    AWS_MIGRATION_TASK_FAMILY = module.lexicon_ecs_service.task_families["migrate"]
-    AWS_REGION                = local.aws_region
-    AWS_SECURITY_GROUP_ID     = module.lexicon_ecs_service.security_group_id
-    AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
-    AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
-    VITE_API_BASE_URL         = "https://${var.lexicon_api_domain}"
-    RENDER_SERVICE_ID         = var.lexicon_render_service_id
-    DOCKER_USERNAME           = var.docker_username
-    FRONT_END_SENTRY_DSN      = var.lexicon_front_end_sentry_dsn
-  }
-  labels = merge(local.labels.standard, local.labels.app)
-}
-
-module "lexicon_database" {
-  source                = "../modules/neon"
-  name                  = "Lexicon"
-  org_id                = var.neon_organisation_id
-  pg_version            = 18
-  default_database_name = "lexicon-prod"
-}
-
-
-module "lexicon_server" {
-  source         = "../modules/render"
-  name           = "Lexicon"
-  repository_url = var.lexicon_repository_url
-  docker_image   = module.lexicon_image.image_name
-
-  secrets = {
-    DATABASE_URL         = var.lexicon_database_url
-    NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_domain}"
-    ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
-    GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
-    GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
-    SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
-  }
-
-  custom_domains    = [var.lexicon_domain]
-  health_check_path = "/api/v1"
-}
-
-module "lexicon_sentry_back_end" {
-  source   = "../modules/sentry/project"
-  name     = "lexicon-back-end"
-  platform = "node-express"
-}
-
-module "lexicon_sentry_front_end" {
-  source   = "../modules/sentry/project"
-  name     = "lexicon-front-end"
-  platform = "javascript-react"
+  github_labels                     = merge(local.labels.standard, local.labels.app)
+  alex_up_bot_app_id                = var.alex_up_bot_app_id
+  lexicon_render_key                = var.lexicon_render_key
+  lexicon_database_url_encrypted    = var.lexicon_database_url_encrypted
+  docker_pat_lexicon_encrypted      = var.docker_pat_lexicon_encrypted
+  deployment_role_oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
+  neon_organisation_id              = var.neon_organisation_id
+  lexicon_domain                    = var.lexicon_domain
+  lexicon_google_client_id          = var.lexicon_google_client_id
+  lexicon_google_client_secret      = var.lexicon_google_client_secret
+  lexicon_back_end_sentry_dsn       = var.lexicon_back_end_sentry_dsn
+  public_ssh_key                    = var.public_ssh_key
+  lexicon_repository_url            = var.lexicon_repository_url
+  lexicon_database_url              = var.lexicon_database_url
+  aws_region                        = local.aws_region
+  lexicon_api_domain                = var.lexicon_api_domain
+  lexicon_render_service_id         = var.lexicon_render_service_id
+  lexicon_front_end_sentry_dsn      = var.lexicon_front_end_sentry_dsn
+  cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
 }
