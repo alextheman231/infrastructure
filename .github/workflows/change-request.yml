@@ -48,7 +48,7 @@ jobs:
           REASON: ${{ inputs.reason }}
           DESCRIPTION: ${{ inputs.description }}
         run: |
-          CHANGE_REQUEST_PATH=$(alex-c-line template change-request --project-name "$PROJECT_NAME" --reason "$REASON" --description "$DESCRIPTION" --requested-by "$GITHUB_ACTOR")
+          CHANGE_REQUEST_PATH=$(alex-c-line template change-request create --project-name "$PROJECT_NAME" --reason "$REASON" --description "$DESCRIPTION" --requested-by "$GITHUB_ACTOR")
           echo "path=$CHANGE_REQUEST_PATH" >> "$GITHUB_OUTPUT"
 
       - name: Get alex-up-bot GitHub token
