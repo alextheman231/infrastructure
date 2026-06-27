@@ -3,8 +3,6 @@ name: Scheduled Apply
 on:
   schedule:
     - cron: 0 21 1 * *
-  # TODO: Remove after testing
-  workflow_dispatch:
 
 jobs:
   scheduled-apply:
