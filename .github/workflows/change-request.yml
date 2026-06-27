@@ -66,6 +66,10 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           author: alex-up-bot <alexupbot@bot.com>
           committer: alex-up-bot <alexupbot@bot.com>
+          commit-message: |
+            ${{ inputs.reason }}
+
+            ${{ inputs.description }}
           branch: alex-up-bot/change-request
           base: main
           title: ${{ inputs.reason }}

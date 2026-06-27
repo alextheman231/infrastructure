@@ -57,6 +57,7 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           author: alex-up-bot <alexupbot@bot.com>
           committer: alex-up-bot <alexupbot@bot.com>
+          commit-message: Scheduled apply
           branch: alex-up-bot/scheduled-apply
           base: main
           title: Scheduled apply
