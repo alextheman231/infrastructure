@@ -81,20 +81,27 @@ jobs:
       - name: Save plan output
         run: |
           awk '
-          /Note: Objects have changed outside of Terraform/ ||
-          /Terraform used the selected providers to generate the following execution/ ||
-          /Terraform will perform the following actions:/ ||
-          /No changes\. Your infrastructure matches the configuration\./ {
-            printing = 1
+          /^Note: Objects have changed outside of Terraform$/ {
+              printing=1
           }
 
-           /^─────────────────────────────────────────────────────────────────────────────$/ {
-            if (printing) {
-              exit
-            }
+          /^Terraform used the selected providers to generate the following execution/ {
+              printing=1
+          }
+
+          /^No changes\. Your infrastructure matches the configuration\./ {
+              printing=1
           }
 
           printing
+
+          /^Plan:/ {
+              plan_seen=1
+          }
+
+          plan_seen && /^─────────────────────────────────────────────────────────────────────────────$/ {
+              exit
+          }
           ' raw-plan.md > plan.md
 
       - name: Save plan summary
