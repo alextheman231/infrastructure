@@ -3,6 +3,6 @@ locals {
 }
 
 module "aws_repository" {
-  source       = "../modules/aws"
+  source       = "../modules/aws/admin_permission_set"
   instance_arn = var.aws_instance_arn
 }
