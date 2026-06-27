@@ -11,13 +11,15 @@ module "lexicon_ecs_service" {
   image  = module.lexicon_image.image_name
   port   = local.backend_port
   environment_variables = {
-    DATABASE_URL         = module.lexicon_database_aws.database_url
-    NODE_ENV             = "production"
-    API_BASE_URL         = "https://${var.lexicon_domain}"
-    ALLOWED_ORIGINS      = "https://${var.lexicon_domain}"
-    GOOGLE_CLIENT_ID     = var.lexicon_google_client_id
-    GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
-    SENTRY_DSN           = var.lexicon_back_end_sentry_dsn
+    NODE_ENV         = "production"
+    API_BASE_URL     = "https://${var.lexicon_domain}"
+    ALLOWED_ORIGINS  = "https://${var.lexicon_domain}"
+    GOOGLE_CLIENT_ID = var.lexicon_google_client_id
+    SENTRY_DSN       = var.lexicon_back_end_sentry_dsn
+  }
+  secret_arns = {
+    DATABASE_URL         = module.lexicon_secrets.arn
+    GOOGLE_CLIENT_SECRET = module.lexicon_secrets.arn
   }
   fargate_version = "1.4.0"
 

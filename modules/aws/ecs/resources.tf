@@ -21,6 +21,27 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role_policy" "ecs_task_execution_secrets" {
+  count = length(var.secret_arns) > 0 ? 1 : 0
+
+  name = "${var.name}-ecs-task-execution-secrets"
+  role = aws_iam_role.ecs_task_execution.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [{
+      Effect = "Allow"
+
+      Action = [
+        "secretsmanager:GetSecretValue"
+      ]
+
+      Resource = distinct(values(var.secret_arns))
+    }]
+  })
+}
+
 resource "aws_security_group" "ecs" {
   name   = "${var.name}-ecs"
   vpc_id = data.aws_vpc.default.id
@@ -75,11 +96,19 @@ resource "aws_ecs_task_definition" "task" {
       }
 
       environment = [
-        for key, value in nonsensitive(var.environment_variables) : {
+        for key, value in var.environment_variables : {
           name  = key
           value = value
         }
       ]
+      },
+      length(var.secret_arns) == 0 ? {} : {
+        secrets = [
+          for key, arn in var.secret_arns : {
+            name      = key
+            valueFrom = "${arn}:${key}::"
+          }
+        ]
       },
       each.value.command == null ? {} : {
         command = each.value.command
