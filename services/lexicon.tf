@@ -48,6 +48,7 @@ module "lexicon_dns_validation_records" {
 
   zone_id = var.cloudflare_lexicon_zone_id
   proxied = false
+  ttl     = 660
 }
 
 moved {
