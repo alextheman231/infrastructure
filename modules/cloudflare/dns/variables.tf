@@ -4,9 +4,14 @@ variable "name" {
 }
 
 variable "ttl" {
-  description = "Time to line of the DNS record in seconds."
-  default     = 600
+  description = "Time to live of the DNS record in seconds."
+  default     = 1
   type        = number
+
+  validation {
+    condition     = !var.proxied || var.ttl == 1
+    error_message = "When proxied is true, ttl must be 1 (Auto)."
+  }
 }
 
 variable "type" {
