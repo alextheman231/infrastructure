@@ -18,7 +18,7 @@ module "lexicon_repository" {
     AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
     AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
     DOCKER_USERNAME           = var.docker_username
-    FRONT_END_SENTRY_DSN      = var.lexicon_front_end_sentry_dsn
+    FRONT_END_SENTRY_DSN      = module.lexicon_sentry_front_end.public_dsn
   }
   labels = var.github_labels
 }
