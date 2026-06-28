@@ -6,7 +6,7 @@ module "github_organisation" {
   members     = ["badstagram", "RLCreates", "peatsham"]
 
 
-  billing_email = var.billing_email
+  billing_email = var.alex_email
   webhook_url   = var.webhook_url
 
   variables = {
