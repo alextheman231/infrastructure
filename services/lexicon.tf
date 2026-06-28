@@ -9,21 +9,14 @@ module "lexicon" {
   ])
   github_labels                     = merge(local.labels.standard, local.labels.app)
   alex_up_bot_app_id                = var.alex_up_bot_app_id
-  lexicon_render_key                = var.lexicon_render_key
-  lexicon_database_url_encrypted    = var.lexicon_database_url_encrypted
   docker_pat_lexicon_encrypted      = var.docker_pat_lexicon_encrypted
   deployment_role_oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
-  neon_organisation_id              = var.neon_organisation_id
   lexicon_domain                    = var.lexicon_domain
   lexicon_google_client_id          = var.lexicon_google_client_id
   lexicon_google_client_secret      = var.lexicon_google_client_secret
   lexicon_back_end_sentry_dsn       = var.lexicon_back_end_sentry_dsn
   public_ssh_key                    = var.public_ssh_key
-  lexicon_repository_url            = var.lexicon_repository_url
-  lexicon_database_url              = var.lexicon_database_url
   aws_region                        = local.aws_region
-  lexicon_api_domain                = var.lexicon_api_domain
-  lexicon_render_service_id         = var.lexicon_render_service_id
   lexicon_front_end_sentry_dsn      = var.lexicon_front_end_sentry_dsn
   cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
 }

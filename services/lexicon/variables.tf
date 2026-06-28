@@ -28,18 +28,6 @@ variable "alex_up_bot_app_id" {
   type        = string
 }
 
-variable "lexicon_render_key" {
-  description = "Render API key to use to deploy the Lexicon back-end server. This has been encrypted with respect to the Lexicon GitHub repository."
-  type        = string
-  sensitive   = true
-}
-
-variable "lexicon_database_url_encrypted" {
-  description = "The Lexicon database URL, encrypted with respect to the Lexicon repository."
-  type        = string
-  sensitive   = true
-}
-
 variable "docker_pat_lexicon_encrypted" {
   description = "Docker PAT to use with DockerHub, encrypted with respect to Lexicon GitHub repository for use in GitHub Actions."
   type        = string
@@ -49,22 +37,6 @@ variable "docker_pat_lexicon_encrypted" {
 variable "deployment_role_oidc_provider_arn" {
   description = "The OIDC provider ARN for the deployment role."
   type        = string
-}
-
-variable "neon_organisation_id" {
-  description = "The ID of the Neon organisation."
-  type        = string
-}
-
-variable "lexicon_repository_url" {
-  description = "The link to the Lexicon GitHub repository"
-  type        = string
-}
-
-variable "lexicon_database_url" {
-  description = "The Lexicon database URL in plaintext."
-  type        = string
-  sensitive   = true
 }
 
 variable "lexicon_domain" {
@@ -95,16 +67,6 @@ variable "public_ssh_key" {
 
 variable "aws_region" {
   description = "The AWS region to use"
-  type        = string
-}
-
-variable "lexicon_api_domain" {
-  description = "Domain for Lexicon API"
-  type        = string
-}
-
-variable "lexicon_render_service_id" {
-  description = "Render service ID for Lexicon back-end server"
   type        = string
 }
 

@@ -6,9 +6,7 @@ module "lexicon_repository" {
   required_ci_checks = var.required_ci_checks
   alex_up_bot_app_id = var.alex_up_bot_app_id
   secrets = {
-    RENDER_DEPLOY_KEY = var.lexicon_render_key
-    DATABASE_URL      = var.lexicon_database_url_encrypted
-    DOCKER_PAT        = var.docker_pat_lexicon_encrypted
+    DOCKER_PAT = var.docker_pat_lexicon_encrypted
   }
   variables = {
     AWS_ROLE_ARN              = module.lexicon_deployment_role.role_arn
@@ -19,8 +17,6 @@ module "lexicon_repository" {
     AWS_SECURITY_GROUP_ID     = module.lexicon_ecs_service.security_group_id
     AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
     AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
-    VITE_API_BASE_URL         = "https://${var.lexicon_api_domain}"
-    RENDER_SERVICE_ID         = var.lexicon_render_service_id
     DOCKER_USERNAME           = var.docker_username
     FRONT_END_SENTRY_DSN      = var.lexicon_front_end_sentry_dsn
   }

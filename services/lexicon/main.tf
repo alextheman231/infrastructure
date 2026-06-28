@@ -4,14 +4,6 @@ terraform {
       source  = "integrations/github"
       version = ">= 6.0"
     }
-    neon = {
-      source  = "kislerdm/neon"
-      version = ">= 0.13.0"
-    }
-    render = {
-      source  = "render-oss/render"
-      version = ">= 1.8.0"
-    }
     docker = {
       source  = "docker/docker"
       version = ">=0.2.0"

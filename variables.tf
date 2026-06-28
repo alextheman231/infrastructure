@@ -74,8 +74,6 @@ variable "tfe_organisation_name" {
   default     = "alextheman"
 }
 
-
-
 variable "neon_api_key" {
   description = "API key to use with Neon"
   type        = string
@@ -95,11 +93,6 @@ variable "render_api_key" {
 
 variable "render_owner_id" {
   description = "My Render user ID"
-  type        = string
-}
-
-variable "lexicon_repository_url" {
-  description = "The link to the Lexicon GitHub repository"
   type        = string
 }
 
