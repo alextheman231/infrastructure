@@ -43,6 +43,7 @@ jobs:
         with:
           path: ".terraform"
           key: ${{ runner.os }}-terraform-apply-${{ hashFiles('.terraform.lock.hcl') }}
+          restore-keys: ${{ runner.os }}-terraform-apply-
 
       - name: Initialise Terraform
         run: terraform init
@@ -102,6 +103,7 @@ jobs:
         with:
           path: ".terraform"
           key: ${{ runner.os }}-terraform-apply-${{ hashFiles('.terraform.lock.hcl') }}
+          restore-keys: ${{ runner.os }}-terraform-apply-
 
       - name: Initialise Terraform
         run: terraform init
