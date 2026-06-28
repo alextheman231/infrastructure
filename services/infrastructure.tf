@@ -22,8 +22,7 @@ module "infrastructure_repository" {
   ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
   secrets = {
-    TFE_TOKEN  = var.tfe_token
-    PASSPHRASE = var.tf_via_pr_passphrase
+    TFE_TOKEN = var.tfe_token
   }
   labels = merge(local.labels.standard, local.labels.infrastructure)
 }

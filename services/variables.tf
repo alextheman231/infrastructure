@@ -45,12 +45,6 @@ variable "webhook_url" {
   sensitive   = true
 }
 
-variable "tf_via_pr_passphrase" {
-  description = "Passphrase to use with TF_via_PR action in Infrastructure CI."
-  type        = string
-  sensitive   = true
-}
-
 variable "tfe_token" {
   description = "Token to use to connect with HCP Terraform, encrypted and scoped with respect to the Infrastructure repository"
   type        = string
@@ -72,61 +66,6 @@ variable "tfe_organisation_name" {
   description = "The TFE organisation name."
   type        = string
   default     = "alextheman"
-}
-
-variable "neon_api_key" {
-  description = "API key to use with Neon"
-  type        = string
-  sensitive   = true
-}
-
-variable "neon_organisation_id" {
-  description = "The ID of the Neon organisation."
-  type        = string
-}
-
-variable "render_api_key" {
-  description = "API key to use with Render to deploy the Lexicon server."
-  type        = string
-  sensitive   = true
-}
-
-variable "render_owner_id" {
-  description = "My Render user ID"
-  type        = string
-}
-
-variable "lexicon_repository_url" {
-  description = "The link to the Lexicon GitHub repository"
-  type        = string
-}
-
-variable "lexicon_render_key" {
-  description = "Render API key to use to deploy the Lexicon back-end server. This has been encrypted with respect to the Lexicon GitHub repository."
-  type        = string
-  sensitive   = true
-}
-
-variable "lexicon_render_service_id" {
-  description = "Render service ID for Lexicon back-end server"
-  type        = string
-}
-
-variable "lexicon_database_url_encrypted" {
-  description = "The Lexicon database URL, encrypted with respect to the Lexicon repository."
-  type        = string
-  sensitive   = true
-}
-
-variable "lexicon_database_url" {
-  description = "The Lexicon database URL in plaintext."
-  type        = string
-  sensitive   = true
-}
-
-variable "lexicon_api_domain" {
-  description = "Domain for Lexicon API"
-  type        = string
 }
 
 variable "lexicon_domain" {
@@ -225,4 +164,21 @@ variable "lexicon_database_password" {
 variable "public_ssh_key" {
   description = "My public SSH key"
   type        = string
+}
+
+variable "render_api_key" {
+  description = "API key to use with Render to deploy the Lexicon server."
+  type        = string
+  sensitive   = true
+}
+
+variable "render_owner_id" {
+  description = "My Render user ID"
+  type        = string
+}
+
+variable "neon_api_key" {
+  description = "API key to use with Neon"
+  type        = string
+  sensitive   = true
 }

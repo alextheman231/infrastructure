@@ -18,10 +18,7 @@ module "services" {
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
   billing_email                              = var.billing_email
-  lexicon_api_domain                         = var.lexicon_api_domain
-  lexicon_database_url                       = var.lexicon_database_url
   lexicon_google_client_id                   = var.lexicon_google_client_id
-  neon_organisation_id                       = var.neon_organisation_id
   docker_username                            = var.docker_username
   render_api_key                             = var.render_api_key
   alex_up_bot_app_id                         = var.alex_up_bot_app_id
@@ -31,14 +28,8 @@ module "services" {
   alex_infrastructure_bot_installation_id    = var.alex_infrastructure_bot_installation_id
   alex_infrastructure_bot_private_key_base64 = var.alex_infrastructure_bot_private_key_base64
   render_owner_id                            = var.render_owner_id
-  lexicon_database_url_encrypted             = var.lexicon_database_url_encrypted
-  lexicon_repository_url                     = var.lexicon_repository_url
   alex_email                                 = var.alex_email
-  lexicon_render_key                         = var.lexicon_render_key
-  lexicon_render_service_id                  = var.lexicon_render_service_id
-  tf_via_pr_passphrase                       = var.tf_via_pr_passphrase
   lexicon_domain                             = var.lexicon_domain
-  neon_api_key                               = var.neon_api_key
   lexicon_google_client_secret               = var.lexicon_google_client_secret
   webhook_url                                = var.webhook_url
   docker_pat_lexicon_encrypted               = var.docker_pat_lexicon_encrypted
@@ -54,4 +45,5 @@ module "services" {
   aws_instance_arn                           = var.aws_instance_arn
   lexicon_database_password                  = var.lexicon_database_password
   public_ssh_key                             = var.public_ssh_key
+  neon_api_key                               = var.neon_api_key
 }
