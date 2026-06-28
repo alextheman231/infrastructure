@@ -56,10 +56,12 @@ jobs:
               exit 1
               ;;
             "2")
+              echo "Plan has changes. Prompting an apply."
               echo "should_apply=true" >> "$GITHUB_OUTPUT"
               exit 0
               ;;
             *)
+              echo "Plan has no changes. Skipping apply."
               echo "should_apply=false" >> "$GITHUB_OUTPUT"
               exit 0
               ;;
