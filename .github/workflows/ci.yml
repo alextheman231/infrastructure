@@ -40,6 +40,7 @@ jobs:
         with:
           path: ".terraform"
           key: ${{ runner.os }}-terraform-lint-${{ hashFiles('.terraform.lock.hcl') }}
+          restore-keys: ${{ runner.os }}-terraform-lint-
 
       - name: Install dependencies
         run: pnpm install
@@ -78,6 +79,7 @@ jobs:
         with:
           path: ".terraform"
           key: ${{ runner.os }}-terraform-plan-${{ hashFiles('.terraform.lock.hcl') }}
+          restore-keys: ${{ runner.os }}-terraform-plan-
 
       - name: Initialise Terraform
         run: terraform init
