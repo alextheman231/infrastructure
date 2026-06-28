@@ -38,6 +38,12 @@ jobs:
         with:
           terraform_version: 1.15
 
+      - name: Cache Terraform cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ".terraform"
+          key: ${{ runner.os }}-terraform-apply-${{ hashFiles('.terraform.lock.hcl') }}
+
       - name: Initialise Terraform
         run: terraform init
 
@@ -90,6 +96,12 @@ jobs:
         uses: hashicorp/setup-terraform@dfe3c3f87815947d99a8997f908cb6525fc44e9e # v4.0.1
         with:
           terraform_version: 1.15
+
+      - name: Cache Terraform cache
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ".terraform"
+          key: ${{ runner.os }}-terraform-apply-${{ hashFiles('.terraform.lock.hcl') }}
 
       - name: Initialise Terraform
         run: terraform init
