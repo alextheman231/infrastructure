@@ -27,30 +27,6 @@ module "infrastructure_repository" {
   labels = merge(local.labels.standard, local.labels.infrastructure)
 }
 
-data "aws_iam_policy_document" "terraform_plan" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "Describe*",
-      "List*",
-      "Get*"
-    ]
-
-    resources = ["*"]
-  }
-
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "iam:PassRole"
-    ]
-
-    resources = ["*"]
-  }
-}
-
 module "terraform_plan_role" {
   source = "../modules/aws/terraform_role"
 
@@ -59,36 +35,13 @@ module "terraform_plan_role" {
   project           = module.infrastructure_workspace.project_name
   workspace         = module.infrastructure_workspace.workspace_name
 
-  role_name   = "terraform-plan"
-  run_phase   = "plan"
-  policy_json = data.aws_iam_policy_document.terraform_plan.json
+  role_name = "terraform-plan"
+  run_phase = "plan"
 }
 
-data "aws_iam_policy_document" "terraform_apply" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "Describe*",
-      "List*",
-      "Get*",
-      "Create*",
-      "Update*",
-      "Delete*"
-    ]
-
-    resources = ["*"]
-  }
-
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "iam:PassRole"
-    ]
-
-    resources = ["*"]
-  }
+resource "aws_iam_role_policy_attachment" "readonly" {
+  role       = module.terraform_plan_role.role_name
+  policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
 
 module "terraform_apply_role" {
@@ -99,7 +52,11 @@ module "terraform_apply_role" {
   project           = module.infrastructure_workspace.project_name
   workspace         = module.infrastructure_workspace.workspace_name
 
-  role_name   = "terraform-apply"
-  run_phase   = "apply"
-  policy_json = data.aws_iam_policy_document.terraform_apply.json
+  role_name = "terraform-apply"
+  run_phase = "apply"
+}
+
+resource "aws_iam_role_policy_attachment" "administrator" {
+  role       = module.terraform_apply_role.role_name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }

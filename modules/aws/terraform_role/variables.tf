@@ -33,6 +33,7 @@ variable "oidc_provider_arn" {
 }
 
 variable "policy_json" {
-  description = "The IAM policy to attach."
-  type        = string
+  type     = string
+  nullable = true
+  default  = null
 }
