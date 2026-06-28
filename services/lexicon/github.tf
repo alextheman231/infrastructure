@@ -33,7 +33,13 @@ data "aws_iam_policy_document" "lexicon_deploy" {
       "ecs:UpdateService",
       "ecs:RunTask",
       "ecs:DescribeTasks",
-      "ecs:DescribeClusters"
+      "ecs:DescribeClusters",
+      "ecr:GetAuthorizationToken",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:InitiateLayerUpload",
+      "ecr:UploadLayerPart",
+      "ecr:CompleteLayerUpload",
+      "ecr:PutImage"
     ]
 
     resources = ["*"]
