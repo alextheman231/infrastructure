@@ -4,10 +4,6 @@ terraform {
       source  = "integrations/github"
       version = ">= 6.0"
     }
-    docker = {
-      source  = "docker/docker"
-      version = ">=0.2.0"
-    }
     sentry = {
       source  = "jianyuan/sentry"
       version = ">=0.14.3"
