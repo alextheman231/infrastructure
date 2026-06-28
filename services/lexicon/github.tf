@@ -23,14 +23,6 @@ module "lexicon_repository" {
   labels = var.github_labels
 }
 
-module "lexicon_deployment_role" {
-  source            = "../../modules/aws/github_role"
-  repository        = "alextheman231/lexicon"
-  role_name         = "lexicon-deployment"
-  oidc_provider_arn = var.deployment_role_oidc_provider_arn
-  policy_json       = data.aws_iam_policy_document.lexicon_deploy.json
-}
-
 data "aws_iam_policy_document" "lexicon_deploy" {
   statement {
     effect = "Allow"
@@ -58,4 +50,12 @@ data "aws_iam_policy_document" "lexicon_deploy" {
       module.lexicon_ecs_service.execution_role_arn
     ]
   }
+}
+
+module "lexicon_deployment_role" {
+  source            = "../../modules/aws/github_role"
+  repository        = "alextheman231/lexicon"
+  role_name         = "lexicon-deployment"
+  oidc_provider_arn = var.deployment_role_oidc_provider_arn
+  policy_json       = data.aws_iam_policy_document.lexicon_deploy.json
 }
