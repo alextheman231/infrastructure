@@ -17,7 +17,6 @@ module "services" {
   github_owner                               = var.github_owner
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
-  billing_email                              = var.billing_email
   lexicon_google_client_id                   = var.lexicon_google_client_id
   docker_username                            = var.docker_username
   alex_up_bot_app_id                         = var.alex_up_bot_app_id

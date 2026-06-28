@@ -30,15 +30,6 @@ variable "alex_infrastructure_bot_private_key_base64" {
   sensitive   = true
 }
 
-variable "billing_email" {
-  description = "Email associated with the organisation"
-  type        = string
-  validation {
-    condition     = can(regex("@", var.billing_email))
-    error_message = "billing_email must be a valid email address."
-  }
-}
-
 variable "webhook_url" {
   description = "The URL of a webhook to receive notifications about my organisation"
   type        = string
@@ -60,6 +51,10 @@ variable "tfe_org_token" {
 variable "alex_email" {
   description = "My email address"
   type        = string
+  validation {
+    condition     = can(regex("@", var.alex_email))
+    error_message = "alex_email must be a valid email address."
+  }
 }
 
 variable "tfe_organisation_name" {
