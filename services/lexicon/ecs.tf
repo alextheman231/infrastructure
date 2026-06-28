@@ -1,10 +1,3 @@
-module "lexicon_image" {
-  source      = "../../modules/docker"
-  namespace   = var.docker_username
-  name        = "lexicon"
-  description = "Dockerhub repository for the Lexicon back-end server image."
-}
-
 module "lexicon_ecr_image" {
   source = "../../modules/aws/ecr"
   name   = "lexicon"
