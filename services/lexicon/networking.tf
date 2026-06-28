@@ -6,7 +6,7 @@ module "lexicon_bastion" {
   source = "../../modules/aws/bastion"
   name   = "lexicon-bastion"
   allowed_ipv4s = {
-    alex_home = "81.103.172.12/32"
+    alex_home = "81.103.172.13/32"
   }
   public_ssh_key = var.public_ssh_key
 }
