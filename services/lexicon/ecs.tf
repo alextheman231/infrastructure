@@ -5,10 +5,15 @@ module "lexicon_image" {
   description = "Dockerhub repository for the Lexicon back-end server image."
 }
 
+module "lexicon_ecr_image" {
+  source = "../../modules/aws/ecr"
+  name   = "lexicon"
+}
+
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
   name   = "lexicon"
-  image  = module.lexicon_image.image_name
+  image  = module.lexicon_ecr_image.repository_url
   port   = local.backend_port
   environment_variables = {
     NODE_ENV         = "production"
