@@ -121,17 +121,6 @@ variable "cloudflare_lexicon_zone_id" {
   type        = string
 }
 
-variable "aws_access_key" {
-  description = "Public access key for use with AWS."
-  type        = string
-}
-
-variable "aws_secret_key" {
-  description = "Secret key for use with AWS."
-  type        = string
-  sensitive   = true
-}
-
 variable "lexicon_database_password" {
   description = "The password for the Lexicon database."
   type        = string
