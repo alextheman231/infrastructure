@@ -5,10 +5,8 @@ resource "aws_iam_role" "role" {
 }
 
 resource "aws_iam_role_policy" "role" {
+  count = var.policy_json == null ? 0 : 1
+
   role   = aws_iam_role.role.id
   policy = var.policy_json
-}
-
-output "role_arn" {
-  value = aws_iam_role.role.arn
 }
