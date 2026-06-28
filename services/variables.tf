@@ -107,11 +107,6 @@ variable "sentry_infrastructure_token" {
   sensitive   = true
 }
 
-variable "sentry_organisation_id" {
-  description = "ID of the Sentry organisation"
-  type        = string
-}
-
 variable "sentry_organisation_token" {
   description = "Sentry organisation token to use in GitHub Actions. This has been encrypted with respect to the alextheman231 GitHub organisation."
   type        = string

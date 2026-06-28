@@ -106,10 +106,6 @@ variable "sentry_infrastructure_token" {
   sensitive = true
 }
 
-variable "sentry_organisation_id" {
-  type = string
-}
-
 variable "sentry_organisation_token" {
   type      = string
   sensitive = true
