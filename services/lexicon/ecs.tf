@@ -42,7 +42,7 @@ module "lexicon_ecs_service" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ecs" {
-  security_group_id = module.lexicon_database_aws.security_group_id
+  security_group_id = module.lexicon_database.security_group_id
 
   referenced_security_group_id = module.lexicon_ecs_service.security_group_id
 
