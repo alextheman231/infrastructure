@@ -112,16 +112,6 @@ variable "sentry_organisation_id" {
   type        = string
 }
 
-variable "lexicon_front_end_sentry_dsn" {
-  description = "The Sentry DSN for the Lexicon front-end."
-  type        = string
-}
-
-variable "lexicon_back_end_sentry_dsn" {
-  description = "The Sentry DSN for the Lexicon back-end."
-  type        = string
-}
-
 variable "sentry_organisation_token" {
   description = "Sentry organisation token to use in GitHub Actions. This has been encrypted with respect to the alextheman231 GitHub organisation."
   type        = string

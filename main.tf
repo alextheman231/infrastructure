@@ -33,8 +33,6 @@ module "services" {
   docker_pat_lexicon_encrypted               = var.docker_pat_lexicon_encrypted
   sentry_infrastructure_token                = var.sentry_infrastructure_token
   sentry_organisation_id                     = var.sentry_organisation_id
-  lexicon_back_end_sentry_dsn                = var.lexicon_back_end_sentry_dsn
-  lexicon_front_end_sentry_dsn               = var.lexicon_front_end_sentry_dsn
   sentry_organisation_token                  = var.sentry_organisation_token
   cloudflare_api_token                       = var.cloudflare_api_token
   cloudflare_lexicon_zone_id                 = var.cloudflare_lexicon_zone_id

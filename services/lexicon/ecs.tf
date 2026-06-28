@@ -15,7 +15,7 @@ module "lexicon_ecs_service" {
     API_BASE_URL     = "https://${var.lexicon_domain}"
     ALLOWED_ORIGINS  = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID = var.lexicon_google_client_id
-    SENTRY_DSN       = var.lexicon_back_end_sentry_dsn
+    SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
   }
   secret_arns = {
     DATABASE_URL         = module.lexicon_secrets.arn

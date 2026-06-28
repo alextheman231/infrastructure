@@ -55,11 +55,6 @@ variable "lexicon_google_client_secret" {
   sensitive   = true
 }
 
-variable "lexicon_back_end_sentry_dsn" {
-  description = "The Sentry DSN for the Lexicon back-end."
-  type        = string
-}
-
 variable "public_ssh_key" {
   description = "My public SSH key"
   type        = string
@@ -70,12 +65,12 @@ variable "aws_region" {
   type        = string
 }
 
-variable "lexicon_front_end_sentry_dsn" {
-  description = "The Sentry DSN for the Lexicon front-end."
+variable "cloudflare_lexicon_zone_id" {
+  description = "The Cloudflare Lexicon Zone ID"
   type        = string
 }
 
-variable "cloudflare_lexicon_zone_id" {
-  description = "The Cloudflare Lexicon Zone ID"
+variable "sentry_organisation_id" {
+  description = "The Sentry organisation ID."
   type        = string
 }
