@@ -26,3 +26,80 @@ module "infrastructure_repository" {
   }
   labels = merge(local.labels.standard, local.labels.infrastructure)
 }
+
+data "aws_iam_policy_document" "terraform_plan" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "Describe*",
+      "List*",
+      "Get*"
+    ]
+
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "iam:PassRole"
+    ]
+
+    resources = ["*"]
+  }
+}
+
+module "terraform_plan_role" {
+  source = "../modules/aws/terraform_role"
+
+  oidc_provider_arn = aws_iam_openid_connect_provider.terraform.arn
+  organization      = module.tfe_organisation.organisation_name
+  project           = module.infrastructure_workspace.project_name
+  workspace         = module.infrastructure_workspace.workspace_name
+
+  role_name   = "terraform-plan"
+  run_phase   = "plan"
+  policy_json = data.aws_iam_policy_document.terraform_plan.json
+}
+
+data "aws_iam_policy_document" "terraform_apply" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "Describe*",
+      "List*",
+      "Get*",
+      "Create*",
+      "Update*",
+      "Delete*"
+    ]
+
+    resources = ["*"]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "iam:PassRole"
+    ]
+
+    resources = ["*"]
+  }
+}
+
+module "terraform_apply_role" {
+  source = "../modules/aws/terraform_role"
+
+  oidc_provider_arn = aws_iam_openid_connect_provider.terraform.arn
+  organization      = module.tfe_organisation.organisation_name
+  project           = module.infrastructure_workspace.project_name
+  workspace         = module.infrastructure_workspace.workspace_name
+
+  role_name   = "terraform-apply"
+  run_phase   = "apply"
+  policy_json = data.aws_iam_policy_document.terraform_apply.json
+}
