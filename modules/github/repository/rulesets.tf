@@ -1,0 +1,124 @@
+resource "github_branch_protection" "linear_history" {
+  count                   = !var.archived ? 1 : 0
+  repository_id           = github_repository.default.name
+  pattern                 = "*"
+  required_linear_history = true
+  allows_deletions        = true
+  allows_force_pushes     = true
+}
+
+resource "github_repository_ruleset" "ci_checks" {
+  count       = length(var.required_ci_checks) > 0 && !var.archived ? 1 : 0
+  name        = "CI checks to run on main"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  bypass_actors {
+    actor_type  = "OrganizationAdmin"
+    bypass_mode = "pull_request"
+  }
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    required_status_checks {
+      strict_required_status_checks_policy = true
+
+      dynamic "required_check" {
+        for_each = distinct(var.required_ci_checks)
+        content {
+          context = required_check.value
+        }
+      }
+    }
+  }
+}
+
+
+resource "github_repository_ruleset" "no_deletion_or_force_push" {
+  count       = !var.archived ? 1 : 0
+  name        = "Protect main from being deleted/force-pushed"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    deletion         = true
+    non_fast_forward = true
+  }
+}
+
+resource "github_repository_ruleset" "pull_request_conditions" {
+  count       = !var.archived ? 1 : 0
+  name        = "Pull request conditions (bypassable by admins)"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  bypass_actors {
+    actor_type  = "OrganizationAdmin"
+    bypass_mode = "exempt"
+  }
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    pull_request {
+      allowed_merge_methods           = ["merge", "rebase"]
+      required_approving_review_count = 1
+      dismiss_stale_reviews_on_push   = true
+      require_code_owner_review       = true
+    }
+  }
+}
+
+resource "github_repository_ruleset" "restrict_version_tags" {
+  count       = !var.archived ? 1 : 0
+  name        = "Restriction against creating version tags (bypassable by alex-up-bot)"
+  repository  = github_repository.default.name
+  target      = "tag"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["refs/tags/*"]
+      exclude = []
+    }
+  }
+
+  bypass_actors {
+    actor_type  = "Integration"
+    actor_id    = var.alex_up_bot_app_id
+    bypass_mode = "exempt"
+  }
+
+  rules {
+    creation = true
+    update   = true
+    deletion = true
+
+    tag_name_pattern {
+      operator = "regex"
+      name     = "Version numbers"
+      pattern  = "^(?:v)?(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)$"
+    }
+  }
+}

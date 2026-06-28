@@ -6,27 +6,3 @@ terraform {
     }
   }
 }
-
-resource "tfe_workspace" "default" {
-  name                  = var.name
-  organization          = var.organisation_name
-  description           = var.description
-  file_triggers_enabled = false
-  speculative_enabled   = true
-  terraform_version     = var.terraform_version
-}
-
-resource "tfe_workspace_settings" "default" {
-  workspace_id   = tfe_workspace.default.id
-  execution_mode = "remote"
-  auto_apply     = false
-}
-
-resource "tfe_variable" "environment" {
-  for_each = var.environment_variables
-
-  workspace_id = tfe_workspace.default.id
-  key          = each.key
-  value        = each.value
-  category     = "env"
-}
