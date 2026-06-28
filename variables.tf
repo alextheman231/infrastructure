@@ -79,23 +79,6 @@ variable "lexicon_google_client_secret" {
   sensitive   = true
 }
 
-variable "docker_username" {
-  description = "My Docker username"
-  type        = string
-}
-
-variable "docker_pat" {
-  description = "PAT to use with DockerHub."
-  type        = string
-  sensitive   = true
-}
-
-variable "docker_pat_lexicon_encrypted" {
-  description = "Docker PAT to use with DockerHub, encrypted with respect to Lexicon GitHub repository for use in GitHub Actions."
-  type        = string
-  sensitive   = true
-}
-
 variable "sentry_infrastructure_token" {
   type      = string
   sensitive = true

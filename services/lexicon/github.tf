@@ -5,9 +5,6 @@ module "lexicon_repository" {
   visibility         = "public"
   required_ci_checks = var.required_ci_checks
   alex_up_bot_app_id = var.alex_up_bot_app_id
-  secrets = {
-    DOCKER_PAT = var.docker_pat_lexicon_encrypted
-  }
   variables = {
     AWS_ROLE_ARN              = module.lexicon_deployment_role.role_arn
     AWS_CLUSTER_NAME          = module.lexicon_ecs_service.cluster_name
@@ -18,7 +15,6 @@ module "lexicon_repository" {
     AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
     AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
     AWS_ECR_REPOSITORY_URL    = module.lexicon_ecr_image.repository_url
-    DOCKER_USERNAME           = var.docker_username
     FRONT_END_SENTRY_DSN      = module.lexicon_sentry_front_end.public_dsn
   }
   labels = var.github_labels

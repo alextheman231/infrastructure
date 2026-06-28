@@ -18,10 +18,8 @@ module "services" {
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
   lexicon_google_client_id                   = var.lexicon_google_client_id
-  docker_username                            = var.docker_username
   alex_up_bot_app_id                         = var.alex_up_bot_app_id
   alex_up_bot_private_key                    = var.alex_up_bot_private_key
-  docker_pat                                 = var.docker_pat
   alex_infrastructure_bot_app_id             = var.alex_infrastructure_bot_app_id
   alex_infrastructure_bot_installation_id    = var.alex_infrastructure_bot_installation_id
   alex_infrastructure_bot_private_key_base64 = var.alex_infrastructure_bot_private_key_base64
@@ -29,7 +27,6 @@ module "services" {
   lexicon_domain                             = var.lexicon_domain
   lexicon_google_client_secret               = var.lexicon_google_client_secret
   webhook_url                                = var.webhook_url
-  docker_pat_lexicon_encrypted               = var.docker_pat_lexicon_encrypted
   sentry_infrastructure_token                = var.sentry_infrastructure_token
   sentry_organisation_token                  = var.sentry_organisation_token
   cloudflare_api_token                       = var.cloudflare_api_token

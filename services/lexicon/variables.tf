@@ -4,11 +4,6 @@ variable "lexicon_database_password" {
   sensitive   = true
 }
 
-variable "docker_username" {
-  description = "My Docker username"
-  type        = string
-}
-
 variable "required_ci_checks" {
   description = "The checks required on the Lexicon repository for CI to pass."
   type        = list(string)
@@ -26,12 +21,6 @@ variable "github_labels" {
 variable "alex_up_bot_app_id" {
   description = "App ID for alex-up-bot."
   type        = string
-}
-
-variable "docker_pat_lexicon_encrypted" {
-  description = "Docker PAT to use with DockerHub, encrypted with respect to Lexicon GitHub repository for use in GitHub Actions."
-  type        = string
-  sensitive   = true
 }
 
 variable "deployment_role_oidc_provider_arn" {
