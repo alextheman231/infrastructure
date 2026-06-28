@@ -165,20 +165,3 @@ variable "public_ssh_key" {
   description = "My public SSH key"
   type        = string
 }
-
-variable "render_api_key" {
-  description = "API key to use with Render to deploy the Lexicon server."
-  type        = string
-  sensitive   = true
-}
-
-variable "render_owner_id" {
-  description = "My Render user ID"
-  type        = string
-}
-
-variable "neon_api_key" {
-  description = "API key to use with Neon"
-  type        = string
-  sensitive   = true
-}
