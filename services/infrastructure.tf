@@ -3,12 +3,6 @@ module "tfe_organisation" {
   email             = var.alex_email
   organisation_name = var.tfe_organisation_name
 }
-module "infrastructure_workspace" {
-  source            = "../modules/tfe/workspace"
-  name              = "infrastructure"
-  organisation_name = var.tfe_organisation_name
-  terraform_version = "~>1.15"
-}
 
 module "infrastructure_repository" {
   source      = "../modules/github/repository"
@@ -43,11 +37,6 @@ resource "aws_iam_role_policy_attachment" "readonly" {
   role       = module.terraform_plan_role.role_name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
-module "terraform_plan_oidc_configuration" {
-  source            = "../modules/tfe/aws_oidc"
-  role_arn          = module.terraform_plan_role.role_arn
-  organisation_name = module.tfe_organisation.organisation_name
-}
 
 module "terraform_apply_role" {
   source = "../modules/aws/terraform_role"
@@ -66,8 +55,14 @@ resource "aws_iam_role_policy_attachment" "administrator" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-module "terraform_apply_oidc_configuration" {
-  source            = "../modules/tfe/aws_oidc"
-  role_arn          = module.terraform_apply_role.role_arn
-  organisation_name = module.tfe_organisation.organisation_name
+module "infrastructure_workspace" {
+  source            = "../modules/tfe/workspace"
+  name              = "infrastructure"
+  organisation_name = var.tfe_organisation_name
+  terraform_version = "~>1.15"
+  environment_variables = {
+    TFC_AWS_PROVIDER_AUTH  = "true"
+    TFC_AWS_PLAN_ROLE_ARN  = module.terraform_plan_role.role_arn
+    TFC_AWS_APPLY_ROLE_ARN = module.terraform_apply_role.role_arn
+  }
 }
