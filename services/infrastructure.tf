@@ -33,6 +33,23 @@ module "terraform_plan_role" {
   run_phase = "plan"
 }
 
+data "aws_iam_policy_document" "plan_secret_access" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "secretsmanager:GetSecretValue"
+    ]
+
+    resources = [module.lexicon.secret_manager_arn]
+  }
+}
+
+resource "aws_iam_role_policy" "plan_secret_access" {
+  role   = module.terraform_plan_role.role_name
+  policy = data.aws_iam_policy_document.plan_secret_access.json
+}
+
 resource "aws_iam_role_policy_attachment" "readonly" {
   role       = module.terraform_plan_role.role_name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
