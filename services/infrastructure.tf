@@ -43,6 +43,11 @@ resource "aws_iam_role_policy_attachment" "readonly" {
   role       = module.terraform_plan_role.role_name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
+module "terraform_plan_oidc_configuration" {
+  source            = "../modules/tfe/aws_oidc"
+  role_arn          = module.terraform_plan_role.role_arn
+  organisation_name = module.tfe_organisation.organisation_name
+}
 
 module "terraform_apply_role" {
   source = "../modules/aws/terraform_role"
@@ -59,4 +64,10 @@ module "terraform_apply_role" {
 resource "aws_iam_role_policy_attachment" "administrator" {
   role       = module.terraform_apply_role.role_name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
+module "terraform_apply_oidc_configuration" {
+  source            = "../modules/tfe/aws_oidc"
+  role_arn          = module.terraform_apply_role.role_arn
+  organisation_name = module.tfe_organisation.organisation_name
 }
