@@ -40,7 +40,6 @@ module "services" {
   cloudflare_lexicon_zone_id                 = var.cloudflare_lexicon_zone_id
   aws_access_key                             = var.aws_access_key
   aws_secret_key                             = var.aws_secret_key
-  aws_instance_arn                           = var.aws_instance_arn
   lexicon_database_password                  = var.lexicon_database_password
   public_ssh_key                             = var.public_ssh_key
 }

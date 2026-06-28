@@ -144,11 +144,6 @@ variable "aws_secret_key" {
   sensitive   = true
 }
 
-variable "aws_instance_arn" {
-  description = "The AWS instance ARN to create resources under."
-  type        = string
-}
-
 variable "lexicon_database_password" {
   description = "The password for the Lexicon database."
   type        = string
