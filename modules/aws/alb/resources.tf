@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb" {
   name   = "${var.name}-alb"
-  vpc_id = data.aws_vpc.default.id
+  vpc_id = var.vpc_id
 
   lifecycle {
     create_before_destroy = true
@@ -35,7 +35,7 @@ resource "aws_vpc_security_group_ingress_rule" "https" {
 resource "aws_lb_target_group" "default" {
   name        = "${var.name}-target-group"
   target_type = "ip"
-  vpc_id      = data.aws_vpc.default.id
+  vpc_id      = var.vpc_id
 
   port     = var.port
   protocol = "HTTP"
@@ -51,7 +51,7 @@ resource "aws_lb" "default" {
   name               = var.name
   security_groups    = [aws_security_group.alb.id]
   load_balancer_type = "application"
-  subnets            = data.aws_subnets.default.ids
+  subnets            = var.subnet_ids
 }
 
 resource "aws_lb_listener" "http" {

@@ -12,3 +12,13 @@ variable "public_ssh_key" {
   description = "The public key to use to log into the Bastion"
   type        = string
 }
+
+variable "vpc_id" {
+  description = "The VPC ID."
+  type        = string
+}
+
+variable "subnet_id" {
+  description = "The subnet ID."
+  type        = string
+}

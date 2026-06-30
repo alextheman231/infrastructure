@@ -2,13 +2,22 @@ locals {
   backend_port = 8080
 }
 
+module "lexicon_network" {
+  source = "../../modules/aws/network"
+  name   = "lexicon"
+}
+
 module "lexicon_bastion" {
   source = "../../modules/aws/bastion"
-  name   = "lexicon-bastion"
+
+  name           = "lexicon-bastion"
+  public_ssh_key = var.public_ssh_key
+  vpc_id         = module.lexicon_network.vpc_id
+  subnet_id      = module.lexicon_network.public_subnet_ids[0]
+
   allowed_ipv4s = {
     alex_home = "81.103.172.13/32"
   }
-  public_ssh_key = var.public_ssh_key
 }
 
 module "lexicon_acm_certificate" {
@@ -45,7 +54,10 @@ module "lexicon_acm_certificate_validation" {
 }
 
 module "lexicon_load_balancer" {
-  source            = "../../modules/aws/alb"
+  source = "../../modules/aws/alb"
+
+  vpc_id            = module.lexicon_network.vpc_id
+  subnet_ids        = module.lexicon_network.public_subnet_ids
   name              = "lexicon"
   health_check_path = "/api/v1"
   port              = local.backend_port

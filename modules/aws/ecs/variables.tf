@@ -52,6 +52,17 @@ variable "lb_listener_arn" {
   type        = string
 }
 
+variable "vpc_id" {
+  description = "The VPC ID."
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "The subnet IDs."
+  type        = list(string)
+}
+
+
 variable "task_definitions" {
   description = "A list of tasks to associate with the service. It **must** contain exactly one task definition named 'service'."
   type = list(object({
