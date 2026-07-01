@@ -74,3 +74,13 @@ variable "task_definitions" {
     error_message = "Task definition names must be unique."
   }
 }
+
+variable "vpc_id" {
+  description = "The VPC ID."
+  type        = string
+}
+
+variable "subnet_ids" {
+  description = "The subnet IDs."
+  type        = list(string)
+}
