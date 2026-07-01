@@ -5,12 +5,9 @@ module "lexicon_ecr_image" {
 
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
-
-  vpc_id     = module.lexicon_network.vpc_id
-  subnet_ids = module.lexicon_network.public_subnet_ids
-  name       = "lexicon"
-  image      = module.lexicon_ecr_image.repository_url
-  port       = local.backend_port
+  name   = "lexicon"
+  image  = module.lexicon_ecr_image.repository_url
+  port   = local.backend_port
   environment_variables = {
     NODE_ENV         = "production"
     API_BASE_URL     = "https://${var.lexicon_domain}"

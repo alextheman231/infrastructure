@@ -1,7 +1,5 @@
 module "lexicon_database" {
-  source = "../../modules/aws/database"
-
-  vpc_id                    = module.lexicon_network.vpc_id
+  source                    = "../../modules/aws/database"
   initial_db_name           = "lexicon"
   db_identifier             = "lexicon-prod"
   postgres_version          = "18"

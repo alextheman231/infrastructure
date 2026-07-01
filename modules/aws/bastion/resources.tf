@@ -1,6 +1,6 @@
 resource "aws_security_group" "bastion" {
   name   = var.name
-  vpc_id = var.vpc_id
+  vpc_id = data.aws_vpc.default.id
 
   lifecycle {
     create_before_destroy = true
@@ -35,7 +35,7 @@ resource "aws_key_pair" "bastion" {
 resource "aws_instance" "bastion" {
   ami                    = data.aws_ami.amazon_linux.id
   instance_type          = "t4g.nano"
-  subnet_id              = var.subnet_id
+  subnet_id              = data.aws_subnets.default.ids[0]
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
   key_name = aws_key_pair.bastion.key_name
