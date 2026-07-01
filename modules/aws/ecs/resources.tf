@@ -44,7 +44,7 @@ resource "aws_iam_role_policy" "ecs_task_execution_secrets" {
 
 resource "aws_security_group" "ecs" {
   name   = "${var.name}-ecs"
-  vpc_id = data.aws_vpc.default.id
+  vpc_id = var.vpc_id
 
   lifecycle {
     create_before_destroy = true
