@@ -33,8 +33,9 @@ resource "aws_key_pair" "bastion" {
 }
 
 resource "aws_instance" "bastion" {
+  region                 = "eu-north-1a"
   ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = "t4g.micro"
+  instance_type          = "t4g.nano"
   subnet_id              = data.aws_subnets.default.ids[0]
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
