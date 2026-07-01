@@ -6,4 +6,5 @@ module "lexicon_database" {
   username                  = "lexicon_user"
   password                  = var.lexicon_database_password
   bastion_security_group_id = module.lexicon_bastion.security_group_id
+  vpc_id                    = data.aws_vpc.default.id
 }

@@ -9,6 +9,8 @@ module "lexicon_bastion" {
     alex_home = "81.103.172.13/32"
   }
   public_ssh_key = var.public_ssh_key
+  vpc_id         = data.aws_vpc.default.id
+  subnet_id      = data.aws_subnets.default.ids[0]
 }
 
 module "lexicon_acm_certificate" {
@@ -50,6 +52,8 @@ module "lexicon_load_balancer" {
   health_check_path = "/api/v1"
   port              = local.backend_port
   certificate_arn   = module.lexicon_acm_certificate_validation.validated_certificate_arn
+  vpc_id            = data.aws_vpc.default.id
+  subnet_ids        = data.aws_subnets.default.ids
 }
 
 module "lexicon_dns_record" {
