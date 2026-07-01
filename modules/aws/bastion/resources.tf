@@ -34,7 +34,7 @@ resource "aws_key_pair" "bastion" {
 
 resource "aws_instance" "bastion" {
   ami                    = data.aws_ami.amazon_linux.id
-  instance_type          = "t3.nano"
+  instance_type          = "t4g.small"
   subnet_id              = data.aws_subnets.default.ids[0]
   vpc_security_group_ids = [aws_security_group.bastion.id]
 
