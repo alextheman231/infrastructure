@@ -18,10 +18,7 @@ module "lexicon_ecs_service" {
     GOOGLE_CLIENT_ID = var.lexicon_google_client_id
     SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
   }
-  secret_arns = {
-    DATABASE_URL         = module.lexicon_secrets.arn
-    GOOGLE_CLIENT_SECRET = module.lexicon_secrets.arn
-  }
+  secret_arns     = module.lexicon_secrets.secret_arns
   fargate_version = "1.4.0"
 
   task_definitions = [{
