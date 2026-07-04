@@ -1,13 +1,8 @@
-module "lexicon_ecr_image" {
-  source = "../../modules/aws/ecr"
-  name   = "lexicon"
-}
-
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
 
-  vpc_id     = data.aws_vpc.default.id
-  subnet_ids = data.aws_subnets.default.ids
+  vpc_id     = module.lexicon_network.vpc_id
+  subnet_ids = module.lexicon_network.private_subnet_ids
   name       = "lexicon"
   image      = module.lexicon_ecr_image.repository_url
   port       = local.backend_port
@@ -16,6 +11,7 @@ module "lexicon_ecs_service" {
     API_BASE_URL     = "https://${var.lexicon_domain}"
     ALLOWED_ORIGINS  = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID = var.lexicon_google_client_id
+    SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
   }
   secret_arns     = module.lexicon_secrets.secret_arns
   fargate_version = "1.4.0"
@@ -31,7 +27,6 @@ module "lexicon_ecs_service" {
 
   target_group_arn = module.lexicon_load_balancer.target_group_arn
   lb_listener_arn  = module.lexicon_load_balancer.listener_arn
-  assign_public_ip = true
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ecs" {
