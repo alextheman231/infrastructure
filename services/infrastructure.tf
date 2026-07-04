@@ -41,7 +41,7 @@ data "aws_iam_policy_document" "plan_secret_access" {
       "secretsmanager:GetSecretValue"
     ]
 
-    resources = [module.lexicon.secret_manager_arn, module.lexicon_london.secret_manager_arn]
+    resources = [module.lexicon_london.secret_manager_arn]
   }
 }
 
