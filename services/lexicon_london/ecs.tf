@@ -1,3 +1,9 @@
+module "lexicon_ecs_task_execution_role" {
+  source      = "../../modules/aws/roles/ecs_task_execution"
+  name        = "lexicon-london"
+  secret_arns = module.lexicon_secrets.secret_arns
+}
+
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
 
@@ -24,9 +30,11 @@ module "lexicon_ecs_service" {
       command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
     }
   ]
+  region = var.aws_region
 
-  target_group_arn = module.lexicon_load_balancer.target_group_arn
-  lb_listener_arn  = module.lexicon_load_balancer.listener_arn
+  target_group_arn   = module.lexicon_load_balancer.target_group_arn
+  lb_listener_arn    = module.lexicon_load_balancer.listener_arn
+  execution_role_arn = module.lexicon_ecs_task_execution_role.role_arn
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ecs" {

@@ -2,10 +2,6 @@ output "security_group_id" {
   value = aws_security_group.ecs.id
 }
 
-output "execution_role_arn" {
-  value = aws_iam_role.ecs_task_execution.arn
-}
-
 output "cluster_name" {
   value = aws_ecs_cluster.default.name
 }
