@@ -29,7 +29,7 @@ resource "aws_db_instance" "default" {
 
   backup_retention_period = 7
 
-  deletion_protection = true
+  deletion_protection = var.deletion_protection
 
   publicly_accessible = false
 
