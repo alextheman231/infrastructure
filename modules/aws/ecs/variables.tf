@@ -84,3 +84,9 @@ variable "subnet_ids" {
   description = "The subnet IDs."
   type        = list(string)
 }
+
+variable "assign_public_ip" {
+  description = "Whether or not to assign a public IP."
+  type        = bool
+  default     = false
+}
