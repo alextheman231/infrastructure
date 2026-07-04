@@ -37,23 +37,3 @@ module "lexicon_london" {
   cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
   sentry_organisation_id            = module.sentry_organisation.id
 }
-
-moved {
-  from = module.lexicon.module.lexicon_sentry_back_end
-  to   = module.lexicon_london.module.lexicon_sentry_back_end
-}
-
-moved {
-  from = module.lexicon.module.lexicon_sentry_front_end
-  to   = module.lexicon_london.module.lexicon_sentry_front_end
-}
-
-moved {
-  from = module.lexicon.module.lexicon_repository
-  to   = module.lexicon_london.module.lexicon_repository
-}
-
-moved {
-  from = module.lexicon.module.lexicon_deployment_role
-  to   = module.lexicon_london.module.lexicon_deployment_role
-}
