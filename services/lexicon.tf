@@ -1,4 +1,4 @@
-module "lexicon_london" {
+module "lexicon" {
   source                    = "./lexicon"
   lexicon_database_password = var.lexicon_database_password
   required_ci_checks = concat(local.check_list.base, [
@@ -16,4 +16,9 @@ module "lexicon_london" {
   aws_region                        = "eu-west-2"
   cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
   sentry_organisation_id            = module.sentry_organisation.id
+}
+
+moved {
+  from = module.lexicon_london
+  to   = module.lexicon
 }
