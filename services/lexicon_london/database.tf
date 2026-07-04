@@ -8,5 +8,4 @@ module "lexicon_database" {
   bastion_security_group_id = module.lexicon_bastion.security_group_id
   vpc_id                    = module.lexicon_network.vpc_id
   db_subnet_group_name      = module.lexicon_network.db_subnet_group_name
-  deletion_protection       = false
 }
