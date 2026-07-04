@@ -13,3 +13,7 @@ output "internet_gateway_id" {
 output "public_route_table_id" {
   value = aws_route_table.public.id
 }
+
+output "public_subnet_group_name" {
+  value = aws_db_subnet_group.public.name
+}

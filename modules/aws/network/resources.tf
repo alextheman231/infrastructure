@@ -45,3 +45,13 @@ resource "aws_route_table_association" "public_gateway" {
   subnet_id      = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.public.id
 }
+
+resource "aws_db_subnet_group" "public" {
+  name = var.name
+
+  subnet_ids = aws_subnet.public[*].id
+
+  tags = {
+    Name = var.name
+  }
+}
