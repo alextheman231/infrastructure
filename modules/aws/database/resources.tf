@@ -7,6 +7,10 @@ resource "aws_security_group" "database" {
   }
 }
 
+resource "random_id" "final_snapshot" {
+  byte_length = 8
+}
+
 resource "aws_db_instance" "default" {
   identifier = var.db_identifier
 
@@ -29,8 +33,9 @@ resource "aws_db_instance" "default" {
 
   publicly_accessible = false
 
-  vpc_security_group_ids = [aws_security_group.database.id]
-  db_subnet_group_name   = var.db_subnet_group_name
+  vpc_security_group_ids    = [aws_security_group.database.id]
+  db_subnet_group_name      = var.db_subnet_group_name
+  final_snapshot_identifier = "${var.db_identifier}-final-${random_id.final_snapshot.hex}"
 }
 
 resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {
