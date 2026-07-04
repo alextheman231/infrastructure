@@ -30,6 +30,7 @@ resource "aws_db_instance" "default" {
   publicly_accessible = false
 
   vpc_security_group_ids = [aws_security_group.database.id]
+  db_subnet_group_name   = var.db_subnet_group_name
 }
 
 resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {

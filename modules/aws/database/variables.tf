@@ -34,3 +34,9 @@ variable "vpc_id" {
   description = "The VPC ID."
   type        = string
 }
+
+variable "db_subnet_group_name" {
+  description = "The name of the database subnet group."
+  type        = string
+  default     = null
+}
