@@ -67,3 +67,13 @@ resource "aws_db_subnet_group" "default" {
     Name = var.name
   }
 }
+
+resource "aws_db_subnet_group" "public" {
+  name = var.name
+
+  subnet_ids = aws_subnet.public[*].id
+
+  tags = {
+    Name = var.name
+  }
+}
