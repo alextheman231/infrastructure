@@ -40,3 +40,13 @@ module "lexicon_load_balancer" {
   vpc_id            = module.lexicon_network.vpc_id
   subnet_ids        = module.lexicon_network.public_subnet_ids
 }
+
+resource "aws_vpc_security_group_ingress_rule" "alb" {
+  security_group_id = module.lexicon_ecs_service.security_group_id
+
+  referenced_security_group_id = module.lexicon_load_balancer.security_group_id
+
+  from_port   = local.backend_port
+  to_port     = local.backend_port
+  ip_protocol = "tcp"
+}
