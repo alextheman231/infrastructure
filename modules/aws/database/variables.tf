@@ -40,3 +40,9 @@ variable "db_subnet_group_name" {
   type        = string
   default     = null
 }
+
+variable "deletion_protection" {
+  description = "Whether to protect the database from being destroyed or not."
+  type        = bool
+  default     = true
+}
