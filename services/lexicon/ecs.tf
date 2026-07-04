@@ -3,6 +3,12 @@ module "lexicon_ecr_image" {
   name   = "lexicon"
 }
 
+module "lexicon_ecs_task_execution_role" {
+  source      = "../../modules/aws/roles/ecs_task_execution"
+  name        = "lexicon"
+  secret_arns = module.lexicon_secrets.secret_arns
+}
+
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
 
@@ -29,9 +35,11 @@ module "lexicon_ecs_service" {
     }
   ]
 
-  target_group_arn = module.lexicon_load_balancer.target_group_arn
-  lb_listener_arn  = module.lexicon_load_balancer.listener_arn
-  assign_public_ip = true
+  target_group_arn   = module.lexicon_load_balancer.target_group_arn
+  lb_listener_arn    = module.lexicon_load_balancer.listener_arn
+  assign_public_ip   = true
+  region             = var.aws_region
+  execution_role_arn = module.lexicon_ecs_task_execution_role.role_arn
 }
 
 resource "aws_vpc_security_group_ingress_rule" "ecs" {

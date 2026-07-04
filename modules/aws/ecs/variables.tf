@@ -90,3 +90,13 @@ variable "assign_public_ip" {
   type        = bool
   default     = false
 }
+
+variable "execution_role_arn" {
+  description = "The ARN of the execution role."
+  type        = string
+}
+
+variable "region" {
+  description = "The AWS region."
+  type        = string
+}
