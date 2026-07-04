@@ -29,24 +29,6 @@ module "lexicon_load_balancer" {
   subnet_ids        = data.aws_subnets.default.ids
 }
 
-module "lexicon_dns_record" {
-  source = "../../modules/cloudflare/dns"
-
-  name    = var.lexicon_domain
-  type    = "CNAME"
-  zone_id = var.cloudflare_lexicon_zone_id
-  content = module.lexicon_load_balancer.dns_name
-}
-
-module "lexicon_dns_record_www" {
-  source = "../../modules/cloudflare/dns"
-
-  name    = "www.${var.lexicon_domain}"
-  type    = "CNAME"
-  zone_id = var.cloudflare_lexicon_zone_id
-  content = module.lexicon_load_balancer.dns_name
-}
-
 resource "aws_vpc_security_group_ingress_rule" "alb" {
   security_group_id = module.lexicon_ecs_service.security_group_id
 
