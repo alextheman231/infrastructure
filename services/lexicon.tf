@@ -33,7 +33,7 @@ module "lexicon_london" {
   lexicon_google_client_id          = var.lexicon_google_client_id
   lexicon_google_client_secret      = var.lexicon_google_client_secret
   public_ssh_key                    = var.public_ssh_key
-  aws_region                        = local.aws_region
+  aws_region                        = "eu-west-2"
   cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
   sentry_organisation_id            = module.sentry_organisation.id
 }
