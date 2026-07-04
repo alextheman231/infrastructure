@@ -17,8 +17,3 @@ module "lexicon" {
   cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
   sentry_organisation_id            = module.sentry_organisation.id
 }
-
-moved {
-  from = module.lexicon_london
-  to   = module.lexicon
-}
