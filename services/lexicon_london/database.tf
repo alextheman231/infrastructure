@@ -7,5 +7,5 @@ module "lexicon_database" {
   password                  = var.lexicon_database_password
   bastion_security_group_id = module.lexicon_bastion.security_group_id
   vpc_id                    = module.lexicon_network.vpc_id
-  db_subnet_group_name      = module.lexicon_network.public_subnet_group_name
+  db_subnet_group_name      = module.lexicon_network.db_subnet_group_name
 }
