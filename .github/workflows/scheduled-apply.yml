@@ -2,7 +2,7 @@ name: Scheduled Apply
 
 on:
   schedule:
-    - cron: 0 21 1 * *
+    - cron: 0 9 * * 1
 
 jobs:
   scheduled-apply:
