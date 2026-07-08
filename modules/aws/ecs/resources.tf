@@ -35,7 +35,7 @@ resource "aws_ecs_task_definition" "task" {
   container_definitions = jsonencode([
     merge({
       name  = "${var.name}-${each.value.name}"
-      image = var.image
+      image = "${var.image}:latest"
 
       portMappings = [{
         containerPort = var.port
