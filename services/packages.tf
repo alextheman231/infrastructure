@@ -39,7 +39,7 @@ module "alex_c_line_repository" {
   name               = "alex-c-line"
   description        = "Command-line tool with commands to streamline the developer workflow."
   visibility         = "public"
-  required_ci_checks = local.check_list.package
+  required_ci_checks = concat(local.check_list.package, local.check_list.alex_c_line.legacy)
   alex_up_bot_app_id = var.alex_up_bot_app_id
   labels             = merge(local.labels.standard, local.labels.package)
 }
