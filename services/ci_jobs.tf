@@ -10,6 +10,11 @@ locals {
 
     end_to_end_ci = "end-to-end-ci / end-to-end-ci"
 
+    alex_c_line = {
+      source_code_ci_legacy = "package-ci-legacy / source-code-ci"
+      end_to_end_ci_legacy  = "end-to-end-legacy / end-to-end-ci"
+    }
+
     terraform = {
       lint_ci      = "terraform-lint-ci"
       plan_ci      = "terraform-plan-ci"
@@ -58,6 +63,10 @@ locals {
       local.check_name.actions_ci,
       local.check_name.end_to_end_ci
     ])
+
+    alex_c_line = {
+      legacy = [local.check_name.alex_c_line.source_code_ci_legacy, local.check_name.alex_c_line.end_to_end_ci_legacy]
+    }
 
     github_actions = {
       base = [
