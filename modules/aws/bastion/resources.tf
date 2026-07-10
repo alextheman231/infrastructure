@@ -1,3 +1,7 @@
+resource "aws_eip" "bastion" {
+  domain = "vpc"
+}
+
 resource "aws_security_group" "bastion" {
   name   = var.name
   vpc_id = var.vpc_id
@@ -43,4 +47,9 @@ resource "aws_instance" "bastion" {
   tags = {
     Name = var.name
   }
+}
+
+resource "aws_eip_association" "bastion" {
+  allocation_id = aws_eip.bastion.id
+  instance_id   = aws_instance.bastion.id
 }
