@@ -1,4 +1,7 @@
 resource "aws_eip" "bastion" {
+  tags = {
+    Name = "${var.name}-elastic-ip"
+  }
   domain = "vpc"
 }
 
