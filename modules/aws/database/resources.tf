@@ -1,11 +1,4 @@
-resource "aws_security_group" "database" {
-  name   = "${var.db_identifier}-database"
-  vpc_id = var.vpc_id
 
-  lifecycle {
-    create_before_destroy = true
-  }
-}
 
 resource "random_id" "final_snapshot" {
   byte_length = 8
@@ -33,24 +26,7 @@ resource "aws_db_instance" "default" {
 
   publicly_accessible = false
 
-  vpc_security_group_ids    = [aws_security_group.database.id]
+  vpc_security_group_ids    = var.security_group_ids
   db_subnet_group_name      = var.db_subnet_group_name
   final_snapshot_identifier = "${var.db_identifier}-final-${random_id.final_snapshot.hex}"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {
-  security_group_id = aws_security_group.database.id
-
-  referenced_security_group_id = var.bastion_security_group_id
-
-  from_port   = 5432
-  to_port     = 5432
-  ip_protocol = "tcp"
-}
-
-resource "aws_vpc_security_group_egress_rule" "all" {
-  security_group_id = aws_security_group.database.id
-
-  ip_protocol = "-1"
-  cidr_ipv4   = "0.0.0.0/0"
 }

@@ -36,13 +36,3 @@ module "lexicon_ecs_service" {
   lb_listener_arn    = module.lexicon_load_balancer.listener_arn
   execution_role_arn = module.lexicon_ecs_task_execution_role.role_arn
 }
-
-resource "aws_vpc_security_group_ingress_rule" "ecs" {
-  security_group_id = module.lexicon_database.security_group_id
-
-  referenced_security_group_id = module.lexicon_ecs_service.security_group_id
-
-  from_port   = 5432
-  to_port     = 5432
-  ip_protocol = "tcp"
-}

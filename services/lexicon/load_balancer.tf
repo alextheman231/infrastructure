@@ -32,21 +32,12 @@ module "lexicon_acm_certificate_validation" {
 }
 
 module "lexicon_load_balancer" {
-  source            = "../../modules/aws/alb"
-  name              = "lexicon"
-  health_check_path = "/api/v1"
-  port              = local.backend_port
-  certificate_arn   = module.lexicon_acm_certificate_validation.validated_certificate_arn
-  vpc_id            = module.lexicon_network.vpc_id
-  subnet_ids        = module.lexicon_network.public_subnet_ids
-}
-
-resource "aws_vpc_security_group_ingress_rule" "alb" {
-  security_group_id = module.lexicon_ecs_service.security_group_id
-
-  referenced_security_group_id = module.lexicon_load_balancer.security_group_id
-
-  from_port   = local.backend_port
-  to_port     = local.backend_port
-  ip_protocol = "tcp"
+  source             = "../../modules/aws/alb"
+  name               = "lexicon"
+  health_check_path  = "/api/v1"
+  port               = local.backend_port
+  certificate_arn    = module.lexicon_acm_certificate_validation.validated_certificate_arn
+  vpc_id             = module.lexicon_network.vpc_id
+  subnet_ids         = module.lexicon_network.public_subnet_ids
+  security_group_ids = [module.lexicon_load_balancer_security_group.id]
 }
