@@ -4,6 +4,7 @@ set -euxo pipefail
 dnf install -y postgresql${postgres_version}
 
 cat >/etc/profile.d/lexicon.sh <<EOF
+alias bastion-test='echo Hello!'
 lexicon-db() {
     psql \
         -h "${database_address}" \
