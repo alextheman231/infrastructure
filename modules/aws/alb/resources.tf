@@ -1,37 +1,3 @@
-resource "aws_security_group" "alb" {
-  name   = "${var.name}-alb"
-  vpc_id = var.vpc_id
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}
-
-resource "aws_vpc_security_group_egress_rule" "all" {
-  security_group_id = aws_security_group.alb.id
-
-  ip_protocol = "-1"
-  cidr_ipv4   = "0.0.0.0/0"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "http" {
-  security_group_id = aws_security_group.alb.id
-
-  from_port   = 80
-  to_port     = 80
-  ip_protocol = "tcp"
-  cidr_ipv4   = "0.0.0.0/0"
-}
-
-resource "aws_vpc_security_group_ingress_rule" "https" {
-  security_group_id = aws_security_group.alb.id
-
-  from_port   = 443
-  to_port     = 443
-  ip_protocol = "tcp"
-  cidr_ipv4   = "0.0.0.0/0"
-}
-
 resource "aws_lb_target_group" "default" {
   name        = "${var.name}-target-group"
   target_type = "ip"
@@ -53,7 +19,7 @@ resource "aws_lb_target_group" "default" {
 
 resource "aws_lb" "default" {
   name               = var.name
-  security_groups    = [aws_security_group.alb.id]
+  security_groups    = var.security_group_ids
   load_balancer_type = "application"
   subnets            = var.subnet_ids
 }

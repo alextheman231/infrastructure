@@ -25,16 +25,6 @@ variable "password" {
   sensitive   = true
 }
 
-variable "bastion_security_group_id" {
-  description = "The security group ID for the associated Bastion."
-  type        = string
-}
-
-variable "vpc_id" {
-  description = "The VPC ID."
-  type        = string
-}
-
 variable "db_subnet_group_name" {
   description = "The name of the database subnet group."
   type        = string
@@ -45,4 +35,9 @@ variable "deletion_protection" {
   description = "Whether to protect the database from being destroyed or not."
   type        = bool
   default     = true
+}
+
+variable "security_group_ids" {
+  description = "List of security group IDs to associate with the database"
+  type        = list(string)
 }
