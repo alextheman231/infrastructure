@@ -18,3 +18,19 @@ variable "teams" {
   description = "Sentry teams."
   type        = list(string)
 }
+
+variable "github_integration_id" {
+  description = "The ID for the integration between the organisation and GitHub."
+  type        = string
+}
+
+variable "sentry_repository_id" {
+  description = "The ID of the Sentry repository."
+  type        = string
+}
+
+variable "source_root" {
+  description = "The root of the source code."
+  type        = string
+  default     = "src"
+}
