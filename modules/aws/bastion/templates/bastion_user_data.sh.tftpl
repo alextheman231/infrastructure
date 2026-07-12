@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euxo pipefail
+
+dnf install -y postgresql${postgres_version}
+
+cat >/etc/profile.d/lexicon.sh <<EOF
+lexicon-db() {
+    psql \
+        -h "${database_address}" \
+        -p "${port}" \
+        -U "${database_user}" \
+        -d "${database_name}" \
+        "$@"
+}
+EOF
