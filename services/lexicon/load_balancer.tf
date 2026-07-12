@@ -32,7 +32,7 @@ module "lexicon_acm_certificate_validation" {
 }
 
 module "lexicon_load_balancer" {
-  source             = "../../modules/aws/alb"
+  source             = "../../modules/aws/load_balancer"
   name               = "lexicon"
   health_check_path  = "/api/v1"
   port               = local.backend_port
