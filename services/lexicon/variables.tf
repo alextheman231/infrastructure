@@ -63,3 +63,8 @@ variable "sentry_organisation_id" {
   description = "The Sentry organisation ID."
   type        = string
 }
+
+variable "sentry_github_integration_id" {
+  description = "The ID for the integration between the Sentry organisation and GitHub."
+  type        = string
+}
