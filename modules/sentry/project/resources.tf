@@ -9,7 +9,7 @@ resource "sentry_organization_code_mapping" "default" {
   organization   = var.organisation_id
   integration_id = var.github_integration_id
   repository_id  = var.sentry_repository_id
-  project_id     = sentry_project.default.id
+  project_id     = sentry_project.default.internal_id
 
   default_branch = "main"
   stack_root     = "/"
