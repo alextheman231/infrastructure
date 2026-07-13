@@ -38,7 +38,9 @@ resource "aws_ecs_task_definition" "task" {
       image = "${var.image}:latest"
 
       portMappings = [{
+        protocol      = "tcp"
         containerPort = var.port
+        hostPort      = var.port
       }]
 
       logConfiguration = {
