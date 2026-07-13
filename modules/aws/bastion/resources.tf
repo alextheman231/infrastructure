@@ -24,6 +24,7 @@ resource "aws_instance" "bastion" {
     database_user    = var.database_user
     database_name    = var.database_name
   })
+  user_data_replace_on_change = true
 
   tags = {
     Name = var.name
