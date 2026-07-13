@@ -11,11 +11,10 @@ resource "aws_key_pair" "bastion" {
 }
 
 resource "aws_instance" "bastion" {
-  ami                         = data.aws_ami.amazon_linux.id
-  instance_type               = "t4g.small"
-  subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = var.security_group_ids
-  associate_public_ip_address = false
+  ami                    = data.aws_ami.amazon_linux.id
+  instance_type          = "t4g.small"
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = var.security_group_ids
 
   key_name = aws_key_pair.bastion.key_name
   user_data = templatefile("${path.module}/templates/bastion_user_data.sh.tftpl", {
