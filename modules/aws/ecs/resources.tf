@@ -51,6 +51,8 @@ resource "aws_ecs_task_definition" "task" {
         }
       }
 
+      essential = true
+
       environment = [
         for key, value in var.environment_variables : {
           name  = key
