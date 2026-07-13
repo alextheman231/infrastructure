@@ -3,6 +3,9 @@ resource "aws_secretsmanager_secret" "default" {
 }
 
 resource "aws_secretsmanager_secret_version" "default" {
-  secret_id     = aws_secretsmanager_secret.default.id
-  secret_string = jsonencode(var.secrets)
+  secret_id = aws_secretsmanager_secret.default.id
+  secret_string = jsonencode({
+    for key, value in var.secrets :
+    key => sensitive(value)
+  })
 }
