@@ -11,7 +11,7 @@ module "lexicon_repository" {
     AWS_SERVICE_NAME          = module.lexicon_ecs_service.service_name
     AWS_MIGRATION_TASK_FAMILY = module.lexicon_ecs_service.task_families["migrate"]
     AWS_REGION                = var.aws_region
-    AWS_SECURITY_GROUP_ID     = module.lexicon_ecs_service.security_group_id
+    AWS_SECURITY_GROUP_ID     = module.lexicon_ecs_security_group.id
     AWS_SUBNET_IDS            = join(",", module.lexicon_ecs_service.subnet_ids)
     AWS_ASSIGN_PUBLIC_IP      = module.lexicon_ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
     AWS_ECR_REPOSITORY_URL    = module.lexicon_ecr_image.repository_url

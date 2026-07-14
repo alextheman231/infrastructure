@@ -9,7 +9,7 @@ resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {
 }
 
 resource "aws_vpc_security_group_ingress_rule" "alb_to_ecs" {
-  security_group_id = module.lexicon_ecs_service.security_group_id
+  security_group_id = module.lexicon_ecs_security_group.id
 
   referenced_security_group_id = module.lexicon_load_balancer_security_group.id
 
@@ -21,7 +21,7 @@ resource "aws_vpc_security_group_ingress_rule" "alb_to_ecs" {
 resource "aws_vpc_security_group_ingress_rule" "ecs_to_database" {
   security_group_id = module.lexicon_database_security_group.id
 
-  referenced_security_group_id = module.lexicon_ecs_service.security_group_id
+  referenced_security_group_id = module.lexicon_ecs_security_group.id
 
   from_port   = 5432
   to_port     = 5432

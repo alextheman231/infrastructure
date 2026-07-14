@@ -4,5 +4,6 @@ module "lexicon_all_egress_rule" {
     database = module.lexicon_database_security_group.id
     bastion  = module.lexicon_bastion_security_group.id
     alb      = module.lexicon_load_balancer_security_group.id
+    ecs      = module.lexicon_ecs_security_group.id
   }
 }
