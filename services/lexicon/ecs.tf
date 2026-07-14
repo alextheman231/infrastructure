@@ -35,4 +35,5 @@ module "lexicon_ecs_service" {
   target_group_arn   = module.lexicon_load_balancer.target_group_arn
   lb_listener_arn    = module.lexicon_load_balancer.listener_arn
   execution_role_arn = module.lexicon_ecs_task_execution_role.role_arn
+  security_group_ids = [module.lexicon_ecs_security_group.id]
 }
