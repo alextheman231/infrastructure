@@ -6,4 +6,5 @@ variable "name" {
 variable "secrets" {
   description = "The secrets to use."
   type        = map(string)
+  sensitive   = true
 }
