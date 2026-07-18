@@ -58,9 +58,9 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     env:
-      TF_CLOUD_ORGANIZATION: "alextheman"
+      TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
       TF_TOKEN_app_terraform_io: ${{ secrets.TFE_TOKEN }}
-      TF_WORKSPACE: "infrastructure"
+      TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
     outputs:
       plan_summary: ${{ steps.plan_summary.outputs.plan_summary }}
     steps:
