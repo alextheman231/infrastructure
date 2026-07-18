@@ -16,7 +16,7 @@ module "lexicon_dns_validation_records" {
   type    = each.value.resource_record_type
   content = each.value.resource_record_value
 
-  zone_id = var.cloudflare_lexicon_zone_id
+  zone_id = data.cloudflare_zone.lexicon_domain.zone_id
   proxied = false
   ttl     = 660
 }
