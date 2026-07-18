@@ -16,3 +16,8 @@ module "lexicon_dns_record" {
   zone_id = data.cloudflare_zone.lexicon_domain.zone_id
   content = module.lexicon_load_balancer.dns_name
 }
+
+resource "cloudflare_zone_dnssec" "lexicon_domain" {
+  zone_id = data.cloudflare_zone.lexicon_domain.zone_id
+  status  = "active"
+}
