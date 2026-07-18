@@ -19,5 +19,4 @@ module "lexicon_dns_record" {
 
 resource "cloudflare_zone_dnssec" "lexicon_domain" {
   zone_id = data.cloudflare_zone.lexicon_domain.zone_id
-  status  = "active"
 }
