@@ -30,7 +30,6 @@ module "services" {
   sentry_infrastructure_token                = var.sentry_infrastructure_token
   sentry_organisation_token                  = var.sentry_organisation_token
   cloudflare_api_token                       = var.cloudflare_api_token
-  cloudflare_lexicon_zone_id                 = var.cloudflare_lexicon_zone_id
   lexicon_database_password                  = var.lexicon_database_password
   public_ssh_key                             = var.public_ssh_key
 }

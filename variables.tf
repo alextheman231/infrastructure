@@ -94,11 +94,6 @@ variable "cloudflare_api_token" {
   sensitive = true
 }
 
-variable "cloudflare_lexicon_zone_id" {
-  description = "The Cloudflare Lexicon Zone ID"
-  type        = string
-}
-
 variable "lexicon_database_password" {
   description = "The password for the Lexicon database."
   type        = string

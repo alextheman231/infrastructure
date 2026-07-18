@@ -14,7 +14,6 @@ module "lexicon" {
   lexicon_google_client_secret      = var.lexicon_google_client_secret
   public_ssh_key                    = var.public_ssh_key
   aws_region                        = "eu-west-2"
-  cloudflare_lexicon_zone_id        = var.cloudflare_lexicon_zone_id
   sentry_organisation_id            = module.sentry_organisation.id
   sentry_github_integration_id      = module.sentry_organisation.github_integration_id
 }
