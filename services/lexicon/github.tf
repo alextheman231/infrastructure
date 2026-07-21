@@ -4,7 +4,6 @@ module "lexicon_repository" {
   description        = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
   visibility         = "public"
   required_ci_checks = var.required_ci_checks
-  alex_up_bot_app_id = var.alex_up_bot_app_id
   variables = {
     AWS_ROLE_ARN              = module.lexicon_deployment_role.role_arn
     AWS_CLUSTER_NAME          = module.lexicon_ecs_service.cluster_name

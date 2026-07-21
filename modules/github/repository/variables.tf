@@ -42,11 +42,6 @@ variable "required_ci_checks" {
   default     = []
 }
 
-variable "alex_up_bot_app_id" {
-  description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions."
-  type        = string
-}
-
 variable "has_pages" {
   description = "Enable GitHub Pages deployment for the repository."
   type        = bool

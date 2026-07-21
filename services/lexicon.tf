@@ -7,7 +7,6 @@ module "lexicon" {
     local.check_name.lexicon.end_to_end_ci
   ])
   github_labels                     = merge(local.labels.standard, local.labels.app)
-  alex_up_bot_app_id                = var.alex_up_bot_app_id
   deployment_role_oidc_provider_arn = aws_iam_openid_connect_provider.github.arn
   lexicon_domain                    = var.lexicon_domain
   lexicon_google_client_id          = var.lexicon_google_client_id

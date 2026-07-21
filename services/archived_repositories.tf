@@ -5,7 +5,6 @@ module "neurosongs_2_repository" {
   visibility         = "public"
   archived           = true
   required_ci_checks = concat(local.check_list.base, [local.check_name.neurosongs.ci])
-  alex_up_bot_app_id = var.alex_up_bot_app_id
 }
 
 module "alex_g_bot_2_repository" {
@@ -15,5 +14,4 @@ module "alex_g_bot_2_repository" {
   visibility         = "public"
   archived           = true
   required_ci_checks = concat(local.check_list.base, [local.check_name.alex_g_bot.ci])
-  alex_up_bot_app_id = var.alex_up_bot_app_id
 }

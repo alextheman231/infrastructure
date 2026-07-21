@@ -18,11 +18,6 @@ variable "github_labels" {
   default = {}
 }
 
-variable "alex_up_bot_app_id" {
-  description = "App ID for alex-up-bot."
-  type        = string
-}
-
 variable "deployment_role_oidc_provider_arn" {
   description = "The OIDC provider ARN for the deployment role."
   type        = string

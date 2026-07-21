@@ -18,7 +18,6 @@ module "services" {
   tfe_token                                  = var.tfe_token
   tfe_org_token                              = var.tfe_org_token
   lexicon_google_client_id                   = var.lexicon_google_client_id
-  alex_up_bot_app_id                         = var.alex_up_bot_app_id
   alex_up_bot_private_key                    = var.alex_up_bot_private_key
   alex_infrastructure_bot_app_id             = var.alex_infrastructure_bot_app_id
   alex_infrastructure_bot_installation_id    = var.alex_infrastructure_bot_installation_id

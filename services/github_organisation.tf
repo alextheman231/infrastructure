@@ -1,3 +1,7 @@
+data "github_app" "alex_up_bot" {
+  slug = "alex-up-bot"
+}
+
 module "github_organisation" {
   source      = "../modules/github/organisation"
   name        = "alextheman231"
@@ -10,7 +14,7 @@ module "github_organisation" {
   webhook_url   = var.webhook_url
 
   variables = {
-    ALEX_UP_BOT_APP_ID = var.alex_up_bot_app_id
+    ALEX_UP_BOT_APP_ID = data.github_app.alex_up_bot.id
   }
   secrets = {
     ALEX_UP_BOT_PRIVATE_KEY   = var.alex_up_bot_private_key

@@ -1,10 +1,9 @@
 module "music_repository" {
   source = "../modules/github/repository"
 
-  name               = "music"
-  description        = "My music projects."
-  visibility         = "public"
-  alex_up_bot_app_id = var.alex_up_bot_app_id
+  name        = "music"
+  description = "My music projects."
+  visibility  = "public"
   labels = {
     "breaking change" = {
       color       = "B60205"

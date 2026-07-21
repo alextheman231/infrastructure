@@ -106,7 +106,7 @@ resource "github_repository_ruleset" "restrict_version_tags" {
 
   bypass_actors {
     actor_type  = "Integration"
-    actor_id    = var.alex_up_bot_app_id
+    actor_id    = data.github_app.alex_up_bot.id
     bypass_mode = "exempt"
   }
 
