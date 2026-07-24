@@ -25,8 +25,3 @@ module "lexicon_ecs_security_group" {
   name   = "lexicon-ecs"
   vpc_id = module.lexicon_network.vpc_id
 }
-
-moved {
-  from = module.lexicon_ecs_service.aws_security_group.ecs
-  to   = module.lexicon_ecs_security_group.aws_security_group.default
-}
