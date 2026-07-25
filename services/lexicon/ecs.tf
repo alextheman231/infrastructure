@@ -4,6 +4,13 @@ module "lexicon_ecs_task_execution_role" {
   secret_arns = module.lexicon_secrets.secret_arns
 }
 
+module "lexicon_ecs_task_role" {
+  source = "../../modules/aws/roles/ecs_task"
+
+  name           = "lexicon"
+  s3_bucket_arns = [module.file_store_prod.arn, module.file_store_dev.arn]
+}
+
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
 
@@ -35,5 +42,6 @@ module "lexicon_ecs_service" {
   target_group_arn   = module.lexicon_load_balancer.target_group_arn
   lb_listener_arn    = module.lexicon_load_balancer.listener_arn
   execution_role_arn = module.lexicon_ecs_task_execution_role.role_arn
+  task_role_arn      = module.lexicon_ecs_task_role.role_arn
   security_group_ids = [module.lexicon_ecs_security_group.id]
 }
