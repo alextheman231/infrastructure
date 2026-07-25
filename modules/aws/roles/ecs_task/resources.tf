@@ -27,11 +27,15 @@ resource "aws_iam_policy" "ecs_task_s3_access" {
         Action = [
           "s3:PutObject",
           "s3:GetObject",
-          "s3:ListBucket",
           "s3:DeleteObject"
         ]
         Effect   = "Allow"
-        Resource = concat(var.s3_bucket_arns, [for arn in var.s3_bucket_arns : "${arn}/*"])
+        Resource = [for arn in var.s3_bucket_arns : "${arn}/*"]
+      },
+      {
+        Action   = ["s3:ListBucket"]
+        Effect   = "Allow"
+        Resource = var.s3_bucket_arns
       }
     ]
   })
