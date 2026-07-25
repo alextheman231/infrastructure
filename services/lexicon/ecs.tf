@@ -1,6 +1,6 @@
 module "lexicon_ecs_task_execution_role" {
   source      = "../../modules/aws/roles/ecs_task_execution"
-  name        = "lexicon-london"
+  name        = "lexicon"
   secret_arns = module.lexicon_secrets.secret_arns
 }
 
