@@ -105,3 +105,8 @@ variable "security_group_ids" {
   description = "List of security group IDs to associate with the ECS service."
   type        = list(string)
 }
+
+variable "task_role_arn" {
+  description = "The ARN of the task role."
+  type        = string
+}
