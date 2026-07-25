@@ -21,7 +21,7 @@ resource "aws_iam_policy" "ecs_task_s3_access" {
   description = "Policy allowing ECS tasks to access S3 buckets."
 
   policy = jsonencode({
-    Version = "2012-10-27"
+    Version = "2012-10-17"
     Statement = [
       {
         Action = [
