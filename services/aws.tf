@@ -3,16 +3,17 @@ locals {
 }
 
 module "alex_iam_user" {
-  source = "../modules/aws/iam_user"
+  source = "../modules/aws/iam_user/power_user"
 
   name = "alextheman231"
 }
 
-data "aws_iam_policy" "power_user_access" {
-  arn = "arn:aws:iam::aws:policy/PowerUserAccess"
+moved {
+  from = module.alex_iam_user.aws_iam_user.default
+  to   = module.alex_iam_user.aws_iam_user.power_user
 }
 
-resource "aws_iam_user_policy_attachment" "power_user" {
-  policy_arn = data.aws_iam_policy.power_user_access.arn
-  user       = module.alex_iam_user.name
+moved {
+  from = module.alex_iam_user.aws_iam_user_login_profile.default
+  to   = module.alex_iam_user.aws_iam_user_login_profile.power_user
 }
