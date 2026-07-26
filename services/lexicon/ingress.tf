@@ -1,7 +1,7 @@
-resource "aws_vpc_security_group_ingress_rule" "bastion_postgres" {
+resource "aws_vpc_security_group_ingress_rule" "session_management_to_database" {
   security_group_id = module.lexicon_database_security_group.id
 
-  referenced_security_group_id = module.lexicon_bastion_security_group.id
+  referenced_security_group_id = module.lexicon_session_management_security_group.id
 
   from_port   = 5432
   to_port     = 5432
