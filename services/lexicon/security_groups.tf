@@ -5,10 +5,10 @@ module "lexicon_database_security_group" {
   vpc_id = module.lexicon_network.vpc_id
 }
 
-module "lexicon_bastion_security_group" {
+module "lexicon_session_management_security_group" {
   source = "../../modules/aws/security_group"
 
-  name   = "lexicon-bastion"
+  name   = "lexicon-session-management"
   vpc_id = module.lexicon_network.vpc_id
 }
 
