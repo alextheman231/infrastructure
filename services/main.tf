@@ -24,6 +24,10 @@ terraform {
       source  = "hashicorp/random"
       version = ">=3.9.0"
     }
+    discord = {
+      source  = "unkso/discord"
+      version = ">=2.7.1"
+    }
   }
 }
 
@@ -51,4 +55,8 @@ provider "cloudflare" {
 
 provider "aws" {
   region = local.aws_region
+}
+
+provider "discord" {
+  token = var.discord_token
 }

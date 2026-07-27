@@ -32,4 +32,5 @@ module "services" {
   cloudflare_api_token                       = var.cloudflare_api_token
   lexicon_database_password                  = var.lexicon_database_password
   public_ssh_key                             = var.public_ssh_key
+  discord_token                              = var.discord_token
 }
