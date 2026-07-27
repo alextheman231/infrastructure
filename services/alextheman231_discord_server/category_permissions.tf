@@ -11,3 +11,10 @@ resource "discord_channel_permission" "admin_category_bot" {
   type         = "role"
   overwrite_id = discord_role.bot.id
 }
+
+resource "discord_channel_permission" "general_everyone" {
+  channel_id   = discord_category_channel.general.id
+  allow        = data.discord_permission.general_everyone.allow_bits
+  type         = "role"
+  overwrite_id = discord_role_everyone.default.id
+}
