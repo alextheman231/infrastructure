@@ -17,5 +17,6 @@ resource "discord_role" "bot" {
 }
 
 resource "discord_role_everyone" "default" {
-  server_id = var.server_id
+  server_id   = var.server_id
+  permissions = data.discord_permission.everyone.allow_bits
 }

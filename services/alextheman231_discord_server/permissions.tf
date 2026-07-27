@@ -14,6 +14,10 @@ data "discord_permission" "bot" {
   send_messages         = "allow"
 }
 
+data "discord_permission" "everyone" {
+  change_nickname = "allow"
+}
+
 data "discord_permission" "no_send_messages" {
   send_messages = "deny"
 }
