@@ -104,3 +104,9 @@ variable "public_ssh_key" {
   description = "My public SSH key"
   type        = string
 }
+
+variable "discord_token" {
+  description = "Discord token to help manage my Discord infrastructure."
+  type        = string
+  sensitive   = true
+}
