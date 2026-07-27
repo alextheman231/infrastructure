@@ -139,6 +139,7 @@ provider "registry.terraform.io/unkso/discord" {
   constraints = ">= 2.7.1"
   hashes = [
     "h1:/sO9huHyTDCX5DDRi4WRKYlnkLUTnheDPFcB6pOzSuo=",
+    "h1:GgV7ncp1/86OrrT7XbXdUdiKthrHFpdDNvT49VcEbfI=",
     "zh:68cebc939c64103b800f16be3f7f9a00ba52b1db00268658e0ecc3297c31bc7b",
     "zh:73184206bd471b131924399dc1dcbc5e59c5e7d975cf4e9054585326516020cc",
     "zh:984cb1ea8e76084526bd304cd3dbd6ff2d39f6e37dc28d6816f6672babb31e36",
