@@ -21,3 +21,9 @@ data "discord_permission" "no_send_messages" {
 data "discord_permission" "send_messages" {
   send_messages = "allow"
 }
+
+data "discord_permission" "general_everyone" {
+  view_channel  = "allow"
+  send_messages = "allow"
+  add_reactions = "allow"
+}
