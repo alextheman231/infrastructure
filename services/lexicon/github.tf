@@ -50,7 +50,8 @@ data "aws_iam_policy_document" "lexicon_deploy" {
     ]
 
     resources = [
-      module.lexicon_ecs_task_execution_role.role_arn
+      module.lexicon_ecs_task_execution_role.role_arn,
+      module.lexicon_ecs_task_role.role_arn
     ]
   }
 }
