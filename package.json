@@ -37,7 +37,7 @@
   "packageManager": "pnpm@11.18.0+sha512.33d83c77da82f49fba836925c6f1b841181ec3132b670639bd012f7075f5c7cf634c5f870147c19aae7478fac01df09d8892e880454896edd23ee9b33757563c",
   "devDependencies": {
     "@alextheman/eslint-plugin": "5.18.0",
-    "@types/node": "26.1.1",
+    "@types/node": "26.1.2",
     "alex-c-line": "2.13.0",
     "dotenv-cli": "11.0.0",
     "eslint": "10.8.0",
