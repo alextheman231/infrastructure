@@ -14,8 +14,8 @@ module "lexicon_ecs_task_role" {
 module "lexicon_ecs_service" {
   source = "../../modules/aws/ecs"
 
-  vpc_id     = module.lexicon_network.vpc_id
-  subnet_ids = module.lexicon_network.private_subnet_ids
+  vpc_id     = var.vpc_id
+  subnet_ids = var.private_subnet_ids
   name       = "lexicon"
   image      = module.lexicon_ecr_image.repository_url
   port       = local.backend_port

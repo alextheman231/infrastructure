@@ -16,4 +16,8 @@ module "lexicon" {
   aws_region                        = local.aws_region
   sentry_organisation_id            = module.sentry_organisation.id
   sentry_github_integration_id      = module.sentry_organisation.github_integration_id
+  vpc_id                            = module.aws_network.vpc_id
+  public_subnet_ids                 = module.aws_network.public_subnet_ids
+  private_subnet_ids                = module.aws_network.private_subnet_ids
+  db_subnet_group_name              = module.aws_network.db_subnet_group_name
 }
