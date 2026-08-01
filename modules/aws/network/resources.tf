@@ -97,17 +97,3 @@ resource "aws_route_table_association" "private_gateway" {
   subnet_id      = aws_subnet.private[count.index].id
   route_table_id = aws_route_table.private.id
 }
-
-resource "aws_db_subnet_group" "default" {
-  name = "${var.name}-subnet-group"
-
-  subnet_ids = aws_subnet.private[*].id
-
-  tags = {
-    Name = var.name
-  }
-
-  lifecycle {
-    create_before_destroy = true
-  }
-}

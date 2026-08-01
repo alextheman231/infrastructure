@@ -19,5 +19,4 @@ module "lexicon" {
   vpc_id                            = module.aws_network.vpc_id
   public_subnet_ids                 = module.aws_network.public_subnet_ids
   private_subnet_ids                = module.aws_network.private_subnet_ids
-  db_subnet_group_name              = module.aws_network.db_subnet_group_name
 }
