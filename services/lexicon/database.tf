@@ -5,6 +5,6 @@ module "lexicon_database" {
   postgres_version     = "18"
   username             = "lexicon_user"
   password             = var.lexicon_database_password
-  db_subnet_group_name = var.db_subnet_group_name
+  db_subnet_group_name = module.lexicon_network.db_subnet_group_name
   security_group_ids   = [module.lexicon_database_security_group.id]
 }

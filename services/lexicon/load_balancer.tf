@@ -37,7 +37,7 @@ module "lexicon_load_balancer" {
   health_check_path  = "/api/v1"
   port               = local.backend_port
   certificate_arn    = module.lexicon_acm_certificate_validation.validated_certificate_arn
-  vpc_id             = var.vpc_id
-  subnet_ids         = var.public_subnet_ids
+  vpc_id             = module.lexicon_network.vpc_id
+  subnet_ids         = module.lexicon_network.public_subnet_ids
   security_group_ids = [module.lexicon_load_balancer_security_group.id]
 }
