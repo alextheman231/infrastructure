@@ -25,10 +25,9 @@ variable "password" {
   sensitive   = true
 }
 
-variable "db_subnet_group_name" {
-  description = "The name of the database subnet group."
-  type        = string
-  default     = null
+variable "subnet_ids" {
+  description = "The subnet IDs."
+  type        = list(string)
 }
 
 variable "deletion_protection" {

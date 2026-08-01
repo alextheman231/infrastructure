@@ -78,8 +78,3 @@ variable "private_subnet_ids" {
   description = "The private subnet IDs."
   type        = list(string)
 }
-
-variable "db_subnet_group_name" {
-  description = "The name of the subnet group associated with the database."
-  type        = string
-}

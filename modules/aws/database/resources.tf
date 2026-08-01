@@ -4,6 +4,20 @@ resource "random_id" "final_snapshot" {
   byte_length = 8
 }
 
+resource "aws_db_subnet_group" "default" {
+  name = "${var.initial_db_name}-subnet-group"
+
+  subnet_ids = var.subnet_ids
+
+  tags = {
+    Name = var.db_identifier
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
 resource "aws_db_instance" "default" {
   identifier = var.db_identifier
 
@@ -27,6 +41,6 @@ resource "aws_db_instance" "default" {
   publicly_accessible = false
 
   vpc_security_group_ids    = var.security_group_ids
-  db_subnet_group_name      = var.db_subnet_group_name
+  db_subnet_group_name      = aws_db_subnet_group.default.name
   final_snapshot_identifier = "${var.db_identifier}-final-${random_id.final_snapshot.hex}"
 }
