@@ -106,4 +106,8 @@ resource "aws_db_subnet_group" "default" {
   tags = {
     Name = var.name
   }
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
