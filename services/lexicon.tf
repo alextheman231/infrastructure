@@ -17,3 +17,8 @@ module "lexicon" {
   sentry_organisation_id            = module.sentry_organisation.id
   sentry_github_integration_id      = module.sentry_organisation.github_integration_id
 }
+
+moved {
+  from = module.aws_network
+  to   = module.lexicon.module.lexicon_network
+}
