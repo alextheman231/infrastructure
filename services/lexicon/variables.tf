@@ -78,3 +78,8 @@ variable "private_subnet_ids" {
   description = "The private subnet IDs."
   type        = list(string)
 }
+
+variable "plan_role_id" {
+  description = "The Terraform plan role ID."
+  type        = string
+}

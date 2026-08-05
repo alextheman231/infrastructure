@@ -8,3 +8,14 @@ variable "secrets" {
   type        = map(string)
   sensitive   = true
 }
+
+variable "plan_role_id" {
+  description = "The Terraform plan role ID."
+  type        = string
+}
+
+variable "allowed_role_ids" {
+  description = "Role IDs to allow secret access to."
+  type        = map(string)
+  default     = {}
+}

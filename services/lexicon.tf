@@ -19,4 +19,5 @@ module "lexicon" {
   vpc_id                            = module.aws_network.vpc_id
   public_subnet_ids                 = module.aws_network.public_subnet_ids
   private_subnet_ids                = module.aws_network.private_subnet_ids
+  plan_role_id                      = module.terraform_plan_role.role_id
 }
