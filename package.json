@@ -36,15 +36,15 @@
   "license": "ISC",
   "packageManager": "pnpm@11.20.0+sha512.9a6f330a95b66446ea088faf1521405a8a01f07fde7124cc9958dfed52d4bb436737e65b08f85f37b46fcba375092558ac51262b816844b22f63406ed166bfee",
   "devDependencies": {
-    "@alextheman/eslint-plugin": "5.18.0",
+    "@alextheman/eslint-plugin": "5.18.1",
     "@types/node": "26.1.2",
-    "alex-c-line": "2.13.0",
+    "alex-c-line": "2.13.1",
     "dotenv-cli": "11.0.0",
     "eslint": "10.8.0",
     "husky": "9.1.7",
     "prettier": "3.9.6",
     "tsdown": "0.22.14",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.65.0"
+    "typescript-eslint": "8.66.0"
   }
 }
