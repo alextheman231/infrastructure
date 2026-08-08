@@ -1,7 +1,7 @@
 module "github_organisation" {
   source      = "../modules/github/organisation"
   name        = "alextheman231"
-  description = "This GitHub organisation is home to all my mainline NPM packages, shared GitHub Actions, Infrastructure, applications, and other general creative work (e.g. music)."
+  description = "This GitHub organisation is home to all my personal projects, including my programming projects, music projects, and the infrastructure for them."
   admins      = ["AlexMan123456"]
   members     = ["badstagram", "RLCreates", "peatsham"]
 
