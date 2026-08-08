@@ -7,7 +7,7 @@ module "tfe_organisation" {
 module "infrastructure_repository" {
   source      = "../modules/github/repository"
   name        = "infrastructure"
-  description = "Infrastructure for my GitHub repositories."
+  description = "Infrastructure for my personal projects."
   visibility  = "public"
   required_ci_checks = concat(local.check_list.base, [
     local.check_name.terraform.lint_ci,
