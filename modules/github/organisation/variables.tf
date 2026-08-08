@@ -6,6 +6,10 @@ variable "name" {
 variable "description" {
   description = "The organisation description."
   type        = string
+  validation {
+    condition     = length(var.description) <= 160
+    error_message = "Description is too long. Must be a maximum of 160 characters but was actually ${length(var.description)}"
+  }
 }
 
 variable "billing_email" {
