@@ -2,7 +2,7 @@ resource "sentry_organization_repository" "github" {
   organization     = var.sentry_organisation_id
   integration_type = "github"
   integration_id   = var.sentry_github_integration_id
-  identifier       = "alextheman231/lexicon"
+  identifier       = module.lexicon_repository.full_name
 }
 
 module "lexicon_sentry_back_end" {
