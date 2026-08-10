@@ -5,5 +5,6 @@ module "lexicon_all_egress_rule" {
     session_management = module.lexicon_session_management_security_group.id
     alb                = module.lexicon_load_balancer_security_group.id
     ecs                = module.lexicon_ecs_security_group.id
+    redis              = module.redis_security_group.id
   }
 }

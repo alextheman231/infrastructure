@@ -45,3 +45,13 @@ resource "aws_vpc_security_group_ingress_rule" "https" {
   ip_protocol = "tcp"
   cidr_ipv4   = "0.0.0.0/0"
 }
+
+resource "aws_vpc_security_group_ingress_rule" "redis" {
+  security_group_id = module.redis_security_group.id
+
+  referenced_security_group_id = module.lexicon_ecs_security_group.id
+
+  from_port   = 6379
+  to_port     = 6379
+  ip_protocol = "tcp"
+}
