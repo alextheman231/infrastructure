@@ -58,7 +58,7 @@ data "aws_iam_policy_document" "lexicon_deploy" {
 
 module "lexicon_deployment_role" {
   source            = "../../modules/aws/roles/github"
-  repository        = "alextheman231/lexicon"
+  repository        = module.lexicon_repository.full_name
   role_name         = "lexicon-deployment"
   oidc_provider_arn = var.deployment_role_oidc_provider_arn
   policy_json       = data.aws_iam_policy_document.lexicon_deploy.json
