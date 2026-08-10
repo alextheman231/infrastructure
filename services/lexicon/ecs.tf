@@ -25,6 +25,7 @@ module "lexicon_ecs_service" {
     ALLOWED_ORIGINS  = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID = var.lexicon_google_client_id
     SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
+    REDIS_URL        = module.redis.endpoint
   }
   secret_arns     = module.lexicon_secrets.secret_arns
   fargate_version = "1.4.0"

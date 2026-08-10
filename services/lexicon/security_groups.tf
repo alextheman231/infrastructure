@@ -25,3 +25,10 @@ module "lexicon_ecs_security_group" {
   name   = "lexicon-ecs"
   vpc_id = var.vpc_id
 }
+
+module "redis_security_group" {
+  source = "../../modules/aws/security_group"
+
+  name   = "lexicon-redis"
+  vpc_id = var.vpc_id
+}
