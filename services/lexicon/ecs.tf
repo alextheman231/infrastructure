@@ -20,11 +20,12 @@ module "lexicon_ecs_service" {
   image      = module.lexicon_ecr_image.repository_url
   port       = local.backend_port
   environment_variables = {
-    NODE_ENV         = "production"
-    API_BASE_URL     = "https://${var.lexicon_domain}"
-    GOOGLE_CLIENT_ID = var.lexicon_google_client_id
-    SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
-    REDIS_URL        = module.redis.endpoint
+    NODE_ENV               = "production"
+    API_BASE_URL           = "https://${var.lexicon_domain}"
+    GOOGLE_CLIENT_ID       = var.lexicon_google_client_id
+    SENTRY_DSN             = module.lexicon_sentry_back_end.public_dsn
+    REDIS_URL              = module.redis.endpoint
+    FILE_STORE_BUCKET_NAME = module.file_store_prod.name
   }
   secret_arns     = module.lexicon_secrets.secret_arns
   fargate_version = "1.4.0"
