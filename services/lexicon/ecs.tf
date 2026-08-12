@@ -22,7 +22,6 @@ module "lexicon_ecs_service" {
   environment_variables = {
     NODE_ENV         = "production"
     API_BASE_URL     = "https://${var.lexicon_domain}"
-    ALLOWED_ORIGINS  = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID = var.lexicon_google_client_id
     SENTRY_DSN       = module.lexicon_sentry_back_end.public_dsn
     REDIS_URL        = module.redis.endpoint
