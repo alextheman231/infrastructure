@@ -10,7 +10,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 module "session_management_role" {
-  source = "../../modules/aws/roles/session_management"
+  source = "../../modules/aws/iam/roles/session_management"
 
   name = "lexicon"
 }

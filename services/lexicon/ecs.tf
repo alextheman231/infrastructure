@@ -1,11 +1,11 @@
 module "lexicon_ecs_task_execution_role" {
-  source      = "../../modules/aws/roles/ecs_task_execution"
+  source      = "../../modules/aws/iam/roles/ecs_task_execution"
   name        = "lexicon"
   secret_arns = module.lexicon_secrets.secret_arns
 }
 
 module "lexicon_ecs_task_role" {
-  source = "../../modules/aws/roles/ecs_task"
+  source = "../../modules/aws/iam/roles/ecs_task"
 
   name           = "lexicon"
   s3_bucket_arns = [module.file_store_prod.arn, module.file_store_dev.arn]

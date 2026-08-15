@@ -26,7 +26,7 @@ module "infrastructure_repository" {
 }
 
 module "terraform_plan_role" {
-  source = "../modules/aws/roles/terraform"
+  source = "../modules/aws/iam/roles/terraform"
 
   oidc_provider_arn = aws_iam_openid_connect_provider.terraform.arn
   organization      = module.tfe_organisation.organisation_name
@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "readonly" {
 }
 
 module "terraform_apply_role" {
-  source = "../modules/aws/roles/terraform"
+  source = "../modules/aws/iam/roles/terraform"
 
   oidc_provider_arn = aws_iam_openid_connect_provider.terraform.arn
   organization      = module.tfe_organisation.organisation_name
