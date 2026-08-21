@@ -32,3 +32,12 @@ module "music_repository" {
     }
   }
 }
+
+module "music_repository_dev" {
+  source = "../modules/github/repository"
+
+  name               = "music-dev"
+  description        = "My WIP music projects."
+  visibility         = "private"
+  alex_up_bot_app_id = var.alex_up_bot_app_id
+}
