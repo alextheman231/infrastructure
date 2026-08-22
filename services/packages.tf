@@ -51,7 +51,11 @@ module "github_actions_repository" {
   visibility  = "public"
   required_ci_checks = concat(
     local.check_list.github_actions.base,
-    [local.check_name.github_actions.actions_ci, local.check_name.github_actions.version_change_ci]
+    [
+      local.check_name.github_actions.actions_ci,
+      local.check_name.github_actions.version_change_ci,
+      local.check_name.check_labels
+    ]
   )
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
