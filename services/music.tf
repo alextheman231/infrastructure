@@ -31,6 +31,10 @@ module "music_repository" {
       color       = "C2E0C6"
       description = "Quality improvements without audible changes."
     }
+    "tooling" = {
+      color       = "5319E7"
+      description = "Tooling and dependency changes."
+    }
   }
 }
 
