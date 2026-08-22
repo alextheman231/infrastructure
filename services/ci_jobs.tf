@@ -52,7 +52,8 @@ locals {
 
   _base_checks = [
     local.check_name.actions_ci,
-    local.check_name.restrict_alex_up_bot_branches
+    local.check_name.restrict_alex_up_bot_branches,
+    local.check_name.check_labels
   ]
 
   check_list = {
