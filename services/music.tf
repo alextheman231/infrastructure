@@ -13,7 +13,7 @@ module "music_repository" {
     }
     "new section" = {
       color       = "A2EEEF"
-      description = "Adds a new section to a song"
+      description = "Adds a new section to a song."
     }
     "wrong note fix" = {
       color       = "D73A4A"
