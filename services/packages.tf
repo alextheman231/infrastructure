@@ -54,7 +54,6 @@ module "github_actions_repository" {
     [
       local.check_name.github_actions.actions_ci,
       local.check_name.github_actions.version_change_ci,
-      local.check_name.check_labels
     ]
   )
   has_pages          = true
