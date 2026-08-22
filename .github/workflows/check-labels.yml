@@ -1,4 +1,4 @@
-name: Check labels (Internal)
+name: Check labels
 
 on:
   pull_request:
