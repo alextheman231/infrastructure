@@ -7,7 +7,7 @@ resource "github_repository" "default" {
   has_projects = var.has_projects
   has_wiki     = var.has_wiki
 
-  allow_auto_merge       = true
+  allow_auto_merge       = var.visibility == "public"
   allow_merge_commit     = true
   allow_rebase_merge     = true
   allow_squash_merge     = false
