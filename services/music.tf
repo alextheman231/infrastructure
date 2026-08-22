@@ -5,6 +5,7 @@ module "music_repository" {
   description        = "My music projects."
   visibility         = "public"
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  required_ci_checks = local.check_list.base
   labels = {
     "breaking change" = {
       color       = "B60205"
