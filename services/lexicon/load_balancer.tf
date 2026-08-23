@@ -41,23 +41,3 @@ module "load_balancer" {
   subnet_ids         = var.public_subnet_ids
   security_group_ids = [module.load_balancer_security_group.id]
 }
-
-moved {
-  from = module.lexicon_acm_certificate
-  to   = module.acm_certificate
-}
-
-moved {
-  from = module.lexicon_dns_validation_records
-  to   = module.dns_validation_records
-}
-
-moved {
-  from = module.lexicon_acm_certificate_validation
-  to   = module.acm_certificate_validation
-}
-
-moved {
-  from = module.lexicon_load_balancer
-  to   = module.load_balancer
-}

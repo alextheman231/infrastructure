@@ -26,13 +26,3 @@ module "sentry_front_end" {
   sentry_repository_id  = sentry_organization_repository.github.id
   source_root           = "apps/front-end/src"
 }
-
-moved {
-  from = module.lexicon_sentry_back_end
-  to   = module.sentry_back_end
-}
-
-moved {
-  from = module.lexicon_sentry_front_end
-  to   = module.sentry_front_end
-}

@@ -21,13 +21,3 @@ resource "cloudflare_zone_dnssec" "domain" {
   zone_id = data.cloudflare_zone.lexicon_domain.zone_id
   status  = "active"
 }
-
-moved {
-  from = module.lexicon_dns_record
-  to   = module.dns_record
-}
-
-moved {
-  from = cloudflare_zone_dnssec.lexicon_domain
-  to   = cloudflare_zone_dnssec.domain
-}

@@ -10,8 +10,3 @@ module "secrets" {
     ecs_task_execution = module.ecs_task_execution_role.role_id
   }
 }
-
-moved {
-  from = module.lexicon_secrets
-  to   = module.secrets
-}

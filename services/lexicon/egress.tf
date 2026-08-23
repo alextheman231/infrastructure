@@ -8,8 +8,3 @@ module "all_egress_rule" {
     redis              = module.redis_security_group.id
   }
 }
-
-moved {
-  from = module.lexicon_all_egress_rule
-  to   = module.all_egress_rule
-}

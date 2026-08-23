@@ -20,11 +20,6 @@ module "repository" {
   labels = var.github_labels
 }
 
-moved {
-  from = module.lexicon_repository
-  to   = module.repository
-}
-
 data "aws_iam_policy_document" "deploy" {
   statement {
     effect = "Allow"
@@ -67,9 +62,4 @@ module "deployment_role" {
   role_name         = "lexicon-deployment"
   oidc_provider_arn = var.deployment_role_oidc_provider_arn
   policy_json       = data.aws_iam_policy_document.deploy.json
-}
-
-moved {
-  from = module.lexicon_deployment_role
-  to   = module.deployment_role
 }

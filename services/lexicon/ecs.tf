@@ -46,18 +46,3 @@ module "ecs_service" {
   task_role_arn      = module.ecs_task_role.role_arn
   security_group_ids = [module.ecs_security_group.id]
 }
-
-moved {
-  from = module.lexicon_ecs_task_execution_role
-  to   = module.ecs_task_execution_role
-}
-
-moved {
-  from = module.lexicon_ecs_task_role
-  to   = module.ecs_task_role
-}
-
-moved {
-  from = module.lexicon_ecs_service
-  to   = module.ecs_service
-}
