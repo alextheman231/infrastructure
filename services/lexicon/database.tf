@@ -8,8 +8,3 @@ module "database" {
   security_group_ids = [module.database_security_group.id]
   subnet_ids         = var.private_subnet_ids
 }
-
-moved {
-  from = module.lexicon_database
-  to   = module.database
-}
