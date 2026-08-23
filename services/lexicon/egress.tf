@@ -1,10 +1,15 @@
-module "lexicon_all_egress_rule" {
+module "all_egress_rule" {
   source = "../../modules/aws/security_group/egress_all"
   security_group_id_map = {
-    database           = module.lexicon_database_security_group.id
-    session_management = module.lexicon_session_management_security_group.id
-    alb                = module.lexicon_load_balancer_security_group.id
-    ecs                = module.lexicon_ecs_security_group.id
+    database           = module.database_security_group.id
+    session_management = module.session_management_security_group.id
+    alb                = module.load_balancer_security_group.id
+    ecs                = module.ecs_security_group.id
     redis              = module.redis_security_group.id
   }
+}
+
+moved {
+  from = module.lexicon_all_egress_rule
+  to   = module.all_egress_rule
 }

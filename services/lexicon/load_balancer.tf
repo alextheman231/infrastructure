@@ -1,12 +1,12 @@
-module "lexicon_acm_certificate" {
+module "acm_certificate" {
   source                    = "../../modules/aws/acm_certificate"
   domain_name               = var.lexicon_domain
   subject_alternative_names = ["www.${var.lexicon_domain}"]
 }
 
-module "lexicon_dns_validation_records" {
+module "dns_validation_records" {
   for_each = {
-    for option in module.lexicon_acm_certificate.domain_validation_options :
+    for option in module.acm_certificate.domain_validation_options :
     option.domain_name => option
   }
 
@@ -21,23 +21,43 @@ module "lexicon_dns_validation_records" {
   ttl     = 660
 }
 
-module "lexicon_acm_certificate_validation" {
+module "acm_certificate_validation" {
   source = "../../modules/aws/certificate_validation"
 
-  certificate_arn = module.lexicon_acm_certificate.certificate_arn
+  certificate_arn = module.acm_certificate.certificate_arn
   validation_record_fqdns = [
-    for record in module.lexicon_dns_validation_records :
+    for record in module.dns_validation_records :
     record.fqdn
   ]
 }
 
-module "lexicon_load_balancer" {
+module "load_balancer" {
   source             = "../../modules/aws/load_balancer"
   name               = "lexicon"
   health_check_path  = "/api/v1"
   port               = local.backend_port
-  certificate_arn    = module.lexicon_acm_certificate_validation.validated_certificate_arn
+  certificate_arn    = module.acm_certificate_validation.validated_certificate_arn
   vpc_id             = var.vpc_id
   subnet_ids         = var.public_subnet_ids
-  security_group_ids = [module.lexicon_load_balancer_security_group.id]
+  security_group_ids = [module.load_balancer_security_group.id]
+}
+
+moved {
+  from = module.lexicon_acm_certificate
+  to   = module.acm_certificate
+}
+
+moved {
+  from = module.lexicon_dns_validation_records
+  to   = module.dns_validation_records
+}
+
+moved {
+  from = module.lexicon_acm_certificate_validation
+  to   = module.acm_certificate_validation
+}
+
+moved {
+  from = module.lexicon_load_balancer
+  to   = module.load_balancer
 }

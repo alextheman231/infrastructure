@@ -4,7 +4,7 @@ data "cloudflare_zone" "lexicon_domain" {
   }
 }
 
-module "lexicon_dns_record" {
+module "dns_record" {
   source = "../../modules/cloudflare/dns"
   for_each = toset([
     var.lexicon_domain,
@@ -14,10 +14,20 @@ module "lexicon_dns_record" {
   name    = each.value
   type    = "CNAME"
   zone_id = data.cloudflare_zone.lexicon_domain.zone_id
-  content = module.lexicon_load_balancer.dns_name
+  content = module.load_balancer.dns_name
 }
 
-resource "cloudflare_zone_dnssec" "lexicon_domain" {
+resource "cloudflare_zone_dnssec" "domain" {
   zone_id = data.cloudflare_zone.lexicon_domain.zone_id
   status  = "active"
+}
+
+moved {
+  from = module.lexicon_dns_record
+  to   = module.dns_record
+}
+
+moved {
+  from = cloudflare_zone_dnssec.lexicon_domain
+  to   = cloudflare_zone_dnssec.domain
 }
