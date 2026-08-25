@@ -8,3 +8,8 @@ variable "name" {
   description = "The name of the resource."
   type        = string
 }
+
+variable "availability_zones" {
+  description = "Availability zones to place the subnets in."
+  type        = list(string)
+}
