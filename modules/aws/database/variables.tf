@@ -40,3 +40,20 @@ variable "security_group_ids" {
   description = "List of security group IDs to associate with the database"
   type        = list(string)
 }
+
+variable "autovacuum_vacuum_scale_factor" {
+  type    = number
+  default = 0.02
+}
+
+variable "autovacuum_vacuum_insert_scale_factor" {
+  type    = number
+  default = 0.02
+}
+
+variable "work_mem" {
+  description = "The work memory limit in kilobytes."
+  type        = number
+  default     = 8192
+}
+
