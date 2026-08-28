@@ -1,5 +1,3 @@
-
-
 resource "random_id" "final_snapshot" {
   byte_length = 8
 }
@@ -11,6 +9,31 @@ resource "aws_db_subnet_group" "default" {
 
   tags = {
     Name = var.db_identifier
+  }
+
+  lifecycle {
+    create_before_destroy = true
+  }
+}
+
+resource "aws_db_parameter_group" "default" {
+  name_prefix = "${var.db_identifier}-parameter-group"
+  family      = "postgres${var.postgres_version}"
+  description = "RDS custom parameter group for ${var.db_identifier}"
+
+  parameter {
+    name  = "autovacuum_vacuum_scale_factor"
+    value = var.autovacuum_vacuum_scale_factor
+  }
+
+  parameter {
+    name  = "autovacuum_vacuum_insert_scale_factor"
+    value = var.autovacuum_vacuum_insert_scale_factor
+  }
+
+  parameter {
+    name  = "work_mem"
+    value = var.work_mem
   }
 
   lifecycle {
@@ -43,4 +66,5 @@ resource "aws_db_instance" "default" {
   vpc_security_group_ids    = var.security_group_ids
   db_subnet_group_name      = aws_db_subnet_group.default.name
   final_snapshot_identifier = "${var.db_identifier}-final-${random_id.final_snapshot.hex}"
+  parameter_group_name      = aws_db_parameter_group.default.name
 }
