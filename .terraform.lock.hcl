@@ -5,6 +5,7 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
   version     = "5.24.0"
   constraints = ">= 5.0.0"
   hashes = [
+    "h1:F3V4hF42Y/Usl9OhzNFQHwUL8oNXTzbY5x6dQaDaASc=",
     "h1:NxZYEFjCgaI7lGi3L8mn0KZcWPfbqUdmt5Bo4yqWMFE=",
     "zh:2390fc5df95addfd47d3f638964a1f9f6192a8c84ad3b1eab554ef88e0ac4091",
     "zh:2b09c0afbebeb3139a3094e3debda1ba5ff3d73b6eca536549bdc903284b6798",
@@ -23,6 +24,7 @@ provider "registry.terraform.io/hashicorp/aws" {
   constraints = ">= 6.51.0"
   hashes = [
     "h1:lTKd2c1EunGxt2XROLgEeSXA2Jk+WiiG9BTcp+L/0xY=",
+    "h1:nWSI/kgPk9aieiY01TEKOGXRX3+L889GSkEq0SMCL6E=",
     "zh:35a9e4bc6fd622c5a99561b882025f2745f1256bbf1a8da8d6b39319b75ae0b5",
     "zh:405927d470ff16201e40aa0fa2d0ab1de477360a0926d20719cd029179682ecd",
     "zh:4ab7866593a90bcf18f066b0092a209b9f42852acd783b504031ae74cb6f7010",
@@ -114,6 +116,7 @@ provider "registry.terraform.io/jianyuan/sentry" {
   constraints = ">= 0.14.3"
   hashes = [
     "h1:COh6B0/x9q0ubNZOvjK6SJ3JJ1WPv9QLoOXB9/hfTY4=",
+    "h1:FSD2ODZlQHlgRQqZ2S0X+TfhxrQS9tyK45N55FzXgb0=",
     "zh:0dde99e7b343fa01f8eefc378171fb8621bedb20f59157d6cc8e3d46c738105f",
     "zh:31e6103b6d15d1e156e319dce499a817b4464793d98a112da9121959c8f60c4e",
     "zh:48a1e14511dc49c86142adf008002960d4bc34fb0aa1fa8c3c5ccd793d624edf",
