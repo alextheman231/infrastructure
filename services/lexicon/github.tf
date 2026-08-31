@@ -7,13 +7,13 @@ module "repository" {
   alex_up_bot_app_id = var.alex_up_bot_app_id
   variables = {
     AWS_ROLE_ARN              = module.deployment_role.role_arn
-    AWS_CLUSTER_NAME          = module.ecs_service.cluster_name
-    AWS_SERVICE_NAME          = module.ecs_service.service_names["service"]
-    AWS_MIGRATION_TASK_FAMILY = module.ecs_service.task_families["migrate"]
+    AWS_CLUSTER_NAME          = module.ecs_cluster.cluster_name
+    AWS_SERVICE_NAME          = module.ecs_cluster.service_names["service"]
+    AWS_MIGRATION_TASK_FAMILY = module.ecs_cluster.task_families["migrate"]
     AWS_REGION                = var.aws_region
     AWS_SECURITY_GROUP_ID     = module.ecs_security_group.id
-    AWS_SUBNET_IDS            = join(",", module.ecs_service.subnet_ids)
-    AWS_ASSIGN_PUBLIC_IP      = module.ecs_service.assign_public_ip ? "ENABLED" : "DISABLED"
+    AWS_SUBNET_IDS            = join(",", module.ecs_cluster.subnet_ids)
+    AWS_ASSIGN_PUBLIC_IP      = module.ecs_cluster.assign_public_ip ? "ENABLED" : "DISABLED"
     AWS_ECR_REPOSITORY_URL    = module.ecr_image.repository_url
   }
   labels = var.github_labels
