@@ -9,6 +9,7 @@ module "repository" {
     AWS_ROLE_ARN              = module.deployment_role.role_arn
     AWS_CLUSTER_NAME          = module.ecs_cluster.cluster_name
     AWS_APP_SERVICE_NAME      = module.ecs_cluster.service_names["app"]
+    AWS_WORKERS_SERVICE_NAME  = module.ecs_cluster.service_names["workers"]
     AWS_MIGRATION_TASK_FAMILY = module.ecs_cluster.task_families["migrate"]
     AWS_REGION                = var.aws_region
     AWS_SECURITY_GROUP_ID     = module.ecs_security_group.id

@@ -40,6 +40,11 @@ module "ecs_cluster" {
       port             = local.backend_port
     },
     {
+      name            = "workers"
+      is_long_running = true
+      command         = ["pnpm", "--dir", "apps/back-end", "run", "workers"]
+    },
+    {
       name    = "migrate"
       command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
     }
