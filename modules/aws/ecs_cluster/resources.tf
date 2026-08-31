@@ -3,10 +3,7 @@ resource "aws_ecs_cluster" "default" {
 }
 
 resource "aws_ecs_task_definition" "task" {
-  for_each = {
-    for task in var.task_definitions :
-    task.name => task
-  }
+  for_each = var.task_definitions
 
   family                   = "${var.name}-${each.key}"
   requires_compatibilities = ["FARGATE"]
@@ -19,7 +16,7 @@ resource "aws_ecs_task_definition" "task" {
 
   container_definitions = jsonencode([
     merge({
-      name  = "${var.name}-${each.value.name}"
+      name  = "${var.name}-${each.key}"
       image = var.image
 
       logConfiguration = {
@@ -72,14 +69,14 @@ resource "aws_cloudwatch_log_group" "default" {
 
 resource "aws_ecs_service" "default" {
   for_each = {
-    for task in var.task_definitions :
-    task.name => task
+    for key, task in var.task_definitions :
+    key => task
     if task.is_long_running
   }
 
   name            = "${var.name}-${each.key}"
   cluster         = aws_ecs_cluster.default.id
-  task_definition = aws_ecs_task_definition.task[each.value.name].arn
+  task_definition = aws_ecs_task_definition.task[each.key].arn
 
   desired_count = 1
 

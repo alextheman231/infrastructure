@@ -38,21 +38,12 @@ variable "fargate_version" {
 
 variable "task_definitions" {
   description = "A list of task definitions to associate with the ECS cluster."
-  type = list(object({
-    name             = string
+  type = map(object({
     command          = optional(list(string))
-    is_long_running  = optional(bool, false)
+    is_long_running  = bool
     port             = optional(number)
     target_group_arn = optional(string)
   }))
-
-  validation {
-    condition = length(var.task_definitions) == length(distinct([
-      for task in var.task_definitions : task.name
-    ]))
-
-    error_message = "Task definition names must be unique."
-  }
 
   validation {
     condition = alltrue([
@@ -62,7 +53,6 @@ variable "task_definitions" {
         task.port != null
       )
     ])
-
     error_message = "Tasks with a target_group_arn must be long-running and define a port."
   }
 }
