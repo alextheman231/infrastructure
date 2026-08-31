@@ -74,7 +74,7 @@ resource "aws_ecs_service" "default" {
     if task.is_long_running == true
   }
 
-  name            = var.name
+  name            = "${var.name}-${each.key}"
   cluster         = aws_ecs_cluster.default.id
   task_definition = aws_ecs_task_definition.task[each.value.name].arn
 
@@ -91,7 +91,7 @@ resource "aws_ecs_service" "default" {
 
   load_balancer {
     target_group_arn = var.target_group_arn
-    container_name   = "${var.name}-service"
+    container_name   = "${var.name}-${each.key}"
     container_port   = var.port
   }
 }
