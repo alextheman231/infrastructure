@@ -37,7 +37,7 @@ variable "fargate_version" {
 }
 
 variable "task_definitions" {
-  description = "A list of task definitions to associate with the ECS cluster."
+  description = "A map of task definitions to associate with the ECS cluster."
   type = map(object({
     command          = optional(list(string))
     is_long_running  = bool
