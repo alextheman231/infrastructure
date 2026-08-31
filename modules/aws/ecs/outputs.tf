@@ -2,8 +2,11 @@ output "cluster_name" {
   value = aws_ecs_cluster.default.name
 }
 
-output "service_name" {
-  value = aws_ecs_service.default.name
+output "service_names" {
+  value = {
+    for name, service in aws_ecs_service.default :
+    name => service.name
+  }
 }
 
 output "task_families" {

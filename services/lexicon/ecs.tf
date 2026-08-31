@@ -31,8 +31,10 @@ module "ecs_service" {
   secret_arns     = module.secrets.secret_arns
   fargate_version = "1.4.0"
 
-  task_definitions = [{
-    name = "service"
+  task_definitions = [
+    {
+      name            = "service"
+      is_long_running = true
     },
     {
       name    = "migrate"
@@ -46,4 +48,9 @@ module "ecs_service" {
   execution_role_arn = module.ecs_task_execution_role.role_arn
   task_role_arn      = module.ecs_task_role.role_arn
   security_group_ids = [module.ecs_security_group.id]
+}
+
+moved {
+  from = module.ecs_service.aws_ecs_service.default
+  to   = module.ecs_service.aws_ecs_service.default["service"]
 }

@@ -68,9 +68,15 @@ resource "aws_cloudwatch_log_group" "default" {
 }
 
 resource "aws_ecs_service" "default" {
+  for_each = {
+    for task in var.task_definitions :
+    task.name => task
+    if task.is_long_running == true
+  }
+
   name            = var.name
   cluster         = aws_ecs_cluster.default.id
-  task_definition = aws_ecs_task_definition.task["service"].arn
+  task_definition = aws_ecs_task_definition.task[each.value.name].arn
 
   desired_count = 1
 
