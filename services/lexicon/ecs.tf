@@ -49,8 +49,3 @@ module "ecs_cluster" {
   task_role_arn      = module.ecs_task_role.role_arn
   security_group_ids = [module.ecs_security_group.id]
 }
-
-moved {
-  from = module.ecs_service
-  to   = module.ecs_cluster
-}
