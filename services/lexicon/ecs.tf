@@ -18,7 +18,7 @@ module "ecs_cluster" {
   subnet_ids = var.private_subnet_ids
   name       = "lexicon"
   image      = module.ecr_image.repository_url
-  port       = local.backend_port
+
   environment_variables = {
     NODE_ENV               = "production"
     API_BASE_URL           = "https://${var.lexicon_domain}"
@@ -28,23 +28,23 @@ module "ecs_cluster" {
     REDIS_URL              = module.redis.endpoint
     FILE_STORE_BUCKET_NAME = module.file_store_prod.name
   }
+
   secret_arns     = module.secrets.secret_arns
   fargate_version = "1.4.0"
 
   task_definitions = [
     {
-      name            = "app"
-      is_long_running = true
+      name             = "app"
+      is_long_running  = true
+      target_group_arn = module.load_balancer.target_group_arn
+      port             = local.backend_port
     },
     {
       name    = "migrate"
       command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
     }
   ]
-  region = var.aws_region
-
-  target_group_arn   = module.load_balancer.target_group_arn
-  lb_listener_arn    = module.load_balancer.listener_arn
+  region             = var.aws_region
   execution_role_arn = module.ecs_task_execution_role.role_arn
   task_role_arn      = module.ecs_task_role.role_arn
   security_group_ids = [module.ecs_security_group.id]

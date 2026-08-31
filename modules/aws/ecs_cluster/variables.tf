@@ -1,5 +1,5 @@
 variable "name" {
-  description = "The name of the service."
+  description = "The name of the ECS cluster."
   type        = string
 }
 
@@ -36,35 +36,34 @@ variable "fargate_version" {
   default     = "1.4.0"
 }
 
-variable "port" {
-  description = "The port to use"
-  type        = number
-  default     = 8080
-}
-
-variable "target_group_arn" {
-  description = "The target group ARN."
-  type        = string
-}
-
-variable "lb_listener_arn" {
-  description = "The load balancer listener ARN."
-  type        = string
-}
-
 variable "task_definitions" {
-  description = "A list of tasks to associate with the service. It **must** contain exactly one task definition named 'service'."
+  description = "A list of task definitions to associate with the ECS cluster."
   type = list(object({
-    name            = string
-    command         = optional(list(string))
-    is_long_running = optional(bool)
+    name             = string
+    command          = optional(list(string))
+    is_long_running  = optional(bool, false)
+    port             = optional(number)
+    target_group_arn = optional(string)
   }))
+
   validation {
     condition = length(var.task_definitions) == length(distinct([
       for task in var.task_definitions : task.name
     ]))
 
     error_message = "Task definition names must be unique."
+  }
+
+  validation {
+    condition = alltrue([
+      for task in var.task_definitions :
+      task.target_group_arn == null || (
+        task.is_long_running &&
+        task.port != null
+      )
+    ])
+
+    error_message = "Tasks with a target_group_arn must be long-running and define a port."
   }
 }
 

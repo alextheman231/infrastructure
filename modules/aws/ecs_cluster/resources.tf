@@ -22,12 +22,6 @@ resource "aws_ecs_task_definition" "task" {
       name  = "${var.name}-${each.value.name}"
       image = var.image
 
-      portMappings = [{
-        protocol      = "tcp"
-        containerPort = var.port
-        hostPort      = var.port
-      }]
-
       logConfiguration = {
         logDriver = "awslogs"
 
@@ -57,6 +51,15 @@ resource "aws_ecs_task_definition" "task" {
       },
       each.value.command == null ? {} : {
         command = each.value.command
+      },
+      each.value.port == null ? {} : {
+        portMappings = [
+          {
+            protocol      = "tcp"
+            containerPort = each.value.port
+            hostPort      = each.value.port
+          }
+        ]
       }
     )
   ])
@@ -71,7 +74,7 @@ resource "aws_ecs_service" "default" {
   for_each = {
     for task in var.task_definitions :
     task.name => task
-    if task.is_long_running == true
+    if task.is_long_running
   }
 
   name            = "${var.name}-${each.key}"
@@ -89,9 +92,15 @@ resource "aws_ecs_service" "default" {
     assign_public_ip = local.network_configuration.assign_public_ip
   }
 
-  load_balancer {
-    target_group_arn = var.target_group_arn
-    container_name   = "${var.name}-${each.key}"
-    container_port   = var.port
+  dynamic "load_balancer" {
+    for_each = (
+      each.value.target_group_arn != null &&
+      each.value.port != null
+    ) ? [each.value] : []
+    content {
+      target_group_arn = load_balancer.value.target_group_arn
+      container_name   = "${var.name}-${each.key}"
+      container_port   = load_balancer.value.port
+    }
   }
 }
