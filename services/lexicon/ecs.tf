@@ -11,8 +11,8 @@ module "ecs_task_role" {
   s3_bucket_arns = [module.file_store_prod.arn, module.file_store_dev.arn]
 }
 
-module "ecs_service" {
-  source = "../../modules/aws/ecs"
+module "ecs_cluster" {
+  source = "../../modules/aws/ecs_cluster"
 
   vpc_id     = var.vpc_id
   subnet_ids = var.private_subnet_ids
@@ -51,6 +51,6 @@ module "ecs_service" {
 }
 
 moved {
-  from = module.ecs_service.aws_ecs_service.default
-  to   = module.ecs_service.aws_ecs_service.default["service"]
+  from = module.ecs_service
+  to   = module.ecs_cluster
 }
