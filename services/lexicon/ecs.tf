@@ -33,7 +33,7 @@ module "ecs_cluster" {
 
   task_definitions = [
     {
-      name            = "service"
+      name            = "app"
       is_long_running = true
     },
     {
