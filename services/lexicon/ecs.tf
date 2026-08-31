@@ -32,23 +32,21 @@ module "ecs_cluster" {
   secret_arns     = module.secrets.secret_arns
   fargate_version = "1.4.0"
 
-  task_definitions = [
-    {
-      name             = "app"
+  task_definitions = {
+    app = {
       is_long_running  = true
       target_group_arn = module.load_balancer.target_group_arn
       port             = local.backend_port
     },
-    {
-      name            = "workers"
+    workers = {
       is_long_running = true
       command         = ["pnpm", "--dir", "apps/back-end", "run", "workers"]
     },
-    {
-      name    = "migrate"
-      command = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
+    migrate = {
+      is_long_running = false
+      command         = ["pnpm", "--dir", "apps/back-end", "run", "migrate-db"]
     }
-  ]
+  }
   region             = var.aws_region
   execution_role_arn = module.ecs_task_execution_role.role_arn
   task_role_arn      = module.ecs_task_role.role_arn
