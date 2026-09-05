@@ -27,8 +27,15 @@ variable "webhook_url" {
   sensitive   = true
 }
 
+variable "secrets_encrypted" {
+  description = "Secrets to use in GitHub Actions workflows in any repository in the organisation, encrypted with respect to the organisation."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
+}
+
 variable "secrets" {
-  description = "Secrets to use in GitHub Actions workflows in any repository in the organisation."
+  description = "Secrets to use in GitHub Actions workflows in any repository in the organisation, given in plaintext."
   type        = map(string)
   sensitive   = true
   default     = {}

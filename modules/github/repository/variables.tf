@@ -54,9 +54,17 @@ variable "has_pages" {
 }
 
 variable "secrets" {
-  type      = map(string)
-  sensitive = true
-  default   = {}
+  description = "The repository secrets in plaintext."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
+}
+
+variable "secrets_encrypted" {
+  description = "The repository secrets, encrypted with respect to the repository's public key."
+  type        = map(string)
+  sensitive   = true
+  default     = {}
 }
 
 variable "variables" {
