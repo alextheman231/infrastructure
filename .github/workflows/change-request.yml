@@ -11,6 +11,10 @@ on:
         description: A further description of the change.
         required: false
         default: Trigger a Terraform apply.
+      branch_name:
+        description: The branch name to use
+        required: false
+        default: change-request
 
 jobs:
   create-change-request:
@@ -24,5 +28,6 @@ jobs:
       actor: ${{ github.actor }}
       reason: ${{ inputs.reason }}
       description: ${{ inputs.description }}
+      branch_name: ${{ inputs.branch_name }}
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
