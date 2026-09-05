@@ -42,7 +42,7 @@ provider "github" {
 }
 
 provider "tfe" {
-  token = var.tfe_org_token
+  token = var.tfe_token
 }
 
 provider "sentry" {
