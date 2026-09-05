@@ -10,12 +10,13 @@ jobs:
       contents: write
       pull-requests: write
     if: ${{ github.repository == 'alextheman231/infrastructure' }}
-    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@598b6c41288b1c7c165f5dfbba0ba22413700fcc # v12.7.6
+    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@d1c2bd1832fa5ae4489ed8f9349676045a683655 # v12.8.0
     with:
       APP_ID: ${{ vars.ALEX_UP_BOT_APP_ID }}
       actor: alex-up-bot[bot]
       reason: "Scheduled apply"
       description: "This is a monthly scheduled apply of the Terraform configuration, intended to fix potential state drifts. Please review the plan carefully before merging."
       branch_name: scheduled-apply
+      labels: "medium risk,tooling"
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}

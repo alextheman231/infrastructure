@@ -15,6 +15,10 @@ on:
         description: The branch name to use
         required: false
         default: change-request
+      labels:
+        description: The labels to use on the pull request, given as a comma-separated list
+        required: false
+        default: "medium risk"
 
 jobs:
   create-change-request:
@@ -22,12 +26,13 @@ jobs:
       contents: write
       pull-requests: write
     if: ${{ github.repository == 'alextheman231/infrastructure' }}
-    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@598b6c41288b1c7c165f5dfbba0ba22413700fcc # v12.7.6
+    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@d1c2bd1832fa5ae4489ed8f9349676045a683655 # v12.8.0
     with:
       APP_ID: ${{ vars.ALEX_UP_BOT_APP_ID }}
       actor: ${{ github.actor }}
       reason: ${{ inputs.reason }}
       description: ${{ inputs.description }}
       branch_name: ${{ inputs.branch_name }}
+      labels: ${{ inputs.labels }}
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
