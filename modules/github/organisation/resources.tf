@@ -22,11 +22,18 @@ resource "github_organization_webhook" "default" {
   events = ["push", "issues", "release"]
 }
 
-resource "github_actions_organization_secret" "default" {
-  for_each        = nonsensitive(var.secrets)
+resource "github_actions_organization_secret" "encrypted" {
+  for_each        = nonsensitive(var.secrets_encrypted)
   secret_name     = each.key
   value_encrypted = each.value
   visibility      = "all"
+}
+
+resource "github_actions_organization_secret" "default" {
+  for_each    = nonsensitive(var.secrets)
+  secret_name = each.key
+  value       = each.value
+  visibility  = "all"
 }
 
 resource "github_actions_organization_variable" "default" {

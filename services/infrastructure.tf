@@ -19,7 +19,7 @@ module "infrastructure_repository" {
     TF_CLOUD_ORGANIZATION = module.tfe_organisation.organisation_name
     TF_WORKSPACE          = module.infrastructure_workspace.workspace_name
   }
-  secrets = {
+  secrets_encrypted = {
     TFE_TOKEN = var.tfe_token
   }
   labels = merge(local.labels.standard, local.labels.infrastructure)
