@@ -14,22 +14,22 @@ terraform {
 module "services" {
   source = "./services"
 
-  github_owner                               = var.github_owner
-  tfe_token                                  = var.tfe_token
-  lexicon_google_client_id                   = var.lexicon_google_client_id
-  alex_up_bot_app_id                         = var.alex_up_bot_app_id
-  alex_up_bot_private_key                    = var.alex_up_bot_private_key
-  alex_infrastructure_bot_app_id             = var.alex_infrastructure_bot_app_id
-  alex_infrastructure_bot_installation_id    = var.alex_infrastructure_bot_installation_id
-  alex_infrastructure_bot_private_key_base64 = var.alex_infrastructure_bot_private_key_base64
-  alex_email                                 = var.alex_email
-  lexicon_domain                             = var.lexicon_domain
-  lexicon_google_client_secret               = var.lexicon_google_client_secret
-  webhook_url                                = var.webhook_url
-  sentry_infrastructure_token                = var.sentry_infrastructure_token
-  sentry_organisation_token                  = var.sentry_organisation_token
-  cloudflare_api_token                       = var.cloudflare_api_token
-  lexicon_database_password                  = var.lexicon_database_password
-  public_ssh_key                             = var.public_ssh_key
-  discord_token                              = var.discord_token
+  github_owner                            = var.github_owner
+  tfe_token                               = var.tfe_token
+  lexicon_google_client_id                = var.lexicon_google_client_id
+  alex_up_bot_app_id                      = var.alex_up_bot_app_id
+  alex_up_bot_private_key                 = var.alex_up_bot_private_key
+  alex_infrastructure_bot_app_id          = var.alex_infrastructure_bot_app_id
+  alex_infrastructure_bot_installation_id = var.alex_infrastructure_bot_installation_id
+  alex_infrastructure_bot_private_key     = var.alex_infrastructure_bot_private_key
+  alex_email                              = var.alex_email
+  lexicon_domain                          = var.lexicon_domain
+  lexicon_google_client_secret            = var.lexicon_google_client_secret
+  webhook_url                             = var.webhook_url
+  sentry_infrastructure_token             = var.sentry_infrastructure_token
+  sentry_organisation_token               = var.sentry_organisation_token
+  cloudflare_api_token                    = var.cloudflare_api_token
+  lexicon_database_password               = var.lexicon_database_password
+  public_ssh_key                          = var.public_ssh_key
+  discord_token                           = var.discord_token
 }

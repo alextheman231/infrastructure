@@ -37,7 +37,7 @@ provider "github" {
   app_auth {
     id              = var.alex_infrastructure_bot_app_id
     installation_id = var.alex_infrastructure_bot_installation_id
-    pem_file        = trimspace(base64decode(var.alex_infrastructure_bot_private_key_base64))
+    pem_file        = var.alex_infrastructure_bot_private_key
   }
 }
 

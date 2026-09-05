@@ -24,8 +24,8 @@ variable "alex_infrastructure_bot_installation_id" {
   type        = string
 }
 
-variable "alex_infrastructure_bot_private_key_base64" {
-  description = "Base64 encoded version of the alex-infrastructure-bot private key."
+variable "alex_infrastructure_bot_private_key" {
+  description = "The alex-infrastructure-bot private key."
   type        = string
   sensitive   = true
 }
