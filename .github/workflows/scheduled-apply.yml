@@ -10,7 +10,7 @@ jobs:
       contents: write
       pull-requests: write
     if: ${{ github.repository == 'alextheman231/infrastructure' }}
-    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@77ec4714869dc7574206ff9142a156dd8d49b671 # v12.7.5
+    uses: alextheman231/github-actions/.github/workflows/create-change-request.yml@598b6c41288b1c7c165f5dfbba0ba22413700fcc # v12.7.6
     with:
       APP_ID: ${{ vars.ALEX_UP_BOT_APP_ID }}
       actor: alex-up-bot[bot]
