@@ -24,7 +24,6 @@ module "ecs_cluster" {
     API_BASE_URL           = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID       = var.lexicon_google_client_id
     SENTRY_DSN             = module.sentry_back_end.public_dsn
-    VITE_SENTRY_DSN        = module.sentry_front_end.public_dsn
     REDIS_URL              = module.redis.endpoint
     FILE_STORE_BUCKET_NAME = module.file_store_prod.name
   }
