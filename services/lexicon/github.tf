@@ -16,6 +16,7 @@ module "repository" {
     AWS_SUBNET_IDS            = join(",", module.ecs_cluster.subnet_ids)
     AWS_ASSIGN_PUBLIC_IP      = module.ecs_cluster.assign_public_ip ? "ENABLED" : "DISABLED"
     AWS_ECR_REPOSITORY_URL    = module.ecr_image.repository_url
+    FRONT_END_SENTRY_DSN      = module.sentry_front_end.public_dsn
   }
   labels = var.github_labels
 }
