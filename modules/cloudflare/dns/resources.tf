@@ -11,5 +11,6 @@ resource "cloudflare_dns_record" "default" {
     ? trimsuffix(var.content, ".")
     : var.content
   )
-  proxied = var.proxied
+  proxied  = var.proxied
+  priority = var.priority
 }

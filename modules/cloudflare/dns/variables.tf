@@ -35,3 +35,14 @@ variable "proxied" {
   type        = bool
   default     = true
 }
+
+variable "priority" {
+  description = "The priority, required for MX, SRV, and URI records."
+  type        = number
+  default     = null
+
+  validation {
+    condition     = !contains(["MX", "SRV", "URI"], var.type) || var.priority != null
+    error_message = "Priority must be set if the type is `MX`, `SRV`, or `URI`."
+  }
+}

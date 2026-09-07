@@ -24,9 +24,10 @@ module "ses_mx_record" {
   type    = "MX"
   content = "10 inbound-smtp.${var.aws_region}.amazonaws.com"
 
-  zone_id = data.cloudflare_zone.lexicon_domain.zone_id
-  proxied = false
-  ttl     = 660
+  zone_id  = data.cloudflare_zone.lexicon_domain.zone_id
+  proxied  = false
+  ttl      = 660
+  priority = 10
 }
 
 module "s3_email_bucket" {
