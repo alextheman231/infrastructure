@@ -83,3 +83,8 @@ variable "plan_role_id" {
   description = "The Terraform plan role ID."
   type        = string
 }
+
+variable "receipt_rule_set_name" {
+  description = "The name of the receipt rule set"
+  type        = string
+}
