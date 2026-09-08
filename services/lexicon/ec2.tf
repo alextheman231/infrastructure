@@ -1,12 +1,5 @@
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["al2023-ami-20*-kernel-*-arm64"]
-  }
+data "aws_ssm_parameter" "amazon_linux" {
+  name = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-arm64"
 }
 
 module "session_management_role" {
@@ -16,8 +9,9 @@ module "session_management_role" {
 }
 
 module "session_management" {
-  source               = "../../modules/aws/ec2"
-  ami                  = data.aws_ami.amazon_linux.id
+  source = "../../modules/aws/ec2"
+  # The SSM parameter is marked sensitive by the provider, but AMI IDs are public.
+  ami                  = nonsensitive(data.aws_ssm_parameter.amazon_linux.value)
   name                 = "lexicon-session-management"
   subnet_id            = var.private_subnet_ids[0]
   security_group_ids   = [module.session_management_security_group.id]
