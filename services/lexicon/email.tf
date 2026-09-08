@@ -22,7 +22,7 @@ module "ses_mx_record" {
 
   name    = var.lexicon_domain
   type    = "MX"
-  content = "10 inbound-smtp.${var.aws_region}.amazonaws.com"
+  content = "inbound-smtp.${var.aws_region}.amazonaws.com"
 
   zone_id  = data.cloudflare_zone.lexicon_domain.zone_id
   proxied  = false
