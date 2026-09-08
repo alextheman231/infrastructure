@@ -36,6 +36,8 @@ module "s3_email_bucket" {
   name = "lexicon-emails"
 }
 
+data "aws_caller_identity" "current" {}
+
 module "receipt_rule" {
   source = "../../modules/aws/receipt_rule"
 
@@ -44,4 +46,5 @@ module "receipt_rule" {
   recipients     = ["social@${var.lexicon_domain}"]
   s3_bucket_name = module.s3_email_bucket.name
   position       = 1
+  ses_account_id = data.aws_caller_identity.current.account_id
 }
