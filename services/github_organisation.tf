@@ -3,7 +3,12 @@ module "github_organisation" {
   name        = "alextheman231"
   description = "This GitHub organisation is home to all my personal projects, including my programming projects, music projects, and the infrastructure for them."
   admins      = ["AlexMan123456"]
-  members     = ["badstagram", "RLCreates", "peatsham"]
+  members = [
+    "badstagram",
+    "RLCreates",
+    "peatsham",
+    "siennajung"
+  ]
 
 
   billing_email = var.alex_email
