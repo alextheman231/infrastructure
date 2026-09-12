@@ -13,6 +13,8 @@ jobs:
     permissions:
       contents: read
     runs-on: ubuntu-latest
+    env:
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
     steps:
       - name: Checkout the repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -35,10 +37,13 @@ jobs:
         with:
           terraform_version: 1.15
 
+      - name: Create the Terraform cache directory if it does not already exist
+        run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
+
       - name: Cache Terraform cache
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          path: ".terraform"
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ runner.os }}-terraform-lint-${{ hashFiles('.terraform.lock.hcl') }}
           restore-keys: ${{ runner.os }}-terraform-lint-
 
