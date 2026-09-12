@@ -40,7 +40,7 @@ jobs:
       - name: Create the Terraform cache directory if it does not already exist
         run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
 
-      - name: Cache Terraform cache
+      - name: Cache Terraform plugins
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
