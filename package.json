@@ -4,6 +4,11 @@
   "description": "Infrastructure for my GitHub repositories.",
   "main": "index.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alextheman231/infrastructure.git"
+  },
+  "sideEffects": false,
   "scripts": {
     "build-configs": "tsdown",
     "format": "pnpm run format-package-json && pnpm run format-prettier && pnpm run format-terraform-fmt",
