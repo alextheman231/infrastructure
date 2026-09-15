@@ -60,13 +60,3 @@ module "github_actions_repository" {
   alex_up_bot_app_id = var.alex_up_bot_app_id
   labels             = merge(local.labels.standard, local.labels.package)
 }
-
-module "typescript_actions_repository" {
-  source             = "../modules/github/repository"
-  name               = "typescript-actions"
-  description        = "Composite actions developed in TypeScript to use in GitHub Actions workflows."
-  visibility         = "public"
-  required_ci_checks = concat(local.check_list.base, [local.check_name.package.source_code_ci])
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  labels             = merge(local.labels.standard, local.labels.package)
-}
