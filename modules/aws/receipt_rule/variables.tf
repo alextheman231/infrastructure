@@ -26,5 +26,4 @@ variable "position" {
 variable "ses_account_id" {
   description = "The ID of the SES account."
   type        = string
-  default     = null
 }
