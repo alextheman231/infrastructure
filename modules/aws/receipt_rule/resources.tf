@@ -12,8 +12,6 @@ resource "aws_ses_receipt_rule" "default" {
 }
 
 resource "aws_s3_bucket_policy" "email" {
-  count = var.ses_account_id == null ? 0 : 1
-
   bucket = var.s3_bucket_name
 
   policy = jsonencode({
