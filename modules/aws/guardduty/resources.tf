@@ -57,7 +57,7 @@ resource "aws_iam_role_policy" "guardduty_malware" {
           "events:DescribeRule",
           "events:ListTargetsByRule"
         ]
-        resource = "arn:aws:events:*:*:rule/DO-NOT-DELETE-AmazonGuardDuty*"
+        Resource = "arn:aws:events:*:*:rule/DO-NOT-DELETE-AmazonGuardDuty*"
       }
     ]
   })
