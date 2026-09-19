@@ -36,6 +36,14 @@ module "s3_email_bucket" {
   name = "lexicon-emails"
 }
 
+module "email_bucket_guardduty" {
+  source = "../../modules/aws/guardduty"
+
+  malware_protection_role_name = "lexicon-emails-guardduty-malware-protection"
+  s3_bucket_arn                = module.s3_email_bucket.arn
+  s3_bucket_name               = module.s3_email_bucket.name
+}
+
 data "aws_caller_identity" "current" {}
 
 module "receipt_rule" {

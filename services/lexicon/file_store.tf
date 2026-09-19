@@ -4,6 +4,14 @@ module "file_store_prod" {
   name = "lexicon-files-prod"
 }
 
+module "file_store_prod_guardduty" {
+  source = "../../modules/aws/guardduty"
+
+  malware_protection_role_name = "lexicon-files-prod-guardduty-malware-protection"
+  s3_bucket_arn                = module.file_store_prod.arn
+  s3_bucket_name               = module.file_store_prod.name
+}
+
 module "file_store_dev" {
   source = "../../modules/aws/s3_bucket"
 
