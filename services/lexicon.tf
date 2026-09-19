@@ -13,13 +13,13 @@ module "lexicon" {
   lexicon_google_client_id          = var.lexicon_google_client_id
   lexicon_google_client_secret      = var.lexicon_google_client_secret
   public_ssh_key                    = var.public_ssh_key
-  aws_region                        = local.aws_region
+  aws_region                        = "eu-west-2"
   sentry_organisation_id            = module.sentry_organisation.id
   sentry_github_integration_id      = module.sentry_organisation.github_integration_id
-  vpc_id                            = module.aws_network.vpc_id
-  public_subnet_ids                 = module.aws_network.public_subnet_ids
-  private_subnet_ids                = module.aws_network.private_subnet_ids
+  vpc_id                            = module.aws.vpc_id
+  public_subnet_ids                 = module.aws.public_subnet_ids
+  private_subnet_ids                = module.aws.private_subnet_ids
   plan_role_id                      = module.terraform_plan_role.role_id
-  receipt_rule_set_name             = aws_ses_active_receipt_rule_set.default.rule_set_name
-  guardduty_detector_id             = aws_guardduty_detector.default.id
+  receipt_rule_set_name             = module.aws.receipt_rule_set_name
+  guardduty_detector_id             = module.aws.guardduty_detector_id
 }
