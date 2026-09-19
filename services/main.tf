@@ -54,7 +54,7 @@ provider "cloudflare" {
 }
 
 provider "aws" {
-  region = local.aws_region
+  region = "eu-west-2"
 }
 
 provider "discord" {
