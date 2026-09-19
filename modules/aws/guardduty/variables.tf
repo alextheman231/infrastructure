@@ -12,3 +12,8 @@ variable "s3_bucket_name" {
   description = "The name of the S3 bucket to protect."
   type        = string
 }
+
+variable "guardduty_detector_id" {
+  description = "The ID of the GuardDuty detector."
+  type        = string
+}

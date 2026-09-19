@@ -21,4 +21,5 @@ module "lexicon" {
   private_subnet_ids                = module.aws_network.private_subnet_ids
   plan_role_id                      = module.terraform_plan_role.role_id
   receipt_rule_set_name             = aws_ses_active_receipt_rule_set.default.rule_set_name
+  guardduty_detector_id             = aws_guardduty_detector.default.id
 }

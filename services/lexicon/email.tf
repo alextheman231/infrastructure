@@ -39,6 +39,7 @@ module "s3_email_bucket" {
 module "email_bucket_guardduty" {
   source = "../../modules/aws/guardduty"
 
+  guardduty_detector_id        = var.guardduty_detector_id
   malware_protection_role_name = "lexicon-emails-guardduty-malware-protection"
   s3_bucket_arn                = module.s3_email_bucket.arn
   s3_bucket_name               = module.s3_email_bucket.name

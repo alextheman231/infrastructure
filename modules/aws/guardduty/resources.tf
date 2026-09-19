@@ -1,7 +1,3 @@
-resource "aws_guardduty_detector" "default" {
-  enable = true
-}
-
 resource "aws_iam_role" "guardduty_malware" {
   name = var.malware_protection_role_name
   assume_role_policy = jsonencode({
@@ -78,5 +74,5 @@ resource "aws_guardduty_malware_protection_plan" "default" {
     }
   }
 
-  depends_on = [aws_guardduty_detector.default]
+  depends_on = [var.guardduty_detector_id]
 }
