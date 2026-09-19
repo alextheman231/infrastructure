@@ -88,3 +88,8 @@ variable "receipt_rule_set_name" {
   description = "The name of the receipt rule set"
   type        = string
 }
+
+variable "guardduty_detector_id" {
+  description = "The ID of the GuardDuty detector."
+  type        = string
+}
