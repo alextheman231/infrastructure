@@ -3,6 +3,7 @@ locals {
     actions_ci                    = "actions-ci / actions-ci",
     restrict_alex_up_bot_branches = "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches",
     check_labels                  = "check-labels / check-labels"
+    git_guardian_security_checks  = "GitGuardian Security Checks"
 
     package = {
       source_code_ci    = "package-ci / source-code-ci",
@@ -53,7 +54,8 @@ locals {
   _base_checks = [
     local.check_name.actions_ci,
     local.check_name.restrict_alex_up_bot_branches,
-    local.check_name.check_labels
+    local.check_name.check_labels,
+    local.check_name.git_guardian_security_checks
   ]
 
   check_list = {
