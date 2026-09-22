@@ -25,7 +25,7 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' }}
         run: |
           if [[ "$GITHUB_ACTOR" !=  "AlexMan123456" ]]; then
-            echo "Only AlexMan123456 is allowed to manually apply the configuration."
+            echo "::error::Only AlexMan123456 is allowed to manually apply the configuration."
             exit 1
           fi
 
