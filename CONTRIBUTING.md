@@ -18,7 +18,7 @@ terraform --version
 You should see something like
 
 ```bash
-Terraform v1.14.3
+Terraform v1.16.3
 on darwin_arm64
 ```
 
