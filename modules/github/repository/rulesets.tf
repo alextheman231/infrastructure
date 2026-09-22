@@ -61,15 +61,16 @@ resource "github_repository_ruleset" "no_deletion_or_force_push" {
   }
 }
 
-resource "github_repository_ruleset" "pull_request_conditions" {
+resource "github_repository_ruleset" "pull_request_reviews" {
   count       = !var.archived && var.visibility == "public" ? 1 : 0
-  name        = "Pull request conditions (bypassable by admins)"
+  name        = "Pull request reviews (bypassable by AlexMan123456)"
   repository  = github_repository.default.name
   target      = "branch"
   enforcement = "active"
 
   bypass_actors {
-    actor_type  = "OrganizationAdmin"
+    actor_id    = data.github_user.AlexMan123456.id
+    actor_type  = "User"
     bypass_mode = "exempt"
   }
 
