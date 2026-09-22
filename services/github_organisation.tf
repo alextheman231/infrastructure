@@ -2,8 +2,9 @@ module "github_organisation" {
   source      = "../modules/github/organisation"
   name        = "alextheman231"
   description = "This GitHub organisation is home to all my personal projects, including my programming projects, music projects, and the infrastructure for them."
-  admins      = ["AlexMan123456"]
+  admins      = ["AlexMan123456", "AlexMan123456-Admin"]
   members = [
+    "AlexMan123456-Member",
     "badstagram",
     "RLCreates",
     "peatsham",
