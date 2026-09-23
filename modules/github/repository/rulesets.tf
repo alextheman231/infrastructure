@@ -15,7 +15,8 @@ resource "github_repository_ruleset" "ci_checks" {
   enforcement = "active"
 
   bypass_actors {
-    actor_type  = "OrganizationAdmin"
+    actor_id    = data.github_user.AlexMan123456.id
+    actor_type  = "User"
     bypass_mode = "pull_request"
   }
 
