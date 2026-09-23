@@ -5,5 +5,6 @@ module "media_repository" {
   visibility         = "public"
   required_ci_checks = concat(local.check_list.base, [local.check_name.media.ci])
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   labels             = local.labels.standard
 }

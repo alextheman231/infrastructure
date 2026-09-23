@@ -93,3 +93,8 @@ variable "guardduty_detector_id" {
   description = "The ID of the GuardDuty detector."
   type        = string
 }
+
+variable "admin_team_id" {
+  description = "The ID of the GitHub admin team"
+  type        = string
+}

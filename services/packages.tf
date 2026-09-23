@@ -5,6 +5,7 @@ module "utility_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   has_pages          = true
   labels             = local.labels.standard
 }
@@ -16,6 +17,7 @@ module "eslint_plugin_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   labels             = local.labels.standard
 }
 
@@ -31,6 +33,7 @@ module "components_repository" {
   ], [local.check_name.components.end_to_end_ci])
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   labels             = merge(local.labels.standard, local.labels.package)
 }
 
@@ -41,6 +44,7 @@ module "alex_c_line_repository" {
   visibility         = "public"
   required_ci_checks = concat(local.check_list.package, local.check_list.alex_c_line.legacy)
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   labels             = merge(local.labels.standard, local.labels.package)
 }
 
@@ -58,5 +62,6 @@ module "github_actions_repository" {
   )
   has_pages          = true
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   labels             = merge(local.labels.standard, local.labels.package)
 }
