@@ -84,10 +84,30 @@ resource "github_repository_ruleset" "pull_request_reviews" {
 
   rules {
     pull_request {
-      allowed_merge_methods           = ["merge", "rebase"]
       required_approving_review_count = 1
       dismiss_stale_reviews_on_push   = true
       require_code_owner_review       = true
+    }
+  }
+}
+
+resource "github_repository_ruleset" "pull_request_merge_methods" {
+  count       = !var.archived && var.visibility == "public" ? 1 : 0
+  name        = "Enforce rebase merge from pull requests"
+  repository  = github_repository.default.name
+  target      = "branch"
+  enforcement = "active"
+
+  conditions {
+    ref_name {
+      include = ["~DEFAULT_BRANCH"]
+      exclude = []
+    }
+  }
+
+  rules {
+    pull_request {
+      allowed_merge_methods = ["rebase"]
     }
   }
 }
