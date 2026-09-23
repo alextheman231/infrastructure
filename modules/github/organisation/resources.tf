@@ -58,7 +58,8 @@ resource "github_membership" "members" {
 }
 
 resource "github_team" "admins" {
-  name = "admins"
+  name    = "admins"
+  privacy = "closed"
 }
 
 resource "github_team_membership" "admin" {
