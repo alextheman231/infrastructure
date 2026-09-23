@@ -56,3 +56,15 @@ resource "github_membership" "members" {
   username = each.value
   role     = "member"
 }
+
+resource "github_team" "admins" {
+  name = "admins"
+}
+
+resource "github_team_membership" "admin" {
+  for_each = var.admins
+
+  team_id  = github_team.admins.id
+  username = each.value
+  role     = "maintainer"
+}
