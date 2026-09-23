@@ -5,6 +5,7 @@ module "music_repository" {
   description        = "My music projects."
   visibility         = "public"
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   required_ci_checks = local.check_list.base
   labels = {
     "breaking change" = {
@@ -45,4 +46,5 @@ module "music_repository_dev" {
   description        = "My WIP music projects."
   visibility         = "private"
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
 }

@@ -15,6 +15,7 @@ module "infrastructure_repository" {
     local.check_name.terraform.comment_plan
   ])
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = module.github_organisation.admin_team_id
   variables = {
     TF_CLOUD_ORGANIZATION = module.tfe_organisation.organisation_name
     TF_WORKSPACE          = module.infrastructure_workspace.workspace_name

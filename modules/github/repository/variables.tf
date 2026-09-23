@@ -81,3 +81,8 @@ variable "labels" {
 
   default = {}
 }
+
+variable "admin_team_id" {
+  description = "The ID of the GitHub admin team"
+  type        = string
+}

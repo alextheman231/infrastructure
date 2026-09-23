@@ -5,6 +5,7 @@ module "repository" {
   visibility         = "public"
   required_ci_checks = var.required_ci_checks
   alex_up_bot_app_id = var.alex_up_bot_app_id
+  admin_team_id      = var.admin_team_id
   variables = {
     AWS_ROLE_ARN              = module.deployment_role.role_arn
     AWS_CLUSTER_NAME          = module.ecs_cluster.cluster_name

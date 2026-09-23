@@ -22,4 +22,5 @@ module "lexicon" {
   plan_role_id                      = module.terraform_plan_role.role_id
   receipt_rule_set_name             = module.aws.receipt_rule_set_name
   guardduty_detector_id             = module.aws.guardduty_detector_id
+  admin_team_id                     = module.github_organisation.admin_team_id
 }
