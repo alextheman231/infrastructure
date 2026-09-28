@@ -9,25 +9,14 @@ variable "alex_up_bot_client_id" {
   type        = string
 }
 
+variable "alex_up_bot_installation_id" {
+  description = "The ID associated with alex-up-bot's installation into the organisation."
+  default     = "104614037"
+  type        = string
+}
+
 variable "alex_up_bot_private_key" {
   description = "Private key for alex-up-bot app, commonly used to create pull requests in GitHub Actions."
-  type        = string
-  sensitive   = true
-}
-
-variable "alex_infrastructure_bot_client_id" {
-  description = "Client ID for infrastructure bot, which helps Terraform apply the configuration."
-  default     = "Iv23lipsuvBUucPjW8H6"
-  type        = string
-}
-
-variable "alex_infrastructure_bot_installation_id" {
-  description = "The ID associated with the Infrastructure bot's installation into the organisation."
-  type        = string
-}
-
-variable "alex_infrastructure_bot_private_key" {
-  description = "The alex-infrastructure-bot private key."
   type        = string
   sensitive   = true
 }
