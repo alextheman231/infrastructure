@@ -42,7 +42,7 @@ variable "required_ci_checks" {
   default     = []
 }
 
-variable "alex_up_bot_app_id" {
+variable "alex_up_bot_client_id" {
   description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions."
   type        = string
 }
