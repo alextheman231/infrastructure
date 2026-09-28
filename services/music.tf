@@ -1,12 +1,12 @@
 module "music_repository" {
   source = "../modules/github/repository"
 
-  name               = "music"
-  description        = "My music projects."
-  visibility         = "public"
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  required_ci_checks = local.check_list.base
+  name                  = "music"
+  description           = "My music projects."
+  visibility            = "public"
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  required_ci_checks    = local.check_list.base
   labels = {
     "breaking change" = {
       color       = "B60205"
@@ -42,9 +42,9 @@ module "music_repository" {
 module "music_repository_dev" {
   source = "../modules/github/repository"
 
-  name               = "music-dev"
-  description        = "My WIP music projects."
-  visibility         = "private"
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
+  name                  = "music-dev"
+  description           = "My WIP music projects."
+  visibility            = "private"
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
 }

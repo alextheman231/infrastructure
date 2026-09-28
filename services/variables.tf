@@ -3,7 +3,7 @@ variable "github_owner" {
   type        = string
 }
 
-variable "alex_up_bot_app_id" {
+variable "alex_up_bot_client_id" {
   description = "App ID for alex-up-bot, commonly used to create pull requests in GitHub Actions. This should be used alongside alex_up_bot_private_key."
   type        = string
 }
@@ -14,8 +14,8 @@ variable "alex_up_bot_private_key" {
   sensitive   = true
 }
 
-variable "alex_infrastructure_bot_app_id" {
-  description = "App ID for infrastructure bot, which helps Terraform apply the configuration."
+variable "alex_infrastructure_bot_client_id" {
+  description = "Client ID for infrastructure bot, which helps Terraform apply the configuration."
   type        = string
 }
 

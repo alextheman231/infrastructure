@@ -1,11 +1,11 @@
 module "repository" {
-  source             = "../../modules/github/repository"
-  name               = "lexicon"
-  description        = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
-  visibility         = "public"
-  required_ci_checks = var.required_ci_checks
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = var.admin_team_id
+  source                = "../../modules/github/repository"
+  name                  = "lexicon"
+  description           = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
+  visibility            = "public"
+  required_ci_checks    = var.required_ci_checks
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = var.admin_team_id
   variables = {
     AWS_ROLE_ARN              = module.deployment_role.role_arn
     AWS_CLUSTER_NAME          = module.ecs_cluster.cluster_name

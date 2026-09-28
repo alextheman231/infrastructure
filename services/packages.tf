@@ -1,24 +1,24 @@
 module "utility_repository" {
-  source             = "../modules/github/repository"
-  name               = "utility"
-  description        = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
-  visibility         = "public"
-  required_ci_checks = local.check_list.package
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  has_pages          = true
-  labels             = local.labels.standard
+  source                = "../modules/github/repository"
+  name                  = "utility"
+  description           = "A package to provide helpful utility functions to be used in most modern JavaScript/TypeScript projects."
+  visibility            = "public"
+  required_ci_checks    = local.check_list.package
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  has_pages             = true
+  labels                = local.labels.standard
 }
 
 module "eslint_plugin_repository" {
-  source             = "../modules/github/repository"
-  name               = "eslint-plugin"
-  description        = "A package to provide custom ESLint rules and configs."
-  visibility         = "public"
-  required_ci_checks = local.check_list.package
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  labels             = local.labels.standard
+  source                = "../modules/github/repository"
+  name                  = "eslint-plugin"
+  description           = "A package to provide custom ESLint rules and configs."
+  visibility            = "public"
+  required_ci_checks    = local.check_list.package
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  labels                = local.labels.standard
 }
 
 module "components_repository" {
@@ -31,21 +31,21 @@ module "components_repository" {
     check
     if check != local.check_name.end_to_end_ci
   ], [local.check_name.components.end_to_end_ci])
-  has_pages          = true
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  labels             = merge(local.labels.standard, local.labels.package)
+  has_pages             = true
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  labels                = merge(local.labels.standard, local.labels.package)
 }
 
 module "alex_c_line_repository" {
-  source             = "../modules/github/repository"
-  name               = "alex-c-line"
-  description        = "Command-line tool with commands to streamline the developer workflow."
-  visibility         = "public"
-  required_ci_checks = concat(local.check_list.package, local.check_list.alex_c_line.legacy)
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  labels             = merge(local.labels.standard, local.labels.package)
+  source                = "../modules/github/repository"
+  name                  = "alex-c-line"
+  description           = "Command-line tool with commands to streamline the developer workflow."
+  visibility            = "public"
+  required_ci_checks    = concat(local.check_list.package, local.check_list.alex_c_line.legacy)
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  labels                = merge(local.labels.standard, local.labels.package)
 }
 
 module "github_actions_repository" {
@@ -60,8 +60,8 @@ module "github_actions_repository" {
       local.check_name.github_actions.version_change_ci,
     ]
   )
-  has_pages          = true
-  alex_up_bot_app_id = var.alex_up_bot_app_id
-  admin_team_id      = module.github_organisation.admin_team_id
-  labels             = merge(local.labels.standard, local.labels.package)
+  has_pages             = true
+  alex_up_bot_client_id = var.alex_up_bot_client_id
+  admin_team_id         = module.github_organisation.admin_team_id
+  labels                = merge(local.labels.standard, local.labels.package)
 }

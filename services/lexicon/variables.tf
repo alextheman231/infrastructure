@@ -18,7 +18,7 @@ variable "github_labels" {
   default = {}
 }
 
-variable "alex_up_bot_app_id" {
+variable "alex_up_bot_client_id" {
   description = "App ID for alex-up-bot."
   type        = string
 }
