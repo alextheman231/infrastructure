@@ -35,9 +35,9 @@ provider "github" {
   owner = var.github_owner
 
   app_auth {
-    id              = var.alex_infrastructure_bot_client_id
-    installation_id = var.alex_infrastructure_bot_installation_id
-    pem_file        = var.alex_infrastructure_bot_private_key
+    id              = var.alex_up_bot_client_id
+    installation_id = var.alex_up_bot_installation_id
+    pem_file        = var.alex_up_bot_private_key
   }
 }
 
