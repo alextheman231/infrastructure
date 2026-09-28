@@ -16,7 +16,6 @@ module "github_organisation" {
   webhook_url   = var.webhook_url
 
   variables = {
-    ALEX_UP_BOT_APP_ID    = var.alex_up_bot_client_id
     ALEX_UP_BOT_CLIENT_ID = var.alex_up_bot_client_id
   }
   secrets = {
