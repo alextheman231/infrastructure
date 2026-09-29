@@ -1,7 +1,7 @@
 module "repository" {
   source             = "../../modules/github/repository"
   name               = "lexicon"
-  description        = "The true successor to Neurosongs, allowing users to write blogs, share them, and track revision history."
+  description        = "My mainline blog site project, allowing users to write blogs, share them, and track revision history."
   visibility         = "public"
   required_ci_checks = var.required_ci_checks
   admin_team_id      = var.admin_team_id
