@@ -39,6 +39,10 @@ locals {
         color       = "FBCA04"
         description = "Changes to internal APIs or implementation details."
       }
+      "deprecation" = {
+        color       = "ECE116"
+        description = "Deprecates an existing feature without removing it entirely."
+      }
     }
     infrastructure = {
       "manual change" = {
