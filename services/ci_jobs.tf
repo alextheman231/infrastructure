@@ -62,7 +62,6 @@ locals {
 
     package = concat(local._base_checks, [
       local.check_name.package.source_code_ci,
-      local.check_name.actions_ci,
       local.check_name.end_to_end_ci
     ])
 
