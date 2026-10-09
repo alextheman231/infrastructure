@@ -66,6 +66,6 @@ resource "github_issue_label" "default" {
 
   repository  = github_repository.default.name
   name        = each.key
-  color       = each.value.color
+  color       = trimprefix(upper(each.value.color), "#")
   description = each.value.description
 }

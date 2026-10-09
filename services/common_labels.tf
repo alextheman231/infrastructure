@@ -2,93 +2,93 @@ locals {
   labels = {
     standard = {
       "breaking change" = {
-        color       = "B60205"
+        color       = "#B60205"
         description = "Introduces breaking changes."
       }
       "new feature" = {
-        color       = "A2EEEF"
+        color       = "#A2EEEF"
         description = "Introduces new functionality."
       }
       "feature enhancement" = {
-        color       = "28A745"
+        color       = "#28A745"
         description = "Enhances the capabilities of an existing feature."
       }
       "feature rewrite" = {
-        color       = "F9D0C4"
+        color       = "#F9D0C4"
         description = "Reimplements an existing feature."
       }
       "bug fix" = {
-        color       = "D73A4A"
+        color       = "#D73A4A"
         description = "Fixes a bug."
       }
       "tooling" = {
-        color       = "5319E7"
+        color       = "#5319E7"
         description = "Tooling and dependency changes."
       }
       "documentation" = {
-        color       = "0075CA"
+        color       = "#0075CA"
         description = "Documentation updates."
       }
       "refactor" = {
-        color       = "C2E0C6"
+        color       = "#C2E0C6"
         description = "Code quality improvements without behavioural changes."
       }
     }
     package = {
       "internal" = {
-        color       = "FBCA04"
+        color       = "#FBCA04"
         description = "Changes to internal APIs or implementation details."
       }
       "deprecation" = {
-        color       = "ECE116"
+        color       = "#ECE116"
         description = "Deprecates an existing feature without removing it entirely."
       }
     }
     infrastructure = {
       "manual change" = {
-        color       = "FBCA04"
+        color       = "#FBCA04"
         description = "Requires manual Terraform actions and confirmation from AlexMan123456 before deployment."
       }
       "irreversible destruction" = {
-        color       = "B60205"
+        color       = "#B60205"
         description = "Destroys managed resources."
       }
       "resource update" = {
-        color       = "5319E7"
+        color       = "#5319E7"
         description = "Updates an existing resource."
       }
       "resource creation" = {
-        color       = "28A745"
+        color       = "#28A745"
         description = "Creates a new managed resource."
       }
       "resource replacement" = {
-        color       = "E99695"
+        color       = "#E99695"
         description = "Replaces an existing managed resource."
       }
     }
     app = {
       "migration" = {
-        color       = "E99695"
+        color       = "#E99695"
         description = "Involves a database migration."
       }
       "authentication" = {
-        color       = "0052CC"
+        color       = "#0052CC"
         description = "Changes to the sign-in/sign-up process."
       }
       "authorisation" = {
-        color       = "1D76DB"
+        color       = "#1D76DB"
         description = "Changes to user access permissions."
       }
       "ui" = {
-        color       = "7057FF"
+        color       = "#7057FF"
         description = "Changes the layout of the UI."
       }
       "accessibility" = {
-        color       = "0E8A16"
+        color       = "#0E8A16"
         description = "Improves the accessibility without changing the UI layout."
       }
       "deployment" = {
-        color       = "0366D6"
+        color       = "#0366D6"
         description = "Changes deployment, hosting, build, or release behaviour."
       }
     }
