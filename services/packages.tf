@@ -6,7 +6,7 @@ module "utility_repository" {
   required_ci_checks = local.check_list.package
   admin_team_id      = module.github_organisation.admin_team_id
   has_pages          = true
-  labels             = local.labels.standard
+  labels             = merge(local.labels.standard, local.labels.package)
 }
 
 module "eslint_plugin_repository" {
@@ -16,7 +16,7 @@ module "eslint_plugin_repository" {
   visibility         = "public"
   required_ci_checks = local.check_list.package
   admin_team_id      = module.github_organisation.admin_team_id
-  labels             = local.labels.standard
+  labels             = merge(local.labels.standard, local.labels.package)
 }
 
 module "components_repository" {
