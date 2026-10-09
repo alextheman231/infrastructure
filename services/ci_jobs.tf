@@ -6,8 +6,7 @@ locals {
     git_guardian_security_checks  = "GitGuardian Security Checks"
 
     package = {
-      source_code_ci    = "package-ci / source-code-ci",
-      version_change_ci = "package-ci / version-change-ci / version-change-ci"
+      source_code_ci = "package-ci / source-code-ci",
     }
 
     end_to_end_ci = "end-to-end-ci / end-to-end-ci"
@@ -63,7 +62,6 @@ locals {
 
     package = concat(local._base_checks, [
       local.check_name.package.source_code_ci,
-      local.check_name.package.version_change_ci,
       local.check_name.actions_ci,
       local.check_name.end_to_end_ci
     ])
