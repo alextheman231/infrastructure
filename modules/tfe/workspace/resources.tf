@@ -18,6 +18,6 @@ resource "tfe_variable" "environment" {
 
   workspace_id = tfe_workspace.default.id
   key          = each.key
-  value        = each.value
+  value_wo     = each.value
   category     = "env"
 }
