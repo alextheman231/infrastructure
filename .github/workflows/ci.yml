@@ -168,7 +168,7 @@ jobs:
 
       - name: Get alex-up-bot GitHub token
         id: app-token
-        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
         with:
           client-id: ${{ vars.ALEX_UP_BOT_CLIENT_ID }}
           private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
@@ -209,4 +209,4 @@ jobs:
   actions-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@a8e567aa7146169f3d858752ffb0f2dfd9ecb70f # v14.0.1
+    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@c33cab51e66ede91cc06169f056ce75f59222ff5 # v14.2.0
