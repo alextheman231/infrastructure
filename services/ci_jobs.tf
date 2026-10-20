@@ -3,7 +3,7 @@ locals {
     actions_ci                    = "actions-ci / actions-ci",
     restrict_alex_up_bot_branches = "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches",
     check_labels                  = "check-labels / check-labels"
-    git_guardian_security_checks  = "GitGuardian Security Checks"
+    secret_scan_ci                = "secret-scan-ci / secret-scan-ci"
 
     package = {
       source_code_ci = "package-ci / source-code-ci",
