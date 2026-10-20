@@ -55,6 +55,7 @@ locals {
     local.check_name.actions_ci,
     local.check_name.restrict_alex_up_bot_branches,
     local.check_name.check_labels,
+    local.check_name.secret_scan_ci
   ]
 
   check_list = {
