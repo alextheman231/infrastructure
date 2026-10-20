@@ -30,4 +30,5 @@ module "services" {
   lexicon_database_password    = var.lexicon_database_password
   public_ssh_key               = var.public_ssh_key
   discord_token                = var.discord_token
+  gitguardian_api_key          = var.gitguardian_api_key
 }

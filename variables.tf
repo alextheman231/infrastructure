@@ -95,3 +95,9 @@ variable "discord_token" {
   type        = string
   sensitive   = true
 }
+
+variable "gitguardian_api_key" {
+  description = "API key to authenticate with GitGuardian"
+  type        = string
+  sensitive   = true
+}
