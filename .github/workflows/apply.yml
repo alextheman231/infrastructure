@@ -53,8 +53,10 @@ jobs:
           PLAN_EXIT_CODE: ${{ steps.plan.outputs.exitcode }}
         run: |
           case "$PLAN_EXIT_CODE" in
-            "1")
-              exit 1
+            "0")
+              echo "Plan has no changes. Skipping apply."
+              echo "should_apply=false" >> "$GITHUB_OUTPUT"
+              exit 0
               ;;
             "2")
               echo "Plan has changes. Prompting an apply."
@@ -62,9 +64,7 @@ jobs:
               exit 0
               ;;
             *)
-              echo "Plan has no changes. Skipping apply."
-              echo "should_apply=false" >> "$GITHUB_OUTPUT"
-              exit 0
+              exit "$PLAN_EXIT_CODE"
               ;;
           esac
 
