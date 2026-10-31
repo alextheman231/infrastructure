@@ -10,7 +10,6 @@ env:
   TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
   TF_TOKEN_app_terraform_io: ${{ secrets.TFE_TOKEN }}
   TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
-  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
 
 jobs:
   apply:
