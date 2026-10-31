@@ -15,7 +15,7 @@ jobs:
       CLIENT_ID: ${{ vars.ALEX_UP_BOT_CLIENT_ID }}
       actor: alex-up-bot[bot]
       reason: "Scheduled apply"
-      description: "This is a monthly scheduled apply of the Terraform configuration, intended to fix potential state drifts. Please review the plan carefully before merging."
+      description: "This is a weekly scheduled apply of the Terraform configuration, intended to fix potential state drifts. Please review the plan carefully before merging."
       branch_name: scheduled-apply
       labels: "medium risk,tooling"
     secrets:
