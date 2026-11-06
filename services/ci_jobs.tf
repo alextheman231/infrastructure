@@ -30,6 +30,7 @@ locals {
       actions_ci        = "actions-ci"
       build_ci          = "build-ci"
       version_change_ci = "version-change-ci / version-change-ci"
+      lockfile_ci       = "lockfile-ci"
     }
 
     lexicon = {
