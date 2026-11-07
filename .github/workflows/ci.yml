@@ -192,6 +192,11 @@ jobs:
     secrets:
       APP_PRIVATE_KEY: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
 
+  pyproject-ci:
+    permissions:
+      contents: read
+    uses: alextheman231/github-actions/.github/workflows/pyproject-ci.yml@bc8e87ed726b1680a46574b7de40ff2f3c364894 # v14.8.0
+
   secret-scan-ci:
     permissions:
       contents: read
