@@ -20,6 +20,7 @@ jobs:
       update_pnpm: true
       update_javascript_dependencies: true
       update_actions: true
+      update_python_dependencies: true
       update_terraform: true
       tf_workspace: ${{ vars.TF_WORKSPACE }}
       tf_cloud_organization: ${{ vars.TF_CLOUD_ORGANIZATION }}
