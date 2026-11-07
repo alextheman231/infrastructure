@@ -27,7 +27,6 @@ locals {
     }
 
     github_actions = {
-      actions_ci        = "actions-ci"
       build_ci          = "build-ci"
       version_change_ci = "version-change-ci / version-change-ci"
       composite_ci      = "composite-ci / source-code-ci"
