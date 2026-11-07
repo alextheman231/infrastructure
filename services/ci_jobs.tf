@@ -30,6 +30,7 @@ locals {
       actions_ci        = "actions-ci"
       build_ci          = "build-ci"
       version_change_ci = "version-change-ci / version-change-ci"
+      composite_ci      = "composite-ci / source-code-ci"
     }
 
     lexicon = {
@@ -68,14 +69,6 @@ locals {
 
     alex_c_line = {
       legacy = [local.check_name.alex_c_line.source_code_ci_legacy, local.check_name.alex_c_line.end_to_end_ci_legacy]
-    }
-
-    github_actions = {
-      base = [
-        for check in local._base_checks :
-        check
-        if check != local.check_name.actions_ci
-      ]
     }
   }
 }

@@ -50,10 +50,11 @@ module "github_actions_repository" {
   description = "Common GitHub Actions used across my repositories."
   visibility  = "public"
   required_ci_checks = concat(
-    local.check_list.github_actions.base,
+    local.check_list.base,
     [
       local.check_name.github_actions.actions_ci,
-      local.check_name.github_actions.build_ci
+      local.check_name.github_actions.build_ci,
+      local.check_name.github_actions.composite_ci
     ]
   )
   has_pages     = true
