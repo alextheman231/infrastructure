@@ -139,9 +139,11 @@ jobs:
         id: get-plan
         run: |
           PLAN=$(cat plan.md)
-          echo "comment-body<<EOF" >> "$GITHUB_OUTPUT"
-          echo "$PLAN" >> "$GITHUB_OUTPUT"
-          echo "EOF" >> "$GITHUB_OUTPUT"
+          {
+            echo "comment-body<<EOF"
+            echo "$PLAN"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Get alex-up-bot GitHub token
         id: app-token
