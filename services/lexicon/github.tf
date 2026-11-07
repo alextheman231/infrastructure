@@ -37,7 +37,8 @@ data "aws_iam_policy_document" "deploy" {
       "ecr:InitiateLayerUpload",
       "ecr:UploadLayerPart",
       "ecr:CompleteLayerUpload",
-      "ecr:PutImage"
+      "ecr:PutImage",
+      "ecr:BatchGetImage"
     ]
 
     resources = ["*"]
