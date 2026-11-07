@@ -1,9 +1,13 @@
 locals {
   check_name = {
-    actions_ci                    = "actions-ci / actions-ci",
+    actions = {
+      actionlint_ci = "actions-ci / actionlint-ci"
+      lockfile_ci   = "actions-ci / lockfile-ci"
+    }
     restrict_alex_up_bot_branches = "restrict-alex-up-bot-branches / restrict-alex-up-bot-branches",
     check_labels                  = "check-labels / check-labels"
     secret_scan_ci                = "secret-scan-ci / secret-scan-ci"
+    pyproject_lint_ci             = "pyproject-ci / pyproject-lint-ci"
 
     package = {
       source_code_ci = "package-ci / source-code-ci",
@@ -52,7 +56,9 @@ locals {
   }
 
   _base_checks = [
-    local.check_name.actions_ci,
+    local.check_name.actions.actionlint_ci,
+    local.check_name.actions.lockfile_ci,
+    local.check_name.pyproject_lint_ci,
     local.check_name.restrict_alex_up_bot_branches,
     local.check_name.check_labels,
     local.check_name.secret_scan_ci
