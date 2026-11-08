@@ -52,7 +52,7 @@ module "receipt_rule" {
 
   name           = "lexicon-emails-receipt-rule"
   rule_set_name  = var.receipt_rule_set_name
-  recipients     = ["social@${var.lexicon_domain}"]
+  recipients     = ["social@${var.lexicon_domain}", "noreply@${var.lexicon_domain}"]
   s3_bucket_name = module.s3_email_bucket.name
   position       = 1
   ses_account_id = data.aws_caller_identity.current.account_id
