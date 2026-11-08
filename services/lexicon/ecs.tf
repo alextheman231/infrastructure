@@ -7,8 +7,9 @@ module "ecs_task_execution_role" {
 module "ecs_task_role" {
   source = "../../modules/aws/iam/roles/ecs_task"
 
-  name           = "lexicon"
-  s3_bucket_arns = [module.file_store_prod.arn, module.file_store_dev.arn]
+  name             = "lexicon"
+  ses_identity_arn = module.ses_identity.arn
+  s3_bucket_arns   = [module.file_store_prod.arn, module.file_store_dev.arn]
 }
 
 module "ecs_cluster" {

@@ -8,3 +8,9 @@ variable "s3_bucket_arns" {
   type        = list(string)
   default     = []
 }
+
+variable "ses_identity_arn" {
+  description = "ARN of the SES identity."
+  type        = string
+  default     = null
+}

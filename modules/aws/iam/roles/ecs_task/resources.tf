@@ -41,7 +41,36 @@ resource "aws_iam_policy" "ecs_task_s3_access" {
   })
 }
 
+resource "aws_iam_policy" "ses" {
+  count = var.ses_identity_arn == null ? 0 : 1
+
+  name        = "${var.name}-ecs-task-ses"
+  description = "Allow ECS tasks to send emails."
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect = "Allow"
+        Action = [
+          "ses:SendEmail"
+        ]
+        Resource = [
+          var.ses_identity_arn
+        ]
+      }
+    ]
+  })
+}
+
 resource "aws_iam_role_policy_attachment" "ecs_task_s3_access" {
   role       = aws_iam_role.ecs_task.name
   policy_arn = aws_iam_policy.ecs_task_s3_access.arn
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_ses" {
+  count = var.ses_identity_arn == null ? 0 : 1
+
+  role       = aws_iam_role.ecs_task.name
+  policy_arn = aws_iam_policy.ses[count.index].arn
 }
