@@ -6,3 +6,5 @@ node_modules
 dist-configs
 .DS_Store
 tfplan
+
+.pdm-python
