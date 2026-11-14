@@ -22,7 +22,6 @@ module "ecs_cluster" {
 
   environment_variables = {
     NODE_ENV               = "production"
-    API_BASE_URL           = "https://${var.lexicon_domain}"
     LEXICON_BASE_URL       = "https://${var.lexicon_domain}"
     GOOGLE_CLIENT_ID       = var.lexicon_google_client_id
     SENTRY_DSN             = module.sentry_back_end.public_dsn
