@@ -17,6 +17,10 @@ locals {
         color       = "#F9D0C4"
         description = "Reimplements an existing feature."
       }
+      "feature removal" = {
+        color       = "#ffc400"
+        description = "Removes an existing feature."
+      }
       "bug fix" = {
         color       = "#D73A4A"
         description = "Fixes a bug."
