@@ -8,8 +8,8 @@ const config: UserConfig = {
   clean: true,
   fixedExtension: false,
   deps: {
-    neverBundle: ["zod"]
-  }
+    neverBundle: ["zod"],
+  },
 };
 
 export default config;
