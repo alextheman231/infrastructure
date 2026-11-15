@@ -56,7 +56,7 @@ resource "aws_iam_policy" "ses" {
           "ses:SendEmail"
         ]
         Resource = [
-          var.ses_identity_arn
+          "*"
         ]
       }
     ]
