@@ -93,3 +93,9 @@ variable "admin_team_id" {
   description = "The ID of the GitHub admin team"
   type        = string
 }
+
+variable "lexicon_secret_key" {
+  description = "Secret key to use for creating the password reset token."
+  type        = string
+  sensitive   = true
+}

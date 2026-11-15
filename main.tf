@@ -31,4 +31,5 @@ module "services" {
   public_ssh_key               = var.public_ssh_key
   discord_token                = var.discord_token
   gitguardian_api_key          = var.gitguardian_api_key
+  lexicon_secret_key           = var.lexicon_secret_key
 }

@@ -4,6 +4,7 @@ module "secrets" {
   secrets = {
     DATABASE_URL         = module.database.database_url
     GOOGLE_CLIENT_SECRET = var.lexicon_google_client_secret
+    LEXICON_SECRET_KEY   = var.lexicon_secret_key
   }
   plan_role_id = var.plan_role_id
   allowed_role_ids = {
