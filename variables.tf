@@ -101,3 +101,9 @@ variable "gitguardian_api_key" {
   type        = string
   sensitive   = true
 }
+
+variable "lexicon_secret_key" {
+  description = "Secret key to use for creating the password reset token."
+  type        = string
+  sensitive   = true
+}
