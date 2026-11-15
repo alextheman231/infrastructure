@@ -9,8 +9,8 @@ variable "s3_bucket_arns" {
   default     = []
 }
 
-variable "ses_identity_arn" {
-  description = "ARN of the SES identity."
+variable "ses_email_address" {
+  description = "Email to send emails from with SES."
   type        = string
   default     = null
 }
