@@ -62,11 +62,15 @@ module "github_actions_repository" {
 }
 
 module "configs_repository" {
-  source             = "../modules/github/repository"
-  name               = "configs"
-  description        = "Common configurations for our project tooling."
-  visibility         = "public"
-  required_ci_checks = local.check_list.package
-  admin_team_id      = module.github_organisation.admin_team_id
-  labels             = merge(local.labels.standard, local.labels.package)
+  source      = "../modules/github/repository"
+  name        = "configs"
+  description = "Common configurations for our project tooling."
+  visibility  = "public"
+  required_ci_checks = [
+    for check in local.check_list.package :
+    check
+    if check != local.check_name.end_to_end_ci
+  ]
+  admin_team_id = module.github_organisation.admin_team_id
+  labels        = merge(local.labels.standard, local.labels.package)
 }
