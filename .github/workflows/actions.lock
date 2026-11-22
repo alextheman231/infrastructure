@@ -11,14 +11,17 @@ workflows:
     '.github/workflows/check-labels.yml': []
     '.github/workflows/ci.yml':
         - 'actions/checkout@v7.0.1'
+        - 'actions/setup-node@v7.1.0'
+        - 'hashicorp/setup-terraform@v4.0.1'
+        - 'pnpm/action-setup@v6.1.1'
+    '.github/workflows/plan.yml':
+        - 'actions/checkout@v7.0.1'
         - 'actions/create-github-app-token@v3.3.0'
         - 'actions/download-artifact@v8.0.2'
-        - 'actions/setup-node@v7.1.0'
         - 'actions/upload-artifact@v7.0.2'
         - 'hashicorp/setup-terraform@v4.0.1'
         - 'peter-evans/create-or-update-comment@v5.0.0'
         - 'peter-evans/find-comment@v4.0.0'
-        - 'pnpm/action-setup@v6.1.1'
     '.github/workflows/restrict-alex-up-bot-branches.yml': []
     '.github/workflows/scheduled-apply.yml': []
     '.github/workflows/update-dependencies.yml': []

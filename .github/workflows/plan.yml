@@ -1,0 +1,144 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  terraform-plan-ci:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    env:
+      TF_CLOUD_ORGANIZATION: ${{ vars.TF_CLOUD_ORGANIZATION }}
+      TF_TOKEN_app_terraform_io: ${{ secrets.TFE_TOKEN }}
+      TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
+    outputs:
+      plan_summary: ${{ steps.plan_summary.outputs.plan_summary }}
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4.0.1
+        with:
+          terraform_version: 1.15
+
+      - name: Initialise Terraform
+        run: terraform init
+
+      - name: Run the plan
+        id: plan
+        run: |
+          # terraform plan
+
+          set -o pipefail
+          terraform plan -no-color 2>&1 | tee raw-plan.md
+
+      - name: Save plan output
+        run: |
+          awk '
+          /^Note: Objects have changed outside of Terraform$/ {
+              printing=1
+          }
+
+          /^Terraform used the selected providers to generate the following execution/ {
+              printing=1
+          }
+
+          /^Terraform will perform the following actions:/ {
+              printing=1
+          }
+
+          /^No changes\. Your infrastructure matches the configuration\./ {
+              printing=1
+          }
+
+          printing
+
+          /^(Plan:|and found no differences, so no changes are needed\.)/ {
+              plan_seen=1
+          }
+
+          plan_seen && /^─────────────────────────────────────────────────────────────────────────────$/ {
+              exit
+          }
+          ' raw-plan.md > plan.md
+
+      - name: Save plan summary
+        id: plan_summary
+        run: |
+          PLAN_SUMMARY="$(grep -E '^(Plan:|No changes\.)' raw-plan.md | head -n1)"
+          echo "plan_summary=$PLAN_SUMMARY" >> "$GITHUB_OUTPUT"
+
+      - name: Upload the plan to be used in pull request comment
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: terraform-plan
+          path: plan.md
+
+  comment-terraform-plan:
+    needs: [terraform-plan-ci]
+    permissions:
+      actions: read
+      checks: write
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download the plan
+        uses: actions/download-artifact@v8.0.2
+        with:
+          name: terraform-plan
+
+      - name: Save the plan to the GitHub Output
+        id: get-plan
+        run: |
+          PLAN=$(cat plan.md)
+          {
+            echo "comment-body<<EOF"
+            echo "$PLAN"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Get alex-up-bot GitHub token
+        id: app-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ vars.ALEX_UP_BOT_CLIENT_ID }}
+          private-key: ${{ secrets.ALEX_UP_BOT_PRIVATE_KEY }}
+          permission-contents: read
+          permission-pull-requests: write
+
+      - name: Find existing comment
+        uses: peter-evans/find-comment@v4.0.0
+        id: find-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "alex-up-bot[bot]"
+          body-includes: # HCP Terraform Plan Output
+
+      - name: Comment the plan on the pull request
+        uses: peter-evans/create-or-update-comment@v5.0.0
+        id: create-comment
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-id: ${{ steps.find-comment.outputs.comment-id }}
+          edit-mode: replace
+          body: |
+            # HCP Terraform Plan Output
+
+            <details open>
+            <summary>${{ needs.terraform-plan-ci.outputs.plan_summary }}</summary>
+
+            ```hcl
+            ${{ steps.get-plan.outputs.comment-body }}
+            ```
+
+            </details>
+
+      - name: Give a 15-second plan review window before passing
+        run: sleep 15
