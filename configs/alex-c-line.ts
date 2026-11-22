@@ -1,4 +1,5 @@
 import type { AlexCLineConfig } from "alex-c-line/configs";
+
 import { scripts } from "package.json" with { type: "json" };
 
 const alexCLineConfig: AlexCLineConfig<keyof typeof scripts> = {
