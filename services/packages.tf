@@ -60,3 +60,13 @@ module "github_actions_repository" {
   admin_team_id = module.github_organisation.admin_team_id
   labels        = merge(local.labels.standard, local.labels.package)
 }
+
+module "configs_repository" {
+  source             = "../modules/github/repository"
+  name               = "configs"
+  description        = "Common configurations for our project tooling."
+  visibility         = "public"
+  required_ci_checks = local.check_list.package
+  admin_team_id      = module.github_organisation.admin_team_id
+  labels             = merge(local.labels.standard, local.labels.package)
+}
