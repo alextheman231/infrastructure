@@ -45,7 +45,7 @@ jobs:
   actions-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@3afc74f099e74b1beb17ab72d17af1f20e47e0ca # v14.9.0
+    uses: alextheman231/github-actions/.github/workflows/actions-ci.yml@0b57250b2e91ab1fff3a5b65deae7ea25a19b824 # v14.9.1
     with:
       CLIENT_ID: ${{ vars.ALEX_UP_BOT_CLIENT_ID }}
     secrets:
@@ -54,7 +54,7 @@ jobs:
   pyproject-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/pyproject-ci.yml@3afc74f099e74b1beb17ab72d17af1f20e47e0ca # v14.9.0
+    uses: alextheman231/github-actions/.github/workflows/pyproject-ci.yml@0b57250b2e91ab1fff3a5b65deae7ea25a19b824 # v14.9.1
     with:
       CLIENT_ID: ${{ vars.ALEX_UP_BOT_CLIENT_ID }}
     secrets:
@@ -63,7 +63,7 @@ jobs:
   secret-scan-ci:
     permissions:
       contents: read
-    uses: alextheman231/github-actions/.github/workflows/secret-scan-ci.yml@3afc74f099e74b1beb17ab72d17af1f20e47e0ca # v14.9.0
+    uses: alextheman231/github-actions/.github/workflows/secret-scan-ci.yml@0b57250b2e91ab1fff3a5b65deae7ea25a19b824 # v14.9.1
     with:
       github-push-before-sha: ${{ github.event.before }}
       github-push-base-sha: ${{ github.event.base_ref }}
