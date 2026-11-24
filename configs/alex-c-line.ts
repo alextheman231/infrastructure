@@ -1,18 +1,9 @@
 import type { AlexCLineConfig } from "alex-c-line/configs";
 
-import { scripts } from "package.json" with { type: "json" };
-
-const alexCLineConfig: AlexCLineConfig<keyof typeof scripts> = {
+const alexCLineConfig: AlexCLineConfig = {
   preCommit: {
     packageManager: "pnpm",
     steps: ["format", "lint"],
-  },
-  template: {
-    pullRequest: {
-      category: "infrastructure",
-      infrastructureProvider: "Terraform",
-      requireConfirmationFrom: "AlexMan123456",
-    },
   },
 };
 
