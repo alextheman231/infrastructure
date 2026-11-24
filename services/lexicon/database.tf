@@ -2,7 +2,7 @@ module "database" {
   source             = "../../modules/aws/database"
   initial_db_name    = "lexicon"
   db_identifier      = "lexicon-prod"
-  postgres_version   = "18"
+  postgres_version   = "19"
   username           = "lexicon_user"
   password           = var.lexicon_database_password
   security_group_ids = [module.database_security_group.id]
