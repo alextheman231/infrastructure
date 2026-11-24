@@ -115,6 +115,7 @@ provider "registry.terraform.io/jianyuan/sentry" {
   version     = "0.17.0"
   constraints = ">= 0.14.3"
   hashes = [
+    "h1:Zclbc05CXWZ/2Y5xFbGKMqgScmcy8kEW+CO9KcJ5MbY=",
     "h1:xrbPJ9NFk3g4zMffkzZi2GRFUIFYWtqXMdm3x8AAdOk=",
     "zh:04e018f2c1469380401339a255e379c72b49e1999aae3be912dc8dc283a00408",
     "zh:0dde99e7b343fa01f8eefc378171fb8621bedb20f59157d6cc8e3d46c738105f",
