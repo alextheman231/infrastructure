@@ -11,6 +11,10 @@ env:
   TF_TOKEN_app_terraform_io: ${{ secrets.TFE_TOKEN }}
   TF_WORKSPACE: ${{ vars.TF_WORKSPACE }}
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   apply:
     if: ${{ github.repository == 'alextheman231/infrastructure' }}
